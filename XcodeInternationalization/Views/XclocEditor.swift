@@ -77,20 +77,20 @@ struct FileDetailTable: View {
             Table(file?.translationUnits ?? [], selection: $selectedID) {
                 TableColumn("源文本") { unit in
                     Text(unit.source)
-                        .lineLimit(2)
+                        
                 }
                 .width(min: 150, ideal: 200)
 
                 TableColumn("翻译") { unit in
-                    Text(unit.target)
-                        .lineLimit(2)
+                    Text(verbatim: unit.target)
+                        
                 }
                 .width(min: 150, ideal: 200)
 
                 TableColumn("备注") { unit in
                     if let note = unit.note {
                         Text(note)
-                            .lineLimit(1)
+                            
                             .foregroundColor(.secondary)
                     }
                 }
@@ -128,8 +128,11 @@ struct TranslationDetailView: View {
         VStack(alignment: .leading, spacing: 16) {
             Text("翻译")
                 .font(.headline)
-            TextField("翻译", text: $translation.target)
-                .padding()
+            
+            TextEditor(text: $translation.target)
+                .font(.body)
+                .frame(height: 100)
+                .padding(8)
                 .background(Color.gray.opacity(0.1))
                 .cornerRadius(8)
             

@@ -1,6 +1,7 @@
 import Foundation
 
 class XclocParser {
+    // 解析整个 xcloc 文件
     static func parse(xclocURL: URL) throws -> XclocFile {
         // 读取 contents.json
         let contentsURL = xclocURL.appendingPathComponent("contents.json")
@@ -19,83 +20,110 @@ class XclocParser {
         )
     }
     
+    // 解析翻译文件
     private static func parseTranslations(xclocURL: URL, sourceLocale: String, targetLocale: String) throws -> [TranslationUnit] {
         let stringsURL = xclocURL.appendingPathComponent("Localized Contents")
                                 .appendingPathComponent("\(targetLocale).xliff")
         
         let stringsData = try Data(contentsOf: stringsURL)
-        let items = try parseXLIFF(data: stringsData)
         
-        return items.map { (id, item) in
-            TranslationUnit(
-                id: id,
-                source: item.localizations[sourceLocale]?.stringUnit.value ?? "",
-                target: item.localizations[targetLocale]?.stringUnit.value ?? "",
-                note: item.comment
-            )
-        }
-    }
-    
-    private static func parseXLIFF(data: Data) throws -> [(String, TranslationItem)] {
-        // XLIFF 解析逻辑
-        var items: [(String, TranslationItem)] = []
-        let xmlDoc = try XMLDocument(data: data)
+        // 使用 XMLParser 解析 XLIFF
+        let parser = XLIFFParser(sourceLocale: sourceLocale, targetLocale: targetLocale)
+        let xmlParser = XMLParser(data: stringsData)
+        xmlParser.delegate = parser
         
-        // 遍历 XML 节点，构建 TranslationItem
-        if let nodes = try? xmlDoc.nodes(forXPath: "//trans-unit") {
-            for node in nodes {
-                guard let element = node as? XMLElement,
-                      let id = element.attribute(forName: "id")?.stringValue else {
-                    continue
-                }
-                
-                let sourceNode = element.elements(forName: "source").first
-                let targetNode = element.elements(forName: "target").first
-                let noteNode = element.elements(forName: "note").first
-                
-                let item = TranslationItem(
-                    comment: noteNode?.stringValue,
-                    extractionState: "manual",
-                    localizations: [
-                        "en": .init(stringUnit: .init(
-                            state: "translated",
-                            value: sourceNode?.stringValue ?? ""
-                        )),
-                        "zh-Hans": .init(stringUnit: .init(
-                            state: "translated",
-                            value: targetNode?.stringValue ?? ""
-                        ))
-                    ]
-                )
-                
-                items.append((id, item))
-            }
+        guard xmlParser.parse() else {
+            throw XMLError.parseError(xmlParser.parserError?.localizedDescription ?? "Unknown error")
         }
         
-        return items
+        return parser.translationUnits
     }
     
+    // 保存翻译更新
     static func save(file: XclocFile, translation: TranslationUnit) throws {
         let xliffURL = file.url.appendingPathComponent("Localized Contents")
                               .appendingPathComponent("\(file.contents.targetLocale).xliff")
-        print("保存路径: \(xliffURL.path)")
         
-        let xmlDoc = try XMLDocument(contentsOf: xliffURL)
-        let nodes = try xmlDoc.nodes(forXPath: "//trans-unit")
-        for node in nodes {
-            guard let element = node as? XMLElement,
-                  let id = element.attribute(forName: "id")?.stringValue,
-                  id == translation.id else {
-                continue
-            }
+        let xmlDoc = try XMLDocument(contentsOf: xliffURL, options: .documentTidyXML)
+        
+        // 查找并更新目标翻译节点
+        if let nodes = try? xmlDoc.nodes(forXPath: "//trans-unit[@id='\(translation.id)']"),
+           let element = nodes.first as? XMLElement {
             
+            // 更新或创建 target 节点
             if let targetNode = element.elements(forName: "target").first {
                 targetNode.stringValue = translation.target
+            } else {
+                let targetNode = XMLElement(name: "target")
+                targetNode.stringValue = translation.target
+                element.addChild(targetNode)
             }
-            break
         }
         
-        let xmlData = xmlDoc.xmlData(options: [.nodePrettyPrint])
+        // 保存文件
+        let xmlData = xmlDoc.xmlData(options: [.nodePrettyPrint, .documentTidyXML])
         try xmlData.write(to: xliffURL)
     }
+}
+
+// XLIFF 解析器
+class XLIFFParser: NSObject, XMLParserDelegate {
+    private let sourceLocale: String
+    private let targetLocale: String
+    private var currentElement: String = ""
+    private var currentId: String = ""
+    private var currentSource: String = ""
+    private var currentTarget: String = ""
+    private var currentNote: String = ""
+    
+    var translationUnits: [TranslationUnit] = []
+    
+    init(sourceLocale: String, targetLocale: String) {
+        self.sourceLocale = sourceLocale
+        self.targetLocale = targetLocale
+        super.init()
+    }
+    
+    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
+        currentElement = elementName
+        
+        if elementName == "trans-unit" {
+            currentId = attributeDict["id"] ?? ""
+            currentSource = ""
+            currentTarget = ""
+            currentNote = ""
+        }
+    }
+    
+    func parser(_ parser: XMLParser, foundCharacters string: String) {
+        let content = string.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        switch currentElement {
+        case "source":
+            currentSource += content
+        case "target":
+            currentTarget += content
+        case "note":
+            currentNote += content
+        default:
+            break
+        }
+    }
+    
+    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+        if elementName == "trans-unit" {
+            let unit = TranslationUnit(
+                id: currentId,
+                source: currentSource,
+                target: currentTarget,
+                note: currentNote
+            )
+            translationUnits.append(unit)
+        }
+    }
+}
+
+// 错误类型
+enum XMLError: Error {
+    case parseError(String)
 }

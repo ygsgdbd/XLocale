@@ -1,0 +1,3360 @@
+/* No comment provided by engineer. */
+"" = "";
+
+/* No comment provided by engineer. */
+" %@ %@" = " %@ %@";
+
+/* No comment provided by engineer. */
+"--" = "--";
+
+/* No comment provided by engineer. */
+"(%@)" = "(%@)";
+
+/* No comment provided by engineer. */
+"(Created At) %@" = "(Created At) %@";
+
+/* No comment provided by engineer. */
+"(First Choice)" = "(First Choice)";
+
+/* No comment provided by engineer. */
+"(in the past 30 days)" = "(in the past 30 days)";
+
+/* No comment provided by engineer. */
+"*" = "*";
+
+/* No comment provided by engineer. */
+"******" = "******";
+
+/* No comment provided by engineer. */
+"*TP/SL will apply to the entire postion. When the position closed, the order will be cancelled. When price reach trigger price, postion will be closed. If postion amount exceed max, order will be declined" = "*TP/SL will apply to the entire postion. When the position closed, the order will be cancelled. When price reach trigger price, postion will be closed. If postion amount exceed max, order will be declined";
+
+/* No comment provided by engineer. */
+"/%@" = "/%@";
+
+/* No comment provided by engineer. */
+"%" = "%";
+
+/* No comment provided by engineer. */
+"%@" = "%@";
+
+/* No comment provided by engineer. */
+"%@ - %@ %@" = "%@ - %@ %@";
+
+/* No comment provided by engineer. */
+"%@ / %@" = "%@ / %@";
+
+/* No comment provided by engineer. */
+"%@ %@" = "%@ %@";
+
+/* No comment provided by engineer. */
+"%@ %@ / %@ %@" = "%@ %@ / %@ %@";
+
+/* No comment provided by engineer. */
+"%@ %@ %lldx" = "%@ %@ %lldx";
+
+/* No comment provided by engineer. */
+"%@ %@ deducted from your fund account" = "%@ %@ deducted from your fund account";
+
+/* No comment provided by engineer. */
+"%@ %@ deposited into the fund account" = "%@ %@ deposited into the fund account";
+
+/* No comment provided by engineer. */
+"%@ %lldx" = "%@ %lldx";
+
+/* No comment provided by engineer. */
+"%@ Day" = "%@ Day";
+
+/* No comment provided by engineer. */
+"%@ Follow Orders" = "%@ Follow Orders";
+
+/* No comment provided by engineer. */
+"%@ Image voucher" = "%@ Image voucher";
+
+/* No comment provided by engineer. */
+"%@ in The Live Follwers" = "%@ in The Live Follwers";
+
+/* No comment provided by engineer. */
+"%@ Problem Description" = "%@ Problem Description";
+
+/* No comment provided by engineer. */
+"%@ Reason for appeal" = "%@ Reason for appeal";
+
+/* No comment provided by engineer. */
+"%@ Telephone" = "%@ Telephone";
+
+/* No comment provided by engineer. */
+"%@: %@" = "%@: %@";
+
+/* No comment provided by engineer. */
+"%@/%@" = "%@/%@";
+
+/* No comment provided by engineer. */
+"%@/0" = "%@/0";
+
+/* No comment provided by engineer. */
+"%@%@" = "%@%@";
+
+/* No comment provided by engineer. */
+"%@%%" = "%@%%";
+
+/* No comment provided by engineer. */
+"%lld" = "%lld";
+
+/* No comment provided by engineer. */
+"%lld days" = "%lld days";
+
+/* No comment provided by engineer. */
+"%lld minutes" = "%lld minutes";
+
+/* No comment provided by engineer. */
+"%lld Persons" = "%lld Persons";
+
+/* No comment provided by engineer. */
+"%lld Transaction" = "%lld Transaction";
+
+/* No comment provided by engineer. */
+"%lld%%" = "%lld%%";
+
+/* No comment provided by engineer. */
+"%lldx" = "%lldx";
+
+/* No comment provided by engineer. */
+"%llu" = "%llu";
+
+/* No comment provided by engineer. */
+"+%@" = "+%@";
+
+/* No comment provided by engineer. */
+"$%@" = "$%@";
+
+/* No comment provided by engineer. */
+"0" = "0";
+
+/* No comment provided by engineer. */
+"0 ~ 100" = "0 ~ 100";
+
+/* No comment provided by engineer. */
+"0.0" = "0.0";
+
+/* No comment provided by engineer. */
+"0.00" = "0.00";
+
+/* No comment provided by engineer. */
+"1 hour" = "1 hour";
+
+/* No comment provided by engineer. */
+"1. After the purchase is successful, no withdrawal of principal is allowed on the way, so please purchase with caution!" = "1. After the purchase is successful, no withdrawal of principal is allowed on the way, so please purchase with caution!";
+
+/* No comment provided by engineer. */
+"1. Please do not recharge any non %@ assets to the above address, otherwise the assets will not be recoverable" = "1. Please do not recharge any non %@ assets to the above address, otherwise the assets will not be recoverable";
+
+/* No comment provided by engineer. */
+"1.00" = "1.00";
+
+/* No comment provided by engineer. */
+"1%" = "1%";
+
+/* No comment provided by engineer. */
+"2. After you recharge to the above address, you need confirmation from the entire network node, and the account will be received after 6 network confirmations." = "2. After you recharge to the above address, you need confirmation from the entire network node, and the account will be received after 6 network confirmations.";
+
+/* No comment provided by engineer. */
+"2. In the near future, manual redemption of principal and earnings will be required." = "2. In the near future, manual redemption of principal and earnings will be required.";
+
+/* No comment provided by engineer. */
+"2%" = "2%";
+
+/* No comment provided by engineer. */
+"3 hour" = "3 hour";
+
+/* No comment provided by engineer. */
+"3. Minimum recharge quantity: %@. Recharges less than the minimum quantity will not be credited." = "3. Minimum recharge quantity: %@. Recharges less than the minimum quantity will not be credited.";
+
+/* No comment provided by engineer. */
+"4. Please ensure the security of your computer and browser to prevent information from being tampered with or leaked" = "4. Please ensure the security of your computer and browser to prevent information from being tampered with or leaked";
+
+/* No comment provided by engineer. */
+"6 hour" = "6 hour";
+
+/* No comment provided by engineer. */
+"6 month" = "6 month";
+
+/* No comment provided by engineer. */
+"6-digit payment password" = "6-digit payment password";
+
+/* No comment provided by engineer. */
+"15 minutes" = "15 minutes";
+
+/* No comment provided by engineer. */
+"24h Change" = "24h Change";
+
+/* No comment provided by engineer. */
+"24h High" = "24h High";
+
+/* No comment provided by engineer. */
+"24h Low" = "24h Low";
+
+/* No comment provided by engineer. */
+"24h Service" = "24h Service";
+
+/* No comment provided by engineer. */
+"24h Vol" = "24h Vol";
+
+/* No comment provided by engineer. */
+"24h Vol (%@)" = "24h Vol (%@)";
+
+/* No comment provided by engineer. */
+"30 minutes" = "30 minutes";
+
+/* No comment provided by engineer. */
+"Account" = "Account";
+
+/* No comment provided by engineer. */
+"Account balance greater than %@ USDT" = "Account balance greater than %@ USDT";
+
+/* No comment provided by engineer. */
+"Account not issued" = "Account not issued";
+
+/* No comment provided by engineer. */
+"Account Type" = "Account Type";
+
+/* No comment provided by engineer. */
+"Accumulated amount (USDT)" = "Accumulated amount (USDT)";
+
+/* No comment provided by engineer. */
+"Activation Price (USDT)" = "Activation Price (USDT)";
+
+/* No comment provided by engineer. */
+"Ad" = "Ad";
+
+/* No comment provided by engineer. */
+"Add" = "Add";
+
+/* No comment provided by engineer. */
+"Add Copy" = "Add Copy";
+
+/* No comment provided by engineer. */
+"Add Email" = "Add Email";
+
+/* No comment provided by engineer. */
+"Add email verification for security verification when logging in, withdrawing coins, retrieving passwords, and modifying security settings" = "Add email verification for security verification when logging in, withdrawing coins, retrieving passwords, and modifying security settings";
+
+/* No comment provided by engineer. */
+"Add Google Authenticator" = "Add Google Authenticator";
+
+/* No comment provided by engineer. */
+"Add mobile phone verification for security verification when logging in, withdrawing coins, retrieving passwords, and modifying security settings" = "Add mobile phone verification for security verification when logging in, withdrawing coins, retrieving passwords, and modifying security settings";
+
+/* No comment provided by engineer. */
+"Add payment method" = "Add payment method";
+
+/* No comment provided by engineer. */
+"Add phone number" = "Add phone number";
+
+/* No comment provided by engineer. */
+"Add Receiving Account" = "Add Receiving Account";
+
+/* No comment provided by engineer. */
+"Add Whitelist" = "Add Whitelist";
+
+/* No comment provided by engineer. */
+"Additional evaluation" = "Additional evaluation";
+
+/* No comment provided by engineer. */
+"Address" = "Address";
+
+/* No comment provided by engineer. */
+"Address authentication" = "Address authentication";
+
+/* No comment provided by engineer. */
+"Adjust copy funds" = "Adjust copy funds";
+
+/* No comment provided by engineer. */
+"Adjust Copy Funds" = "Adjust Copy Funds";
+
+/* No comment provided by engineer. */
+"Adjust Leverage" = "Adjust Leverage";
+
+/* No comment provided by engineer. */
+"Adjust Margin" = "Adjust Margin";
+
+/* No comment provided by engineer. */
+"Admin" = "Admin";
+
+/* No comment provided by engineer. */
+"Ads Remaining: %@ %@" = "Ads Remaining: %@ %@";
+
+/* No comment provided by engineer. */
+"Advanced" = "Advanced";
+
+/* No comment provided by engineer. */
+"Advanced Certification" = "Advanced Certification";
+
+/* No comment provided by engineer. */
+"Advanced Certified" = "Advanced Certified";
+
+/* No comment provided by engineer. */
+"Advanced Settings" = "Advanced Settings";
+
+/* No comment provided by engineer. */
+"After activation, your trading orders under the contract will generate signals, and followers will follow your trading actions." = "After activation, your trading orders under the contract will generate signals, and followers will follow your trading actions.";
+
+/* No comment provided by engineer. */
+"After actively canceling identity, you cannot apply to be a trader again within 7 days." = "After actively canceling identity, you cannot apply to be a trader again within 7 days.";
+
+/* No comment provided by engineer. */
+"After applying to become a C2C merchant, your security deposit will be temporarily frozen and will be returned in full if you release your merchant status." = "After applying to become a C2C merchant, your security deposit will be temporarily frozen and will be returned in full if you release your merchant status.";
+
+/* No comment provided by engineer. */
+"After opening, you will be able to appear in the trading community and have a personal home page, and at the same time can be followed by users, and zero cost to get additional income with single, double profit. (Recommended)" = "After opening, you will be able to appear in the trading community and have a personal home page, and at the same time can be followed by users, and zero cost to get additional income with single, double profit. (Recommended)";
+
+/* No comment provided by engineer. */
+"After revoking your identity, you will lose the qualification to place orders and will not be able to submit an application again within 7 days. Please operate with caution." = "After revoking your identity, you will lose the qualification to place orders and will not be able to submit an application again within 7 days. Please operate with caution.";
+
+/* No comment provided by engineer. */
+"After successful addition, return to the exchange to verify the new authenticator" = "After successful addition, return to the exchange to verify the new authenticator";
+
+/* No comment provided by engineer. */
+"After the transfer is completed, click the button" = "After the transfer is completed, click the button";
+
+/* No comment provided by engineer. */
+"Agent Rebate" = "Agent Rebate";
+
+/* No comment provided by engineer. */
+"Agent rebate program" = "Agent rebate program";
+
+/* No comment provided by engineer. */
+"All" = "All";
+
+/* No comment provided by engineer. */
+"All executed" = "All executed";
+
+/* No comment provided by engineer. */
+"All Sold" = "All Sold";
+
+/* No comment provided by engineer. */
+"All Traders" = "All Traders";
+
+/* No comment provided by engineer. */
+"All trading pairs (follow trader's settings)" = "All trading pairs (follow trader's settings)";
+
+/* No comment provided by engineer. */
+"All Transactions" = "All Transactions";
+
+/* No comment provided by engineer. */
+"Already have an account?" = "Already have an account?";
+
+/* No comment provided by engineer. */
+"Amount" = "Amount";
+
+/* No comment provided by engineer. */
+"Amount (%@)" = "Amount (%@)";
+
+/* No comment provided by engineer. */
+"Amount (USDT)" = "Amount (USDT)";
+
+/* No comment provided by engineer. */
+"Amount is required" = "Amount is required";
+
+/* No comment provided by engineer. */
+"Amount per follow-up order" = "Amount per follow-up order";
+
+/* No comment provided by engineer. */
+"Amount per order" = "Amount per order";
+
+/* No comment provided by engineer. */
+"Amount to" = "Amount to";
+
+/* No comment provided by engineer. */
+"Announcement" = "Announcement";
+
+/* No comment provided by engineer. */
+"Annual interest rate" = "Annual interest rate";
+
+/* No comment provided by engineer. */
+"Annualized return" = "Annualized return";
+
+/* No comment provided by engineer. */
+"Appeal" = "Appeal";
+
+/* No comment provided by engineer. */
+"Appeal again" = "Appeal again";
+
+/* No comment provided by engineer. */
+"Appeal failed" = "Appeal failed";
+
+/* No comment provided by engineer. */
+"appeal in progress" = "appeal in progress";
+
+/* No comment provided by engineer. */
+"Appeal Information" = "Appeal Information";
+
+/* No comment provided by engineer. */
+"Appeal Record" = "Appeal Record";
+
+/* No comment provided by engineer. */
+"Appeal successful" = "Appeal successful";
+
+/* No comment provided by engineer. */
+"Appealed successfully" = "Appealed successfully";
+
+/* No comment provided by engineer. */
+"Application Reason" = "Application Reason";
+
+/* No comment provided by engineer. */
+"Apply" = "Apply";
+
+/* No comment provided by engineer. */
+"Apply for Copy Trading" = "Apply for Copy Trading";
+
+/* No comment provided by engineer. */
+"Apply Now" = "Apply Now";
+
+/* No comment provided by engineer. */
+"Apply to become a %@" = "Apply to become a %@";
+
+/* No comment provided by engineer. */
+"Approved" = "Approved";
+
+/* No comment provided by engineer. */
+"Are you sure you want to place the ad?" = "Are you sure you want to place the ad?";
+
+/* No comment provided by engineer. */
+"Are you sure you want to remove the ad?" = "Are you sure you want to remove the ad?";
+
+/* No comment provided by engineer. */
+"Asset balance (%@)" = "Asset balance (%@)";
+
+/* No comment provided by engineer. */
+"Asset Details" = "Asset Details";
+
+/* No comment provided by engineer. */
+"Asset Overview" = "Asset Overview";
+
+/* TabBar */
+"Assets" = "Assets";
+
+/* No comment provided by engineer. */
+"At least one verification method needs to be retained" = "At least one verification method needs to be retained";
+
+/* No comment provided by engineer. */
+"Audit failed" = "Audit failed";
+
+/* No comment provided by engineer. */
+"Audit Failed" = "Audit Failed";
+
+/* No comment provided by engineer. */
+"Auditing" = "Auditing";
+
+/* No comment provided by engineer. */
+"Authenticate Now" = "Authenticate Now";
+
+/* No comment provided by engineer. */
+"Authentication failure" = "Authentication failure";
+
+/* No comment provided by engineer. */
+"Authenticator Code" = "Authenticator Code";
+
+/* No comment provided by engineer. */
+"Avaiable: %@ %@" = "Avaiable: %@ %@";
+
+/* No comment provided by engineer. */
+"Available" = "Available";
+
+/* No comment provided by engineer. */
+"Available Balance" = "Available Balance";
+
+/* No comment provided by engineer. */
+"Available Margin" = "Available Margin";
+
+/* No comment provided by engineer. */
+"Available: %@" = "Available: %@";
+
+/* No comment provided by engineer. */
+"Avaliable: %@ %@" = "Avaliable: %@ %@";
+
+/* No comment provided by engineer. */
+"Avatar" = "Avatar";
+
+/* No comment provided by engineer. */
+"Avbl" = "Avbl";
+
+/* No comment provided by engineer. */
+"Average Opening Price" = "Average Opening Price";
+
+/* No comment provided by engineer. */
+"Average payment time" = "Average payment time";
+
+/* No comment provided by engineer. */
+"Average price" = "Average price";
+
+/* No comment provided by engineer. */
+"Average Price" = "Average Price";
+
+/* No comment provided by engineer. */
+"Avg. payment time" = "Avg. payment time";
+
+/* No comment provided by engineer. */
+"Avg. Price (U)" = "Avg. Price (U)";
+
+/* No comment provided by engineer. */
+"Avg. Price / Order Price" = "Avg. Price / Order Price";
+
+/* No comment provided by engineer. */
+"Backhand" = "Backhand";
+
+/* No comment provided by engineer. */
+"Bad" = "Bad";
+
+/* No comment provided by engineer. */
+"Balance" = "Balance";
+
+/* No comment provided by engineer. */
+"Balance: %@ %@" = "Balance: %@ %@";
+
+/* No comment provided by engineer. */
+"Basic" = "Basic";
+
+/* No comment provided by engineer. */
+"Become a %@ Certified Merchant" = "Become a %@ Certified Merchant";
+
+/* No comment provided by engineer. */
+"Become a C2C Merchant" = "Become a C2C Merchant";
+
+/* No comment provided by engineer. */
+"Become a GFK certified advertiser, advertisement publishing rights Limitations, enjoy more trading privileges" = "Become a GFK certified advertiser, advertisement publishing rights Limitations, enjoy more trading privileges";
+
+/* No comment provided by engineer. */
+"Become a merchant" = "Become a merchant";
+
+/* No comment provided by engineer. */
+"Become C2C Merchant Application" = "Become C2C Merchant Application";
+
+/* No comment provided by engineer. */
+"Bill details" = "Bill details";
+
+/* No comment provided by engineer. */
+"Bind Email" = "Bind Email";
+
+/* No comment provided by engineer. */
+"Bind Mobile" = "Bind Mobile";
+
+/* No comment provided by engineer. */
+"Blacklists" = "Blacklists";
+
+/* No comment provided by engineer. */
+"Block" = "Block";
+
+/* No comment provided by engineer. */
+"Blocked" = "Blocked";
+
+/* 买单 */
+"Buy" = "Buy";
+
+/* No comment provided by engineer. */
+"BUY" = "BUY";
+
+/* No comment provided by engineer. */
+"Buy %@" = "Buy %@";
+
+/* No comment provided by engineer. */
+"Buy %lld" = "Buy %lld";
+
+/* No comment provided by engineer. */
+"Buyer appeal failed" = "Buyer appeal failed";
+
+/* No comment provided by engineer. */
+"Buyer appealed successfully" = "Buyer appealed successfully";
+
+/* No comment provided by engineer. */
+"Buyer nickname" = "Buyer nickname";
+
+/* No comment provided by engineer. */
+"Buying coins/recharging/trading" = "Buying coins/recharging/trading";
+
+/* No comment provided by engineer. */
+"by" = "by";
+
+/* No comment provided by engineer. */
+"By" = "By";
+
+/* No comment provided by engineer. */
+"C2C" = "C2C";
+
+/* No comment provided by engineer. */
+"C2C merchants publish advertisements" = "C2C merchants publish advertisements";
+
+/* No comment provided by engineer. */
+"C2C Quickly Purchase Your Initial Encrypted Funds" = "C2C Quickly Purchase Your Initial Encrypted Funds";
+
+/* No comment provided by engineer. */
+"C2C transaction unlimited" = "C2C transaction unlimited";
+
+/* No comment provided by engineer. */
+"Callback price" = "Callback price";
+
+/* No comment provided by engineer. */
+"Camera" = "Camera";
+
+/* No comment provided by engineer. */
+"Cancel" = "Cancel";
+
+/* No comment provided by engineer. */
+"Cancel All" = "Cancel All";
+
+/* No comment provided by engineer. */
+"Cancel Appeal" = "Cancel Appeal";
+
+/* No comment provided by engineer. */
+"Cancel the appeal" = "Cancel the appeal";
+
+/* No comment provided by engineer. */
+"Cancel time" = "Cancel time";
+
+/* No comment provided by engineer. */
+"Canceled" = "Canceled";
+
+/* No comment provided by engineer. */
+"Cancellation" = "Cancellation";
+
+/* No comment provided by engineer. */
+"Cancelled" = "Cancelled";
+
+/* No comment provided by engineer. */
+"Cannot select all security verification methods" = "Cannot select all security verification methods";
+
+/* No comment provided by engineer. */
+"Card No" = "Card No";
+
+/* No comment provided by engineer. */
+"Certification requirements" = "Certification requirements";
+
+/* No comment provided by engineer. */
+"Change" = "Change";
+
+/* No comment provided by engineer. */
+"Change Buy Ads" = "Change Buy Ads";
+
+/* No comment provided by engineer. */
+"Change Email" = "Change Email";
+
+/* No comment provided by engineer. */
+"Change Google Authenticator" = "Change Google Authenticator";
+
+/* No comment provided by engineer. */
+"Change Mobile" = "Change Mobile";
+
+/* No comment provided by engineer. */
+"Change Name" = "Change Name";
+
+/* No comment provided by engineer. */
+"Charts" = "Charts";
+
+/* No comment provided by engineer. */
+"Chat" = "Chat";
+
+/* No comment provided by engineer. */
+"Check" = "Check";
+
+/* No comment provided by engineer. */
+"Checked" = "Checked";
+
+/* No comment provided by engineer. */
+"Choose at least 1 payment method" = "Choose at least 1 payment method";
+
+/* No comment provided by engineer. */
+"Circulation Supply" = "Circulation Supply";
+
+/* No comment provided by engineer. */
+"Click Confirm Receipt to release digital coins to Mofang. Please be sure to confirm after receiving the payment from your bank account or third-party platform. Please do not release coins until you receive payment from the buyer." = "Click Confirm Receipt to release digital coins to Mofang. Please be sure to confirm after receiving the payment from your bank account or third-party platform. Please do not release coins until you receive payment from the buyer.";
+
+/* No comment provided by engineer. */
+"Close" = "Close";
+
+/* No comment provided by engineer. */
+"Close all positions" = "Close all positions";
+
+/* No comment provided by engineer. */
+"Close Long" = "Close Long";
+
+/* No comment provided by engineer. */
+"Close Position" = "Close Position";
+
+/* No comment provided by engineer. */
+"Close Short" = "Close Short";
+
+/* No comment provided by engineer. */
+"Closed Positions" = "Closed Positions";
+
+/* No comment provided by engineer. */
+"Closed/Quantity: " = "Closed/Quantity: ";
+
+/* No comment provided by engineer. */
+"Code" = "Code";
+
+/* No comment provided by engineer. */
+"Coin Account" = "Coin Account";
+
+/* No comment provided by engineer. */
+"Commission" = "Commission";
+
+/* No comment provided by engineer. */
+"Commission Depth" = "Commission Depth";
+
+/* No comment provided by engineer. */
+"Commissioned" = "Commissioned";
+
+/* No comment provided by engineer. */
+"Complete" = "Complete";
+
+/* No comment provided by engineer. */
+"Complete / Total" = "Complete / Total";
+
+/* No comment provided by engineer. */
+"Complete authentication and advanced certification" = "Complete authentication and advanced certification";
+
+/* No comment provided by engineer. */
+"Complete cell phone number and email binding" = "Complete cell phone number and email binding";
+
+/* No comment provided by engineer. */
+"Complete KYC verification immediately to proceed with the first transaction." = "Complete KYC verification immediately to proceed with the first transaction.";
+
+/* No comment provided by engineer. */
+"Complete time" = "Complete time";
+
+/* No comment provided by engineer. */
+"completed" = "completed";
+
+/* No comment provided by engineer. */
+"Completed" = "Completed";
+
+/* No comment provided by engineer. */
+"Completed Orders(30d)" = "Completed Orders(30d)";
+
+/* No comment provided by engineer. */
+"Completion Rate(30d)" = "Completion Rate(30d)";
+
+/* No comment provided by engineer. */
+"Comply" = "Comply";
+
+/* No comment provided by engineer. */
+"Confirm" = "Confirm";
+
+/* No comment provided by engineer. */
+"Confirm Password" = "Confirm Password";
+
+/* No comment provided by engineer. */
+"Confirm photos" = "Confirm photos";
+
+/* No comment provided by engineer. */
+"Confirming" = "Confirming";
+
+/* No comment provided by engineer. */
+"Congratulations! You have successfully placed your ad, please check back for new orders!" = "Congratulations! You have successfully placed your ad, please check back for new orders!";
+
+/* No comment provided by engineer. */
+"Contact TA" = "Contact TA";
+
+/* No comment provided by engineer. */
+"Contact Us" = "Contact Us";
+
+/* No comment provided by engineer. */
+"Continue" = "Continue";
+
+/* No comment provided by engineer. */
+"Contract" = "Contract";
+
+/* No comment provided by engineer. */
+"Contract Account" = "Contract Account";
+
+/* No comment provided by engineer. */
+"Contract brokerage introduction" = "Contract brokerage introduction";
+
+/* No comment provided by engineer. */
+"Contract Copy Trading" = "Contract Copy Trading";
+
+/* No comment provided by engineer. */
+"Contract Lead" = "Contract Lead";
+
+/* No comment provided by engineer. */
+"Contract Pairs List" = "Contract Pairs List";
+
+/* No comment provided by engineer. */
+"Contract profit ratio" = "Contract profit ratio";
+
+/* No comment provided by engineer. */
+"Contract profit-sharing ratio" = "Contract profit-sharing ratio";
+
+/* No comment provided by engineer. */
+"Convenient management" = "Convenient management";
+
+/* No comment provided by engineer. */
+"Copy 16 bit key (or scan QR code)" = "Copy 16 bit key (or scan QR code)";
+
+/* No comment provided by engineer. */
+"Copy Account" = "Copy Account";
+
+/* No comment provided by engineer. */
+"Copy Count" = "Copy Count";
+
+/* No comment provided by engineer. */
+"Copy Now" = "Copy Now";
+
+/* No comment provided by engineer. */
+"Copy Profit (USDT)" = "Copy Profit (USDT)";
+
+/* No comment provided by engineer. */
+"Copy Success" = "Copy Success";
+
+/* No comment provided by engineer. */
+"Copy trade Settings" = "Copy trade Settings";
+
+/* No comment provided by engineer. */
+"Copy Trader" = "Copy Trader";
+
+/* No comment provided by engineer. */
+"Copy Trader Agreement" = "Copy Trader Agreement";
+
+/* No comment provided by engineer. */
+"Copy Trading" = "Copy Trading";
+
+/* No comment provided by engineer. */
+"Copy trading amount:" = "Copy trading amount:";
+
+/* No comment provided by engineer. */
+"Copy trading mode" = "Copy trading mode";
+
+/* No comment provided by engineer. */
+"Copytrade Account, serving as the shared margin for following all traders under this model." = "Copytrade Account, serving as the shared margin for following all traders under this model.";
+
+/* No comment provided by engineer. */
+"Country / Region" = "Country / Region";
+
+/* No comment provided by engineer. */
+"Country or region" = "Country or region";
+
+/* No comment provided by engineer. */
+"Cro" = "Cro";
+
+/* No comment provided by engineer. */
+"Cross" = "Cross";
+
+/* No comment provided by engineer. */
+"Cross Margin Mode: Positions with the same margin asset share the cross margin for that asset. In the event of liquidation, the trader may lose all of the margin and all cross margin positions under that margin asset.  Isolated Margin Mode: A specific amount of margin is allocated to a position. If the position's margin loss falls below the maintenance margin level, the position will be liquidated. In Isolated Margin Mode, you can add or reduce margin for this position." = "Cross Margin Mode: Positions with the same margin asset share the cross margin for that asset. In the event of liquidation, the trader may lose all of the margin and all cross margin positions under that margin asset.  Isolated Margin Mode: A specific amount of margin is allocated to a position. If the position's margin loss falls below the maintenance margin level, the position will be liquidated. In Isolated Margin Mode, you can add or reduce margin for this position.";
+
+/* No comment provided by engineer. */
+"Cross Price" = "Cross Price";
+
+/* No comment provided by engineer. */
+"Crypto" = "Crypto";
+
+/* No comment provided by engineer. */
+"Cryptocurrency Trading Expert Focused on Profitability" = "Cryptocurrency Trading Expert Focused on Profitability";
+
+/* No comment provided by engineer. */
+"Cumulative (Times)" = "Cumulative (Times)";
+
+/* No comment provided by engineer. */
+"Cumulative (USDT)" = "Cumulative (USDT)";
+
+/* No comment provided by engineer. */
+"Cumulative Earnings" = "Cumulative Earnings";
+
+/* No comment provided by engineer. */
+"Cumulative Follower Count" = "Cumulative Follower Count";
+
+/* No comment provided by engineer. */
+"Cumulative income" = "Cumulative income";
+
+/* No comment provided by engineer. */
+"Cumulative income ≈" = "Cumulative income ≈";
+
+/* No comment provided by engineer. */
+"Cumulative income(U)" = "Cumulative income(U)";
+
+/* No comment provided by engineer. */
+"Cumulative numbers" = "Cumulative numbers";
+
+/* No comment provided by engineer. */
+"Cumulative return" = "Cumulative return";
+
+/* No comment provided by engineer. */
+"Cumulative Total Return" = "Cumulative Total Return";
+
+/* No comment provided by engineer. */
+"Cumulative Total Return (USDT)" = "Cumulative Total Return (USDT)";
+
+/* No comment provided by engineer. */
+"Currency" = "Currency";
+
+/* No comment provided by engineer. */
+"Currency pairs" = "Currency pairs";
+
+/* No comment provided by engineer. */
+"Currency Sub-order" = "Currency Sub-order";
+
+/* No comment provided by engineer. */
+"Currency/Time" = "Currency/Time";
+
+/* No comment provided by engineer. */
+"Current" = "Current";
+
+/* No comment provided by engineer. */
+"Current Financial Details" = "Current Financial Details";
+
+/* No comment provided by engineer. */
+"Current market price x exchange rate x price fluctuation index" = "Current market price x exchange rate x price fluctuation index";
+
+/* No comment provided by engineer. */
+"Current position" = "Current position";
+
+/* No comment provided by engineer. */
+"Current Position Margin" = "Current Position Margin";
+
+/* No comment provided by engineer. */
+"Current Price" = "Current Price";
+
+/* No comment provided by engineer. */
+"Current profit-sharing ratio" = "Current profit-sharing ratio";
+
+/* No comment provided by engineer. */
+"Customer Service" = "Customer Service";
+
+/* No comment provided by engineer. */
+"Customer Service Center" = "Customer Service Center";
+
+/* No comment provided by engineer. */
+"Customer service intervention" = "Customer service intervention";
+
+/* No comment provided by engineer. */
+"Daily Following Capital" = "Daily Following Capital";
+
+/* No comment provided by engineer. */
+"Dark" = "Dark";
+
+/* No comment provided by engineer. */
+"Data" = "Data";
+
+/* No comment provided by engineer. */
+"Date" = "Date";
+
+/* No comment provided by engineer. */
+"Deadline (days)" = "Deadline (days)";
+
+/* No comment provided by engineer. */
+"Delete" = "Delete";
+
+/* No comment provided by engineer. */
+"Delisted" = "Delisted";
+
+/* 理财,存入 */
+"Deposit" = "Deposit";
+
+/* No comment provided by engineer. */
+"Depth map" = "Depth map";
+
+/* No comment provided by engineer. */
+"Details" = "Details";
+
+/* No comment provided by engineer. */
+"Device" = "Device";
+
+/* No comment provided by engineer. */
+"Digital asset" = "Digital asset";
+
+/* No comment provided by engineer. */
+"Digital currency" = "Digital currency";
+
+/* No comment provided by engineer. */
+"Direction" = "Direction";
+
+/* No comment provided by engineer. */
+"Discord" = "Discord";
+
+/* keyboard,done */
+"Done" = "Done";
+
+/* No comment provided by engineer. */
+"Download" = "Download";
+
+/* No comment provided by engineer. */
+"Due Date" = "Due Date";
+
+/* No comment provided by engineer. */
+"Each order quantity is -- times the quantity ordered by the trader." = "Each order quantity is -- times the quantity ordered by the trader.";
+
+/* No comment provided by engineer. */
+"Each order uses a fixed margin (individual follow-up margin) to open a position." = "Each order uses a fixed margin (individual follow-up margin) to open a position.";
+
+/* No comment provided by engineer. */
+"Each time the position is opened, the margin invested is equivalent to 0.00 USDT." = "Each time the position is opened, the margin invested is equivalent to 0.00 USDT.";
+
+/* No comment provided by engineer. */
+"Earn 8% profit" = "Earn 8% profit";
+
+/* No comment provided by engineer. */
+"Edit" = "Edit";
+
+/* No comment provided by engineer. */
+"Edit Copy Trading" = "Edit Copy Trading";
+
+/* No comment provided by engineer. */
+"Edit Receiving Account" = "Edit Receiving Account";
+
+/* No comment provided by engineer. */
+"Email" = "Email";
+
+/* No comment provided by engineer. */
+"Email Code" = "Email Code";
+
+/* No comment provided by engineer. */
+"Email Verification" = "Email Verification";
+
+/* No comment provided by engineer. */
+"Enter (%lld/%lld)" = "Enter (%lld/%lld)";
+
+/* No comment provided by engineer. */
+"Est. Lit. Price After Decrease" = "Est. Lit. Price After Decrease";
+
+/* No comment provided by engineer. */
+"Est. Lit. Price After Increase" = "Est. Lit. Price After Increase";
+
+/* No comment provided by engineer. */
+"Estimated annual interest rate" = "Estimated annual interest rate";
+
+/* No comment provided by engineer. */
+"Estimated Price:" = "Estimated Price:";
+
+/* No comment provided by engineer. */
+"Estimation" = "Estimation";
+
+/* No comment provided by engineer. */
+"Evaluation" = "Evaluation";
+
+/* No comment provided by engineer. */
+"Exchange Rate" = "Exchange Rate";
+
+/* No comment provided by engineer. */
+"Exchange Rate:" = "Exchange Rate:";
+
+/* No comment provided by engineer. */
+"Exclusive certification" = "Exclusive certification";
+
+/* No comment provided by engineer. */
+"Exit" = "Exit";
+
+/* No comment provided by engineer. */
+"Expected Profit and Loss" = "Expected Profit and Loss";
+
+/* No comment provided by engineer. */
+"Expected profit sharing" = "Expected profit sharing";
+
+/* No comment provided by engineer. */
+"Expected to be shared" = "Expected to be shared";
+
+/* No comment provided by engineer. */
+"Experience Account" = "Experience Account";
+
+/* No comment provided by engineer. */
+"Expire date" = "Expire date";
+
+/* No comment provided by engineer. */
+"Extract" = "Extract";
+
+/* No comment provided by engineer. */
+"Face-to-face invitation" = "Face-to-face invitation";
+
+/* No comment provided by engineer. */
+"Facebook" = "Facebook";
+
+/* No comment provided by engineer. */
+"Failed" = "Failed";
+
+/* No comment provided by engineer. */
+"Failed application" = "Failed application";
+
+/* No comment provided by engineer. */
+"Favorable" = "Favorable";
+
+/* No comment provided by engineer. */
+"Favorite" = "Favorite";
+
+/* No comment provided by engineer. */
+"Favorites" = "Favorites";
+
+/* No comment provided by engineer. */
+"Fee" = "Fee";
+
+/* No comment provided by engineer. */
+"Fee (%@)" = "Fee (%@)";
+
+/* No comment provided by engineer. */
+"Fee: %@ %@" = "Fee: %@ %@";
+
+/* No comment provided by engineer. */
+"Fiat currency" = "Fiat currency";
+
+/* No comment provided by engineer. */
+"Fill in" = "Fill in";
+
+/* No comment provided by engineer. */
+"Fill or Kill FOK" = "Fill or Kill FOK";
+
+/* No comment provided by engineer. */
+"Filled" = "Filled";
+
+/* No comment provided by engineer. */
+"Filled (%@)" = "Filled (%@)";
+
+/* No comment provided by engineer. */
+"Filled Order" = "Filled Order";
+
+/* No comment provided by engineer. */
+"Filled Price" = "Filled Price";
+
+/* No comment provided by engineer. */
+"Filled Quantity (%@)" = "Filled Quantity (%@)";
+
+/* No comment provided by engineer. */
+"Filled/All (%@)" = "Filled/All (%@)";
+
+/* No comment provided by engineer. */
+"Filter" = "Filter";
+
+/* No comment provided by engineer. */
+"Financial" = "Financial";
+
+/* No comment provided by engineer. */
+"Financial Account" = "Financial Account";
+
+/* No comment provided by engineer. */
+"Financial product" = "Financial product";
+
+/* No comment provided by engineer. */
+"Financial transaction amount (U)" = "Financial transaction amount (U)";
+
+/* No comment provided by engineer. */
+"Financial transactions require real-name authentication to be completed. Please complete the KYC verification as soon as possible." = "Financial transactions require real-name authentication to be completed. Please complete the KYC verification as soon as possible.";
+
+/* No comment provided by engineer. */
+"Fixed amount" = "Fixed amount";
+
+/* No comment provided by engineer. */
+"Fixed Amount" = "Fixed Amount";
+
+/* No comment provided by engineer. */
+"Fixed Amount Follow" = "Fixed Amount Follow";
+
+/* No comment provided by engineer. */
+"Fixed Leverage" = "Fixed Leverage";
+
+/* No comment provided by engineer. */
+"Fixed price" = "Fixed price";
+
+/* No comment provided by engineer. */
+"Flow of funds" = "Flow of funds";
+
+/* No comment provided by engineer. */
+"Focus on Profitable Customized Copy Trading Earnings: Profit Sharing Ratio Range 0%–20% Cryptocurrency Trading Expert" = "Focus on Profitable Customized Copy Trading Earnings: Profit Sharing Ratio Range 0%–20% Cryptocurrency Trading Expert";
+
+/* No comment provided by engineer. */
+"Follow" = "Follow";
+
+/* No comment provided by engineer. */
+"Follow Now" = "Follow Now";
+
+/* No comment provided by engineer. */
+"Follow the Trader" = "Follow the Trader";
+
+/* No comment provided by engineer. */
+"Follow the Yield" = "Follow the Yield";
+
+/* No comment provided by engineer. */
+"Follower" = "Follower";
+
+/* No comment provided by engineer. */
+"Follower Count" = "Follower Count";
+
+/* No comment provided by engineer. */
+"Follower Profits" = "Follower Profits";
+
+/* No comment provided by engineer. */
+"Follower/Recommended Time" = "Follower/Recommended Time";
+
+/* No comment provided by engineer. */
+"Followers" = "Followers";
+
+/* No comment provided by engineer. */
+"Following Amount" = "Following Amount";
+
+/* No comment provided by engineer. */
+"Following Count" = "Following Count";
+
+/* No comment provided by engineer. */
+"Following this trader's position capital reaches this value, no more orders will be followed" = "Following this trader's position capital reaches this value, no more orders will be followed";
+
+/* No comment provided by engineer. */
+"For example, if you set it at 70%, the followed order will have a default stop loss at 70%" = "For example, if you set it at 70%, the followed order will have a default stop loss at 70%";
+
+/* No comment provided by engineer. */
+"Forgot Password" = "Forgot Password";
+
+/* No comment provided by engineer. */
+"Freeze" = "Freeze";
+
+/* No comment provided by engineer. */
+"Friend" = "Friend";
+
+/* No comment provided by engineer. */
+"Friend Followers Take Profit" = "Friend Followers Take Profit";
+
+/* No comment provided by engineer. */
+"Friends Who Started Trading" = "Friends Who Started Trading";
+
+/* No comment provided by engineer. */
+"From" = "From";
+
+/* No comment provided by engineer. */
+"Full capacity" = "Full capacity";
+
+/* No comment provided by engineer. */
+"Full quota" = "Full quota";
+
+/* No comment provided by engineer. */
+"Full STSL" = "Full STSL";
+
+/* No comment provided by engineer. */
+"Functions and limits:" = "Functions and limits:";
+
+/* No comment provided by engineer. */
+"Fund Account" = "Fund Account";
+
+/* No comment provided by engineer. */
+"Funding account available:" = "Funding account available:";
+
+/* No comment provided by engineer. */
+"Funding account replenishment" = "Funding account replenishment";
+
+/* No comment provided by engineer. */
+"Funds" = "Funds";
+
+/* No comment provided by engineer. */
+"Ganiners" = "Ganiners";
+
+/* No comment provided by engineer. */
+"General" = "General";
+
+/* No comment provided by engineer. */
+"Get certified" = "Get certified";
+
+/* No comment provided by engineer. */
+"Get Help" = "Get Help";
+
+/* No comment provided by engineer. */
+"Get Leads Commission 25% of" = "Get Leads Commission 25% of";
+
+/* No comment provided by engineer. */
+"GFK" = "GFK";
+
+/* No comment provided by engineer. */
+"GFK Exchange Platform" = "GFK Exchange Platform";
+
+/* No comment provided by engineer. */
+"Go to bind" = "Go to bind";
+
+/* No comment provided by engineer. */
+"Go to Trader Selection" = "Go to Trader Selection";
+
+/* No comment provided by engineer. */
+"Good Till Cancelled GTC" = "Good Till Cancelled GTC";
+
+/* No comment provided by engineer. */
+"Google Authenticator" = "Google Authenticator";
+
+/* No comment provided by engineer. */
+"Google Authenticator Code" = "Google Authenticator Code";
+
+/* No comment provided by engineer. */
+"Google Code" = "Google Code";
+
+/* No comment provided by engineer. */
+"Google Verification is a third-party independent security solution launched by Google Inc. that can provide further security protection for your account. After opening, account login and coin withdrawal will require verification by Google, greatly improving the account security level." = "Google Verification is a third-party independent security solution launched by Google Inc. that can provide further security protection for your account. After opening, account login and coin withdrawal will require verification by Google, greatly improving the account security level.";
+
+/* No comment provided by engineer. */
+"Grand total" = "Grand total";
+
+/* No comment provided by engineer. */
+"Has been settled in for %lld day" = "Has been settled in for %lld day";
+
+/* No comment provided by engineer. */
+"Hello, World!" = "Hello, World!";
+
+/* No comment provided by engineer. */
+"Hello! I'm here to assist you. Please feel free to type your questions, and don't forget to leave your contact information ~" = "Hello! I'm here to assist you. Please feel free to type your questions, and don't forget to leave your contact information ~";
+
+/* No comment provided by engineer. */
+"Help" = "Help";
+
+/* No comment provided by engineer. */
+"Hidden canceled" = "Hidden canceled";
+
+/* No comment provided by engineer. */
+"Hide other contract" = "Hide other contract";
+
+/* No comment provided by engineer. */
+"Hide other pairs" = "Hide other pairs";
+
+/* No comment provided by engineer. */
+"Hide zero assets" = "Hide zero assets";
+
+/* No comment provided by engineer. */
+"High" = "High";
+
+/* No comment provided by engineer. */
+"High Yield" = "High Yield";
+
+/* No comment provided by engineer. */
+"Highest Price" = "Highest Price";
+
+/* No comment provided by engineer. */
+"Highest Return on Investment (ROI) Trading Expert" = "Highest Return on Investment (ROI) Trading Expert";
+
+/* No comment provided by engineer. */
+"Hist. Position" = "Hist. Position";
+
+/* No comment provided by engineer. */
+"Historical details" = "Historical details";
+
+/* No comment provided by engineer. */
+"Historical Dividends" = "Historical Dividends";
+
+/* No comment provided by engineer. */
+"History" = "History";
+
+/* No comment provided by engineer. */
+"History Record" = "History Record";
+
+/* No comment provided by engineer. */
+"Home" = "Home";
+
+/* No comment provided by engineer. */
+"Hot" = "Hot";
+
+/* No comment provided by engineer. */
+"How to Become a Certified Merchant" = "How to Become a Certified Merchant";
+
+/* No comment provided by engineer. */
+"I don't want it anymore" = "I don't want it anymore";
+
+/* No comment provided by engineer. */
+"I have confirmed receipt of payment" = "I have confirmed receipt of payment";
+
+/* No comment provided by engineer. */
+"I have read and agree [Privacy Agreement](click://privacy) and [User Agreement](click://user)" = "I have read and agree [Privacy Agreement](click://privacy) and [User Agreement](click://user)";
+
+/* No comment provided by engineer. */
+"I have read and agreed." = "I have read and agreed.";
+
+/* No comment provided by engineer. */
+"I have transferred the money and notified the seller" = "I have transferred the money and notified the seller";
+
+/* No comment provided by engineer. */
+"I need to pay" = "I need to pay";
+
+/* No comment provided by engineer. */
+"I need to sell" = "I need to sell";
+
+/* No comment provided by engineer. */
+"I want to sell" = "I want to sell";
+
+/* No comment provided by engineer. */
+"I will get ≈" = "I will get ≈";
+
+/* No comment provided by engineer. */
+"Iceberg" = "Iceberg";
+
+/* No comment provided by engineer. */
+"Iceberg Order" = "Iceberg Order";
+
+/* No comment provided by engineer. */
+"ID" = "ID";
+
+/* No comment provided by engineer. */
+"ID Card" = "ID Card";
+
+/* No comment provided by engineer. */
+"ID Type" = "ID Type";
+
+/* No comment provided by engineer. */
+"ID: %@" = "ID: %@";
+
+/* No comment provided by engineer. */
+"Identity authentication" = "Identity authentication";
+
+/* No comment provided by engineer. */
+"If the friend has followed the trader before, it will not be counted as a successful referral." = "If the friend has followed the trader before, it will not be counted as a successful referral.";
+
+/* No comment provided by engineer. */
+"If you have already made payment to the seller, please do not cancel the order as it may cause damage to your property.Loss!" = "If you have already made payment to the seller, please do not cancel the order as it may cause damage to your property.Loss!";
+
+/* No comment provided by engineer. */
+"If you set it to 3 times, and the trader places an order for 100USDT, then you will place an order for 100 * 3 = 300USDT." = "If you set it to 3 times, and the trader places an order for 100USDT, then you will place an order for 100 * 3 = 300USDT.";
+
+/* No comment provided by engineer. */
+"Image Picker" = "Image Picker";
+
+/* No comment provided by engineer. */
+"Immediate or Cancell IOC" = "Immediate or Cancell IOC";
+
+/* No comment provided by engineer. */
+"In appeal" = "In appeal";
+
+/* No comment provided by engineer. */
+"In dispute" = "In dispute";
+
+/* No comment provided by engineer. */
+"In progress" = "In progress";
+
+/* No comment provided by engineer. */
+"In Review" = "In Review";
+
+/* No comment provided by engineer. */
+"Incomplete" = "Incomplete";
+
+/* No comment provided by engineer. */
+"Increase balance" = "Increase balance";
+
+/* No comment provided by engineer. */
+"Index" = "Index";
+
+/* No comment provided by engineer. */
+"Info" = "Info";
+
+/* No comment provided by engineer. */
+"Initiate a follow-up" = "Initiate a follow-up";
+
+/* No comment provided by engineer. */
+"Initiate an appeal" = "Initiate an appeal";
+
+/* No comment provided by engineer. */
+"Instagram" = "Instagram";
+
+/* No comment provided by engineer. */
+"Introduction" = "Introduction";
+
+/* No comment provided by engineer. */
+"Invalid phone number" = "Invalid phone number";
+
+/* No comment provided by engineer. */
+"Invitation code (Optional)" = "Invitation code (Optional)";
+
+/* No comment provided by engineer. */
+"Invitation link" = "Invitation link";
+
+/* No comment provided by engineer. */
+"Invite friends" = "Invite friends";
+
+/* No comment provided by engineer. */
+"Invite friends to participate in transactions and receive generous commission rewards. Friendship and wealth grow together!" = "Invite friends to participate in transactions and receive generous commission rewards. Friendship and wealth grow together!";
+
+/* No comment provided by engineer. */
+"Invite users" = "Invite users";
+
+/* No comment provided by engineer. */
+"Invited people" = "Invited people";
+
+/* No comment provided by engineer. */
+"Invited User" = "Invited User";
+
+/* No comment provided by engineer. */
+"Invited users" = "Invited users";
+
+/* No comment provided by engineer. */
+"Is the bill confirmed correct?" = "Is the bill confirmed correct?";
+
+/* No comment provided by engineer. */
+"Iso" = "Iso";
+
+/* No comment provided by engineer. */
+"Isolated" = "Isolated";
+
+/* No comment provided by engineer. */
+"Issue Price" = "Issue Price";
+
+/* No comment provided by engineer. */
+"Issue Time" = "Issue Time";
+
+/* No comment provided by engineer. */
+"Join %@" = "Join %@";
+
+/* No comment provided by engineer. */
+"KYC" = "KYC";
+
+/* No comment provided by engineer. */
+"KYC Certification" = "KYC Certification";
+
+/* No comment provided by engineer. */
+"Language" = "Language";
+
+/* No comment provided by engineer. */
+"Last 1 day" = "Last 1 day";
+
+/* No comment provided by engineer. */
+"Last 1 month" = "Last 1 month";
+
+/* No comment provided by engineer. */
+"Last 1 week" = "Last 1 week";
+
+/* No comment provided by engineer. */
+"Last Price" = "Last Price";
+
+/* No comment provided by engineer. */
+"Latest" = "Latest";
+
+/* No comment provided by engineer. */
+"Latest price" = "Latest price";
+
+/* No comment provided by engineer. */
+"Latest transaction" = "Latest transaction";
+
+/* No comment provided by engineer. */
+"Lead hiding" = "Lead hiding";
+
+/* No comment provided by engineer. */
+"Lead Trading" = "Lead Trading";
+
+/* No comment provided by engineer. */
+"Leader Management" = "Leader Management";
+
+/* No comment provided by engineer. */
+"Legal tender" = "Legal tender";
+
+/* No comment provided by engineer. */
+"Less than the minimum quantity: %@" = "Less than the minimum quantity: %@";
+
+/* No comment provided by engineer. */
+"Leverage" = "Leverage";
+
+/* No comment provided by engineer. */
+"Light" = "Light";
+
+/* No comment provided by engineer. */
+"Limit" = "Limit";
+
+/* No comment provided by engineer. */
+"Limit (USDT)" = "Limit (USDT)";
+
+/* No comment provided by engineer. */
+"Limit SP" = "Limit SP";
+
+/* No comment provided by engineer. */
+"Limit:" = "Limit:";
+
+/* No comment provided by engineer. */
+"Limit: %@ ~ %@ %@" = "Limit: %@ ~ %@ %@";
+
+/* No comment provided by engineer. */
+"Liq. Price" = "Liq. Price";
+
+/* No comment provided by engineer. */
+"Listed" = "Listed";
+
+/* No comment provided by engineer. */
+"Login" = "Login";
+
+/* No comment provided by engineer. */
+"Login Password" = "Login Password";
+
+/* No comment provided by engineer. */
+"Login Required" = "Login Required";
+
+/* No comment provided by engineer. */
+"Login Success" = "Login Success";
+
+/* No comment provided by engineer. */
+"Losers" = "Losers";
+
+/* No comment provided by engineer. */
+"Loss" = "Loss";
+
+/* No comment provided by engineer. */
+"Low" = "Low";
+
+/* No comment provided by engineer. */
+"Magnification" = "Magnification";
+
+/* No comment provided by engineer. */
+"Make sure that your documents are original and within the validity period" = "Make sure that your documents are original and within the validity period";
+
+/* No comment provided by engineer. */
+"Margin" = "Margin";
+
+/* No comment provided by engineer. */
+"Margin (%@)" = "Margin (%@)";
+
+/* No comment provided by engineer. */
+"Margin Balance" = "Margin Balance";
+
+/* No comment provided by engineer. */
+"Margin mode" = "Margin mode";
+
+/* No comment provided by engineer. */
+"Margin Mode" = "Margin Mode";
+
+/* No comment provided by engineer. */
+"Margin model and leverage" = "Margin model and leverage";
+
+/* No comment provided by engineer. */
+"Margin Model and Leverage" = "Margin Model and Leverage";
+
+/* No comment provided by engineer. */
+"Marked Price" = "Marked Price";
+
+/* No comment provided by engineer. */
+"Market" = "Market";
+
+/* No comment provided by engineer. */
+"Market High" = "Market High";
+
+/* No comment provided by engineer. */
+"Market SP" = "Market SP";
+
+/* No comment provided by engineer. */
+"Max" = "Max";
+
+/* No comment provided by engineer. */
+"Max retrace-ment (last 3W)" = "Max retrace-ment (last 3W)";
+
+/* No comment provided by engineer. */
+"Max Supply" = "Max Supply";
+
+/* No comment provided by engineer. */
+"Maximum Decrease" = "Maximum Decrease";
+
+/* No comment provided by engineer. */
+"Maximum Drawdown" = "Maximum Drawdown";
+
+/* No comment provided by engineer. */
+"Maximum Drawdown Ratio" = "Maximum Drawdown Ratio";
+
+/* No comment provided by engineer. */
+"Maximum Follow" = "Maximum Follow";
+
+/* No comment provided by engineer. */
+"Maximum Increase" = "Maximum Increase";
+
+/* No comment provided by engineer. */
+"Maximum position" = "Maximum position";
+
+/* No comment provided by engineer. */
+"Maximum Position Size" = "Maximum Position Size";
+
+/* No comment provided by engineer. */
+"Merchant Information" = "Merchant Information";
+
+/* No comment provided by engineer. */
+"Merchant Rights" = "Merchant Rights";
+
+/* No comment provided by engineer. */
+"Middle" = "Middle";
+
+/* No comment provided by engineer. */
+"Mine" = "Mine";
+
+/* No comment provided by engineer. */
+"Mobile" = "Mobile";
+
+/* No comment provided by engineer. */
+"Mobile phone and email cannot be selected at the same time" = "Mobile phone and email cannot be selected at the same time";
+
+/* No comment provided by engineer. */
+"Mobile Verification" = "Mobile Verification";
+
+/* No comment provided by engineer. */
+"More" = "More";
+
+/* No comment provided by engineer. */
+"More Settings" = "More Settings";
+
+/* No comment provided by engineer. */
+"More than the maximum available" = "More than the maximum available";
+
+/* No comment provided by engineer. */
+"More than the maximum position quantity: %@" = "More than the maximum position quantity: %@";
+
+/* No comment provided by engineer. */
+"More than the maximum quantity: %@" = "More than the maximum quantity: %@";
+
+/* No comment provided by engineer. */
+"My advertisement" = "My advertisement";
+
+/* No comment provided by engineer. */
+"My Asset" = "My Asset";
+
+/* No comment provided by engineer. */
+"My Copies" = "My Copies";
+
+/* No comment provided by engineer. */
+"My Copy" = "My Copy";
+
+/* No comment provided by engineer. */
+"My Copy Trading" = "My Copy Trading";
+
+/* No comment provided by engineer. */
+"My Followers" = "My Followers";
+
+/* No comment provided by engineer. */
+"My Lead" = "My Lead";
+
+/* No comment provided by engineer. */
+"My Lead Trading" = "My Lead Trading";
+
+/* No comment provided by engineer. */
+"My Order" = "My Order";
+
+/* No comment provided by engineer. */
+"My Trader" = "My Trader";
+
+/* No comment provided by engineer. */
+"My Wallet" = "My Wallet";
+
+/* No comment provided by engineer. */
+"Name" = "Name";
+
+/* No comment provided by engineer. */
+"Negotiate cancellation with the seller" = "Negotiate cancellation with the seller";
+
+/* No comment provided by engineer. */
+"Network" = "Network";
+
+/* No comment provided by engineer. */
+"New Password" = "New Password";
+
+/* No comment provided by engineer. */
+"New Trading Master" = "New Trading Master";
+
+/* No comment provided by engineer. */
+"Next" = "Next";
+
+/* No comment provided by engineer. */
+"Nickname" = "Nickname";
+
+/* No comment provided by engineer. */
+"No Data" = "No Data";
+
+/* No comment provided by engineer. */
+"No information about your current position is displayed after opening." = "No information about your current position is displayed after opening.";
+
+/* No comment provided by engineer. */
+"No. of transa-ctions (last 3W)" = "No. of transa-ctions (last 3W)";
+
+/* No comment provided by engineer. */
+"Not Certified" = "Not Certified";
+
+/* No comment provided by engineer. */
+"Not payment method" = "Not payment method";
+
+/* No comment provided by engineer. */
+"Not Set" = "Not Set";
+
+/* No comment provided by engineer. */
+"Note" = "Note";
+
+/* No comment provided by engineer. */
+"Notice:" = "Notice:";
+
+/* No comment provided by engineer. */
+"Notification" = "Notification";
+
+/* No comment provided by engineer. */
+"Notification Details" = "Notification Details";
+
+/* No comment provided by engineer. */
+"Now!" = "Now!";
+
+/* No comment provided by engineer. */
+"Number of Traders" = "Number of Traders";
+
+/* No comment provided by engineer. */
+"Number of trading days" = "Number of trading days";
+
+/* No comment provided by engineer. */
+"Number of transac-tions (last 30 days)" = "Number of transac-tions (last 30 days)";
+
+/* No comment provided by engineer. */
+"Number of transaction orders" = "Number of transaction orders";
+
+/* No comment provided by engineer. */
+"Ok" = "Ok";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"On" = "On";
+
+/* No comment provided by engineer. */
+"One click delete" = "One click delete";
+
+/* No comment provided by engineer. */
+"One click read" = "One click read";
+
+/* No comment provided by engineer. */
+"One-click Close" = "One-click Close";
+
+/* No comment provided by engineer. */
+"One-click copy trading professional traders, easily achieve wealth appreciation." = "One-click copy trading professional traders, easily achieve wealth appreciation.";
+
+/* No comment provided by engineer. */
+"Open Google Authenticator and use your copied 16 bit key to add a new Google Authenticator" = "Open Google Authenticator and use your copied 16 bit key to add a new Google Authenticator";
+
+/* No comment provided by engineer. */
+"Open Interest: %@" = "Open Interest: %@";
+
+/* No comment provided by engineer. */
+"Open Long" = "Open Long";
+
+/* No comment provided by engineer. */
+"Open Order" = "Open Order";
+
+/* No comment provided by engineer. */
+"Open Orders" = "Open Orders";
+
+/* No comment provided by engineer. */
+"Open price" = "Open price";
+
+/* No comment provided by engineer. */
+"Open Price" = "Open Price";
+
+/* No comment provided by engineer. */
+"Open Short" = "Open Short";
+
+/* No comment provided by engineer. */
+"Opening price" = "Opening price";
+
+/* No comment provided by engineer. */
+"Opening Price" = "Opening Price";
+
+/* No comment provided by engineer. */
+"Opening Time" = "Opening Time";
+
+/* 操作成功 Toast */
+"Operation successful" = "Operation successful";
+
+/* No comment provided by engineer. */
+"Order" = "Order";
+
+/* No comment provided by engineer. */
+"Order Book" = "Order Book";
+
+/* No comment provided by engineer. */
+"Order Confirmation" = "Order Confirmation";
+
+/* No comment provided by engineer. */
+"Order details" = "Order details";
+
+/* No comment provided by engineer. */
+"Order has been cancelled" = "Order has been cancelled";
+
+/* No comment provided by engineer. */
+"Order History" = "Order History";
+
+/* No comment provided by engineer. */
+"Order No" = "Order No";
+
+/* No comment provided by engineer. */
+"Order No: %@" = "Order No: %@";
+
+/* No comment provided by engineer. */
+"Order No: %lld" = "Order No: %lld";
+
+/* No comment provided by engineer. */
+"Order placed" = "Order placed";
+
+/* No comment provided by engineer. */
+"Order Price (%@)" = "Order Price (%@)";
+
+/* No comment provided by engineer. */
+"Order Quantity / Filled" = "Order Quantity / Filled";
+
+/* No comment provided by engineer. */
+"Order quantity: %@ | %@" = "Order quantity: %@ | %@";
+
+/* No comment provided by engineer. */
+"Order Quantity/Filled" = "Order Quantity/Filled";
+
+/* No comment provided by engineer. */
+"Order Stop Loss Ratio" = "Order Stop Loss Ratio";
+
+/* No comment provided by engineer. */
+"Order Take Profit Ratio" = "Order Take Profit Ratio";
+
+/* No comment provided by engineer. */
+"Order Take Profix Ratio" = "Order Take Profix Ratio";
+
+/* No comment provided by engineer. */
+"Order time" = "Order time";
+
+/* No comment provided by engineer. */
+"Order Tracking Brief" = "Order Tracking Brief";
+
+/* No comment provided by engineer. */
+"Order Type" = "Order Type";
+
+/* No comment provided by engineer. */
+"Ordering Infomartion" = "Ordering Infomartion";
+
+/* No comment provided by engineer. */
+"Orders" = "Orders";
+
+/* No comment provided by engineer. */
+"Ordinary users" = "Ordinary users";
+
+/* No comment provided by engineer. */
+"Other" = "Other";
+
+/* No comment provided by engineer. */
+"Other notes" = "Other notes";
+
+/* No comment provided by engineer. */
+"paid" = "paid";
+
+/* No comment provided by engineer. */
+"Partial completion" = "Partial completion";
+
+/* No comment provided by engineer. */
+"Partial fill" = "Partial fill";
+
+/* No comment provided by engineer. */
+"Partially Filled" = "Partially Filled";
+
+/* No comment provided by engineer. */
+"Passport" = "Passport";
+
+/* No comment provided by engineer. */
+"Password" = "Password";
+
+/* No comment provided by engineer. */
+"Pay Password" = "Pay Password";
+
+/* No comment provided by engineer. */
+"Payment deadline: %lld minutes" = "Payment deadline: %lld minutes";
+
+/* No comment provided by engineer. */
+"Payment efficiency" = "Payment efficiency";
+
+/* No comment provided by engineer. */
+"Payment has been made, waiting for the seller to release the currency." = "Payment has been made, waiting for the seller to release the currency.";
+
+/* No comment provided by engineer. */
+"Payment method" = "Payment method";
+
+/* No comment provided by engineer. */
+"Payment Method" = "Payment Method";
+
+/* No comment provided by engineer. */
+"Payment Methods" = "Payment Methods";
+
+/* No comment provided by engineer. */
+"Payment time" = "Payment time";
+
+/* No comment provided by engineer. */
+"PayMethod" = "PayMethod";
+
+/* No comment provided by engineer. */
+"Pending review" = "Pending review";
+
+/* No comment provided by engineer. */
+"Perpettual %lldx" = "Perpettual %lldx";
+
+/* No comment provided by engineer. */
+"Perpetual" = "Perpetual";
+
+/* No comment provided by engineer. */
+"Personal" = "Personal";
+
+/* No comment provided by engineer. */
+"Personal Center" = "Personal Center";
+
+/* No comment provided by engineer. */
+"Personal Homepage" = "Personal Homepage";
+
+/* No comment provided by engineer. */
+"Personal Information" = "Personal Information";
+
+/* No comment provided by engineer. */
+"Personal Settings" = "Personal Settings";
+
+/* No comment provided by engineer. */
+"Phone" = "Phone";
+
+/* No comment provided by engineer. */
+"Phone Number" = "Phone Number";
+
+/* No comment provided by engineer. */
+"Phone Number Code" = "Phone Number Code";
+
+/* No comment provided by engineer. */
+"Photo Library" = "Photo Library";
+
+/* No comment provided by engineer. */
+"Platform prompt" = "Platform prompt";
+
+/* No comment provided by engineer. */
+"Platform: %@" = "Platform: %@";
+
+/* No comment provided by engineer. */
+"Please bind the mailbox and cell phone number first, convenient and timely transactions" = "Please bind the mailbox and cell phone number first, convenient and timely transactions";
+
+/* No comment provided by engineer. */
+"Please close your open positions as a trader first." = "Please close your open positions as a trader first.";
+
+/* No comment provided by engineer. */
+"Please complete the advanced identity authentication, to provide security for both sides of the transaction security for both sides of the transaction to facilitate timely transactions" = "Please complete the advanced identity authentication, to provide security for both sides of the transaction security for both sides of the transaction to facilitate timely transactions";
+
+/* No comment provided by engineer. */
+"Please confirm login information" = "Please confirm login information";
+
+/* No comment provided by engineer. */
+"Please confirm the password again" = "Please confirm the password again";
+
+/* No comment provided by engineer. */
+"Please ensure that all details in the uploaded image are clearly recognizable" = "Please ensure that all details in the uploaded image are clearly recognizable";
+
+/* No comment provided by engineer. */
+"Please enter a 6-digit payment password" = "Please enter a 6-digit payment password";
+
+/* No comment provided by engineer. */
+"Please enter a valid email" = "Please enter a valid email";
+
+/* No comment provided by engineer. */
+"Please enter a valid email address" = "Please enter a valid email address";
+
+/* No comment provided by engineer. */
+"Please enter a valid number" = "Please enter a valid number";
+
+/* No comment provided by engineer. */
+"Please enter a valid quantity" = "Please enter a valid quantity";
+
+/* No comment provided by engineer. */
+"Please enter amount" = "Please enter amount";
+
+/* No comment provided by engineer. */
+"Please enter code" = "Please enter code";
+
+/* No comment provided by engineer. */
+"please enter invitation code" = "please enter invitation code";
+
+/* No comment provided by engineer. */
+"Please enter message" = "Please enter message";
+
+/* No comment provided by engineer. */
+"Please enter or paste the wallet address" = "Please enter or paste the wallet address";
+
+/* No comment provided by engineer. */
+"Please enter password" = "Please enter password";
+
+/* No comment provided by engineer. */
+"Please enter the amount" = "Please enter the amount";
+
+/* No comment provided by engineer. */
+"Please enter the contact phone number" = "Please enter the contact phone number";
+
+/* No comment provided by engineer. */
+"Please enter the email" = "Please enter the email";
+
+/* No comment provided by engineer. */
+"Please enter the email address" = "Please enter the email address";
+
+/* No comment provided by engineer. */
+"Please enter the limit" = "Please enter the limit";
+
+/* No comment provided by engineer. */
+"Please enter the mobile number" = "Please enter the mobile number";
+
+/* No comment provided by engineer. */
+"Please enter the multiple of copying." = "Please enter the multiple of copying.";
+
+/* No comment provided by engineer. */
+"Please enter the number of transactions" = "Please enter the number of transactions";
+
+/* No comment provided by engineer. */
+"Please enter the phone number" = "Please enter the phone number";
+
+/* No comment provided by engineer. */
+"Please enter the transfer" = "Please enter the transfer";
+
+/* No comment provided by engineer. */
+"Please enter verification code" = "Please enter verification code";
+
+/* No comment provided by engineer. */
+"Please enter your address" = "Please enter your address";
+
+/* No comment provided by engineer. */
+"Please enter your code" = "Please enter your code";
+
+/* No comment provided by engineer. */
+"Please enter your Email" = "Please enter your Email";
+
+/* No comment provided by engineer. */
+"Please enter your Email / Phone number" = "Please enter your Email / Phone number";
+
+/* No comment provided by engineer. */
+"Please enter your email or phone number" = "Please enter your email or phone number";
+
+/* No comment provided by engineer. */
+"Please enter your name" = "Please enter your name";
+
+/* No comment provided by engineer. */
+"Please enter your nickname" = "Please enter your nickname";
+
+/* No comment provided by engineer. */
+"Please enter your password" = "Please enter your password";
+
+/* No comment provided by engineer. */
+"Please enter your question" = "Please enter your question";
+
+/* No comment provided by engineer. */
+"Please enter your real name" = "Please enter your real name";
+
+/* No comment provided by engineer. */
+"Please fill in at least 1 channel" = "Please fill in at least 1 channel";
+
+/* No comment provided by engineer. */
+"Please input your email" = "Please input your email";
+
+/* No comment provided by engineer. */
+"Please input your phone number" = "Please input your phone number";
+
+/* No comment provided by engineer. */
+"Please make sure that the account you set up is %@, payment from a non-real name account will result in a failed order and a frozen account." = "Please make sure that the account you set up is %@, payment from a non-real name account will result in a failed order and a frozen account.";
+
+/* No comment provided by engineer. */
+"Please make sure that the current bill is correct. Once confirmed, the platform will issue your rebate income within 1 working day!" = "Please make sure that the current bill is correct. Once confirmed, the platform will issue your rebate income within 1 working day!";
+
+/* No comment provided by engineer. */
+"Please open your %@ account" = "Please open your %@ account";
+
+/* No comment provided by engineer. */
+"Please place your ID on a solid color background" = "Please place your ID on a solid color background";
+
+/* No comment provided by engineer. */
+"Please read and agreen Privacy Agreement and User Agreement" = "Please read and agreen Privacy Agreement and User Agreement";
+
+/* No comment provided by engineer. */
+"Please select the payment method" = "Please select the payment method";
+
+/* No comment provided by engineer. */
+"Please select the reason for cancellation" = "Please select the reason for cancellation";
+
+/* No comment provided by engineer. */
+"Please select the reason for the appeal" = "Please select the reason for the appeal";
+
+/* No comment provided by engineer. */
+"Please set the transaction password first." = "Please set the transaction password first.";
+
+/* No comment provided by engineer. */
+"Please upload a handheld ID photo" = "Please upload a handheld ID photo";
+
+/* No comment provided by engineer. */
+"Please upload a photo of the front of your residence certificate" = "Please upload a photo of the front of your residence certificate";
+
+/* No comment provided by engineer. */
+"Please upload a photo of the reverse side of your ID card" = "Please upload a photo of the reverse side of your ID card";
+
+/* No comment provided by engineer. */
+"Please upload a photo of the reverse side of your residence certificate" = "Please upload a photo of the reverse side of your residence certificate";
+
+/* No comment provided by engineer. */
+"Please upload a photo of your hand-held residence certificate" = "Please upload a photo of your hand-held residence certificate";
+
+/* No comment provided by engineer. */
+"Please upload the front photo of your ID card" = "Please upload the front photo of your ID card";
+
+/* No comment provided by engineer. */
+"Position" = "Position";
+
+/* No comment provided by engineer. */
+"Positions" = "Positions";
+
+/* No comment provided by engineer. */
+"Posotion" = "Posotion";
+
+/* No comment provided by engineer. */
+"Post" = "Post";
+
+/* No comment provided by engineer. */
+"Post Ad" = "Post Ad";
+
+/* No comment provided by engineer. */
+"Post new Ad" = "Post new Ad";
+
+/* No comment provided by engineer. */
+"Post Successfully" = "Post Successfully";
+
+/* No comment provided by engineer. */
+"Preferences" = "Preferences";
+
+/* No comment provided by engineer. */
+"Preferred time period selection" = "Preferred time period selection";
+
+/* No comment provided by engineer. */
+"Price" = "Price";
+
+/* No comment provided by engineer. */
+"Price (%@)" = "Price (%@)";
+
+/* No comment provided by engineer. */
+"Price fluctuation index (PVI)" = "Price fluctuation index (PVI)";
+
+/* No comment provided by engineer. */
+"Price is required" = "Price is required";
+
+/* No comment provided by engineer. */
+"Price Type" = "Price Type";
+
+/* No comment provided by engineer. */
+"Privacy Policy" = "Privacy Policy";
+
+/* No comment provided by engineer. */
+"Privacy Policy\nUpdated: September 25, 2023\n\nWelcome to the GFK Digital Asset Trading Platform (referred to as \"GFK\" or \"we\"). We highly value your privacy and are committed to protecting your personal information. To ensure that you fully understand our policies and practices regarding the collection, use, and protection of your information, please read this Privacy Policy carefully.\n\nI. Introduction\n\n1.1 This policy is designed to inform you about how we collect, use, store, and protect your personal information. We adhere to the relevant laws and regulations of Lithuania and work diligently to safeguard your privacy.\n\n1.2 \"GFK\" is the English name for the GFK Digital Asset Trading Platform. In this policy, \"GFK\" or \"we\" refers to our platform. \"You\" refers to the users of our services.\n\nII. Types of Information Collected\n\n2.1 We may collect the following types of information:\n\n(a) Personal Identification Information: Such as your name, identification number, email address, contact address, and phone number.\n\n(b) Financial Information: Such as your bank account number, transaction records, digital asset addresses, and more.\n\n(c) Technical Information: We may automatically collect technical information about your visits to our website or use of our applications, including IP addresses, device information, browser type, access dates, and times, among others.\n\n(d) User-Generated Content: This includes transaction information, comments, questions, and other content you provide on our platform.\n\n(e) Other Information: We may collect other types of information as required by applicable laws or with your consent.\n2.2 You have the right to choose whether to provide certain types of information, but this may affect your ability to use some of our services.\n\nIII. Use of Information\n\n3.1 We may use your information for the following purposes:\n\n(a) Service Provision: This includes processing transactions, verifying identities, providing customer support, and managing your account.\n\n(b) Regulatory Requirements: Complying with applicable laws and court orders, preventing fraud, and money laundering.\n\n(c) Service Improvement: Analyzing user needs and behaviors to enhance our products and services.\n\n(d) Marketing: Sending promotional and marketing information to you with your consent.\n\n(e) Security Protection: Protecting your and our security, including preventing unauthorized access and data breaches.\n\n3.2 We only share your information as permitted by law, such as with our partners, regulatory agencies, and law enforcement authorities. We take appropriate measures to ensure the protection of your information.\n\nIV. Information Storage and Security\n\n4.1 Information Storage: We store your information on secure servers and employ necessary technical and organizational measures to protect it from unauthorized access, loss, damage, or disclosure. We regularly review and update security measures to address evolving threats.\n\n4.2 Account Access Control: Access to your account requires personal password verification. Please safeguard your account information and do not share your password or authorize others to use your account. If you suspect a security breach or password compromise, please notify us immediately so we can take necessary steps to protect your account.\n\nV. Privacy Rights Protection\n\n5.1 Information Access and Correction: You have the right to inquire about, access, and correct your personal information at any time. If you need to access or correct your information, please log in to your account or contact our customer support team, and we will promptly respond to your request.\n\n5.2 Withdrawal of Consent: If you have previously consented to our processing of your information but later decide to withdraw your consent, please contact us. Please note that withdrawing consent may affect your ability to use our services, but it will not impact the processing of information you have already provided.\n\n5.3 Information Deletion: In certain cases, in accordance with applicable laws and regulations, you may request the deletion of your personal information. We will fulfill your request within the bounds of the law.\n\n5.4 Privacy Officer: If you have any questions, concerns, or complaints about this policy or your privacy rights, or if you need to exercise the rights mentioned above, please contact our Privacy Officer. We are committed to assisting you with these matters.\n\nWe appreciate your attention to our Privacy Policy and your understanding. By continuing to use GFK services, you agree to the terms and conditions of this policy. If you have any further questions or need additional assistance, please feel free to contact our customer support team.\n\nVI. Policy Updates\n\n6.1 We may periodically update this policy to reflect changes in the law and improvements to our services. Any significant changes will be posted on our website.\n\nThank you for reading our Privacy Policy. We value your privacy and are committed to maintaining and protecting your privacy rights. If you have any other questions or need further assistance, please don't hesitate to contact our customer support team." = "Privacy Policy\nUpdated: September 25, 2023\n\nWelcome to the GFK Digital Asset Trading Platform (referred to as \"GFK\" or \"we\"). We highly value your privacy and are committed to protecting your personal information. To ensure that you fully understand our policies and practices regarding the collection, use, and protection of your information, please read this Privacy Policy carefully.\n\nI. Introduction\n\n1.1 This policy is designed to inform you about how we collect, use, store, and protect your personal information. We adhere to the relevant laws and regulations of Lithuania and work diligently to safeguard your privacy.\n\n1.2 \"GFK\" is the English name for the GFK Digital Asset Trading Platform. In this policy, \"GFK\" or \"we\" refers to our platform. \"You\" refers to the users of our services.\n\nII. Types of Information Collected\n\n2.1 We may collect the following types of information:\n\n(a) Personal Identification Information: Such as your name, identification number, email address, contact address, and phone number.\n\n(b) Financial Information: Such as your bank account number, transaction records, digital asset addresses, and more.\n\n(c) Technical Information: We may automatically collect technical information about your visits to our website or use of our applications, including IP addresses, device information, browser type, access dates, and times, among others.\n\n(d) User-Generated Content: This includes transaction information, comments, questions, and other content you provide on our platform.\n\n(e) Other Information: We may collect other types of information as required by applicable laws or with your consent.\n2.2 You have the right to choose whether to provide certain types of information, but this may affect your ability to use some of our services.\n\nIII. Use of Information\n\n3.1 We may use your information for the following purposes:\n\n(a) Service Provision: This includes processing transactions, verifying identities, providing customer support, and managing your account.\n\n(b) Regulatory Requirements: Complying with applicable laws and court orders, preventing fraud, and money laundering.\n\n(c) Service Improvement: Analyzing user needs and behaviors to enhance our products and services.\n\n(d) Marketing: Sending promotional and marketing information to you with your consent.\n\n(e) Security Protection: Protecting your and our security, including preventing unauthorized access and data breaches.\n\n3.2 We only share your information as permitted by law, such as with our partners, regulatory agencies, and law enforcement authorities. We take appropriate measures to ensure the protection of your information.\n\nIV. Information Storage and Security\n\n4.1 Information Storage: We store your information on secure servers and employ necessary technical and organizational measures to protect it from unauthorized access, loss, damage, or disclosure. We regularly review and update security measures to address evolving threats.\n\n4.2 Account Access Control: Access to your account requires personal password verification. Please safeguard your account information and do not share your password or authorize others to use your account. If you suspect a security breach or password compromise, please notify us immediately so we can take necessary steps to protect your account.\n\nV. Privacy Rights Protection\n\n5.1 Information Access and Correction: You have the right to inquire about, access, and correct your personal information at any time. If you need to access or correct your information, please log in to your account or contact our customer support team, and we will promptly respond to your request.\n\n5.2 Withdrawal of Consent: If you have previously consented to our processing of your information but later decide to withdraw your consent, please contact us. Please note that withdrawing consent may affect your ability to use our services, but it will not impact the processing of information you have already provided.\n\n5.3 Information Deletion: In certain cases, in accordance with applicable laws and regulations, you may request the deletion of your personal information. We will fulfill your request within the bounds of the law.\n\n5.4 Privacy Officer: If you have any questions, concerns, or complaints about this policy or your privacy rights, or if you need to exercise the rights mentioned above, please contact our Privacy Officer. We are committed to assisting you with these matters.\n\nWe appreciate your attention to our Privacy Policy and your understanding. By continuing to use GFK services, you agree to the terms and conditions of this policy. If you have any further questions or need additional assistance, please feel free to contact our customer support team.\n\nVI. Policy Updates\n\n6.1 We may periodically update this policy to reflect changes in the law and improvements to our services. Any significant changes will be posted on our website.\n\nThank you for reading our Privacy Policy. We value your privacy and are committed to maintaining and protecting your privacy rights. If you have any other questions or need further assistance, please don't hesitate to contact our customer support team.";
+
+/* No comment provided by engineer. */
+"Profit" = "Profit";
+
+/* No comment provided by engineer. */
+"Profit Distribution Data" = "Profit Distribution Data";
+
+/* No comment provided by engineer. */
+"Profit distribution ratio: %@" = "Profit distribution ratio: %@";
+
+/* No comment provided by engineer. */
+"Profit sharing" = "Profit sharing";
+
+/* No comment provided by engineer. */
+"Profit Sharing (USDT)" = "Profit Sharing (USDT)";
+
+/* No comment provided by engineer. */
+"Profit Sharing Ratio" = "Profit Sharing Ratio";
+
+/* No comment provided by engineer. */
+"Projected Revenue" = "Projected Revenue";
+
+/* No comment provided by engineer. */
+"Proportional copy trading" = "Proportional copy trading";
+
+/* No comment provided by engineer. */
+"Purchase from TA" = "Purchase from TA";
+
+/* No comment provided by engineer. */
+"PVI" = "PVI";
+
+/* No comment provided by engineer. */
+"QR code" = "QR code";
+
+/* No comment provided by engineer. */
+"Quantity" = "Quantity";
+
+/* No comment provided by engineer. */
+"Quantity (%@)" = "Quantity (%@)";
+
+/* No comment provided by engineer. */
+"Quick Buy" = "Quick Buy";
+
+/* No comment provided by engineer. */
+"Quick Coin Buying" = "Quick Coin Buying";
+
+/* No comment provided by engineer. */
+"Quick Zone" = "Quick Zone";
+
+/* No comment provided by engineer. */
+"Quota" = "Quota";
+
+/* No comment provided by engineer. */
+"Rate" = "Rate";
+
+/* No comment provided by engineer. */
+"Rate of return" = "Rate of return";
+
+/* No comment provided by engineer. */
+"Ratio" = "Ratio";
+
+/* No comment provided by engineer. */
+"Ratio: %@" = "Ratio: %@";
+
+/* No comment provided by engineer. */
+"Re-certification" = "Re-certification";
+
+/* No comment provided by engineer. */
+"Re: %@" = "Re: %@";
+
+/* No comment provided by engineer. */
+"Real Name" = "Real Name";
+
+/* No comment provided by engineer. */
+"Realized PNL (%@)" = "Realized PNL (%@)";
+
+/* No comment provided by engineer. */
+"Realized Profit and Loss" = "Realized Profit and Loss";
+
+/* No comment provided by engineer. */
+"Reapply" = "Reapply";
+
+/* No comment provided by engineer. */
+"Reason for appeal" = "Reason for appeal";
+
+/* No comment provided by engineer. */
+"Reason For Appeal:" = "Reason For Appeal:";
+
+/* No comment provided by engineer. */
+"Reason for cancel" = "Reason for cancel";
+
+/* No comment provided by engineer. */
+"Reason for cancellation" = "Reason for cancellation";
+
+/* No comment provided by engineer. */
+"Rebate income" = "Rebate income";
+
+/* No comment provided by engineer. */
+"Rebate ratio" = "Rebate ratio";
+
+/* No comment provided by engineer. */
+"Receiving account management" = "Receiving account management";
+
+/* 充值 */
+"Recharge" = "Recharge";
+
+/* No comment provided by engineer. */
+"Recharge account" = "Recharge account";
+
+/* No comment provided by engineer. */
+"Recharge Address" = "Recharge Address";
+
+/* No comment provided by engineer. */
+"Recharge Wallet" = "Recharge Wallet";
+
+/* No comment provided by engineer. */
+"Recommend enabling Two-Factor Authentication" = "Recommend enabling Two-Factor Authentication";
+
+/* No comment provided by engineer. */
+"Recommendation details" = "Recommendation details";
+
+/* No comment provided by engineer. */
+"Recommendations based on past transactions: %@" = "Recommendations based on past transactions: %@";
+
+/* No comment provided by engineer. */
+"Recommended Traders Send to a friend" = "Recommended Traders Send to a friend";
+
+/* No comment provided by engineer. */
+"Record Last" = "Record Last";
+
+/* No comment provided by engineer. */
+"Redeem" = "Redeem";
+
+/* No comment provided by engineer. */
+"Redeem %@" = "Redeem %@";
+
+/* No comment provided by engineer. */
+"Redeem quantity" = "Redeem quantity";
+
+/* No comment provided by engineer. */
+"Redeem Success" = "Redeem Success";
+
+/* 理财,赎回 */
+"Redemption" = "Redemption";
+
+/* No comment provided by engineer. */
+"Redemption time" = "Redemption time";
+
+/* No comment provided by engineer. */
+"Reduce" = "Reduce";
+
+/* No comment provided by engineer. */
+"Reference price: 1 %@ ≈ %@ %@" = "Reference price: 1 %@ ≈ %@ %@";
+
+/* No comment provided by engineer. */
+"Referral code" = "Referral code";
+
+/* No comment provided by engineer. */
+"Referring traders and quality investors are eligible for profit sharing." = "Referring traders and quality investors are eligible for profit sharing.";
+
+/* No comment provided by engineer. */
+"Refresh" = "Refresh";
+
+/* No comment provided by engineer. */
+"Register" = "Register";
+
+/* No comment provided by engineer. */
+"Regular" = "Regular";
+
+/* No comment provided by engineer. */
+"Relieve C2C Merchant" = "Relieve C2C Merchant";
+
+/* 理财剩余持仓 */
+"Remaining positions" = "Remaining positions";
+
+/* No comment provided by engineer. */
+"Remove" = "Remove";
+
+/* No comment provided by engineer. */
+"Remove C2C merchant application" = "Remove C2C merchant application";
+
+/* No comment provided by engineer. */
+"Remove merchant identity" = "Remove merchant identity";
+
+/* No comment provided by engineer. */
+"Repeal failed" = "Repeal failed";
+
+/* No comment provided by engineer. */
+"Reset" = "Reset";
+
+/* No comment provided by engineer. */
+"Reset Security Verification" = "Reset Security Verification";
+
+/* No comment provided by engineer. */
+"Reset security verification successful" = "Reset security verification successful";
+
+/* No comment provided by engineer. */
+"Reset Your Password" = "Reset Your Password";
+
+/* No comment provided by engineer. */
+"Return Rate" = "Return Rate";
+
+/* No comment provided by engineer. */
+"Review approved" = "Review approved";
+
+/* No comment provided by engineer. */
+"Review rejected" = "Review rejected";
+
+/* No comment provided by engineer. */
+"Revocation" = "Revocation";
+
+/* No comment provided by engineer. */
+"Revoke identity" = "Revoke identity";
+
+/* No comment provided by engineer. */
+"Revoked" = "Revoked";
+
+/* No comment provided by engineer. */
+"Rewards for referrals" = "Rewards for referrals";
+
+/* No comment provided by engineer. */
+"Risk Control" = "Risk Control";
+
+/* No comment provided by engineer. */
+"Role" = "Role";
+
+/* No comment provided by engineer. */
+"Rule description" = "Rule description";
+
+/* No comment provided by engineer. */
+"Run time: %@" = "Run time: %@";
+
+/* No comment provided by engineer. */
+"Safe Margin Mode" = "Safe Margin Mode";
+
+/* No comment provided by engineer. */
+"Save" = "Save";
+
+/* No comment provided by engineer. */
+"Save Success" = "Save Success";
+
+/* No comment provided by engineer. */
+"Scan QR Code" = "Scan QR Code";
+
+/* No comment provided by engineer. */
+"Scan to log in" = "Scan to log in";
+
+/* No comment provided by engineer. */
+"Search" = "Search";
+
+/* No comment provided by engineer. */
+"Search for 'Google Authentication' in the app store to download" = "Search for 'Google Authentication' in the app store to download";
+
+/* No comment provided by engineer. */
+"Security center" = "Security center";
+
+/* No comment provided by engineer. */
+"Security Center" = "Security Center";
+
+/* No comment provided by engineer. */
+"Security Level:" = "Security Level:";
+
+/* No comment provided by engineer. */
+"Security Verification" = "Security Verification";
+
+/* No comment provided by engineer. */
+"Security verification not available?" = "Security verification not available?";
+
+/* No comment provided by engineer. */
+"See more" = "See more";
+
+/* No comment provided by engineer. */
+"Select Area Code" = "Select Area Code";
+
+/* No comment provided by engineer. */
+"Select Pairs" = "Select Pairs";
+
+/* No comment provided by engineer. */
+"Select Unavailable Security Verification" = "Select Unavailable Security Verification";
+
+/* No comment provided by engineer. */
+"Selected: %lld/%lld" = "Selected: %lld/%lld";
+
+/* No comment provided by engineer. */
+"Self Zone" = "Self Zone";
+
+/* 卖单 */
+"Sell" = "Sell";
+
+/* No comment provided by engineer. */
+"Sell %@" = "Sell %@";
+
+/* No comment provided by engineer. */
+"Sell %lld" = "Sell %lld";
+
+/* No comment provided by engineer. */
+"Sell to TA" = "Sell to TA";
+
+/* No comment provided by engineer. */
+"Seller appeal failed" = "Seller appeal failed";
+
+/* No comment provided by engineer. */
+"Seller appealed successfully" = "Seller appealed successfully";
+
+/* No comment provided by engineer. */
+"Seller nickname" = "Seller nickname";
+
+/* No comment provided by engineer. */
+"Send" = "Send";
+
+/* No comment provided by engineer. */
+"Set Profile" = "Set Profile";
+
+/* No comment provided by engineer. */
+"Set up" = "Set up";
+
+/* No comment provided by engineer. */
+"Set Your Password" = "Set Your Password";
+
+/* No comment provided by engineer. */
+"Setting Prices" = "Setting Prices";
+
+/* No comment provided by engineer. */
+"Settings" = "Settings";
+
+/* No comment provided by engineer. */
+"Settled" = "Settled";
+
+/* No comment provided by engineer. */
+"Settlement bill" = "Settlement bill";
+
+/* No comment provided by engineer. */
+"Share a trader's information on social media, and when your friend clicks on the jump to return to the app, they will be taken directly to the trader's page." = "Share a trader's information on social media, and when your friend clicks on the jump to return to the app, they will be taken directly to the trader's page.";
+
+/* No comment provided by engineer. */
+"Sharing of trading activities" = "Sharing of trading activities";
+
+/* No comment provided by engineer. */
+"Simulation History Contract" = "Simulation History Contract";
+
+/* No comment provided by engineer. */
+"Single amount" = "Single amount";
+
+/* No comment provided by engineer. */
+"Single Order Limit" = "Single Order Limit";
+
+/* No comment provided by engineer. */
+"Single Order Limitns" = "Single Order Limitns";
+
+/* No comment provided by engineer. */
+"Single-stroke limit" = "Single-stroke limit";
+
+/* No comment provided by engineer. */
+"Skewed trade resources" = "Skewed trade resources";
+
+/* No comment provided by engineer. */
+"SL" = "SL";
+
+/* No comment provided by engineer. */
+"SL: %@%%" = "SL: %@%%";
+
+/* No comment provided by engineer. */
+"Social Channels" = "Social Channels";
+
+/* No comment provided by engineer. */
+"Spot" = "Spot";
+
+/* No comment provided by engineer. */
+"Spot Account" = "Spot Account";
+
+/* No comment provided by engineer. */
+"ST" = "ST";
+
+/* No comment provided by engineer. */
+"ST: %@%%" = "ST: %@%%";
+
+/* No comment provided by engineer. */
+"Start Copy Trading" = "Start Copy Trading";
+
+/* No comment provided by engineer. */
+"Start Now" = "Start Now";
+
+/* No comment provided by engineer. */
+"Start your digital trading journey" = "Start your digital trading journey";
+
+/* No comment provided by engineer. */
+"Starting From %@" = "Starting From %@";
+
+/* No comment provided by engineer. */
+"Starting from %@%@" = "Starting from %@%@";
+
+/* No comment provided by engineer. */
+"State" = "State";
+
+/* No comment provided by engineer. */
+"Statistical Data" = "Statistical Data";
+
+/* No comment provided by engineer. */
+"Status" = "Status";
+
+/* No comment provided by engineer. */
+"Stop (USDT)" = "Stop (USDT)";
+
+/* No comment provided by engineer. */
+"Stop Limit" = "Stop Limit";
+
+/* No comment provided by engineer. */
+"Stop Loss" = "Stop Loss";
+
+/* No comment provided by engineer. */
+"Stop Profit" = "Stop Profit";
+
+/* No comment provided by engineer. */
+"Stop-Limit" = "Stop-Limit";
+
+/* No comment provided by engineer. */
+"Stop-Market" = "Stop-Market";
+
+/* No comment provided by engineer. */
+"Strategy Detail" = "Strategy Detail";
+
+/* No comment provided by engineer. */
+"Strong sell price" = "Strong sell price";
+
+/* No comment provided by engineer. */
+"STSL" = "STSL";
+
+/* No comment provided by engineer. */
+"Submit" = "Submit";
+
+/* No comment provided by engineer. */
+"Submitted" = "Submitted";
+
+/* No comment provided by engineer. */
+"Subscription %@" = "Subscription %@";
+
+/* No comment provided by engineer. */
+"Subscription Date" = "Subscription Date";
+
+/* No comment provided by engineer. */
+"Subscription quantity" = "Subscription quantity";
+
+/* No comment provided by engineer. */
+"Subscription Success" = "Subscription Success";
+
+/* No comment provided by engineer. */
+"Subscription time" = "Subscription time";
+
+/* No comment provided by engineer. */
+"Successful" = "Successful";
+
+/* No comment provided by engineer. */
+"Successful application" = "Successful application";
+
+/* No comment provided by engineer. */
+"Successful referrals" = "Successful referrals";
+
+/* No comment provided by engineer. */
+"Sum (%@)" = "Sum (%@)";
+
+/* No comment provided by engineer. */
+"Switch Currency" = "Switch Currency";
+
+/* No comment provided by engineer. */
+"Switch Network" = "Switch Network";
+
+/* No comment provided by engineer. */
+"Switch Wallet" = "Switch Wallet";
+
+/* No comment provided by engineer. */
+"System" = "System";
+
+/* No comment provided by engineer. */
+"system appeal cancelled" = "system appeal cancelled";
+
+/* No comment provided by engineer. */
+"System canceled" = "System canceled";
+
+/* No comment provided by engineer. */
+"Take" = "Take";
+
+/* No comment provided by engineer. */
+"Take Profit" = "Take Profit";
+
+/* No comment provided by engineer. */
+"Telegram" = "Telegram";
+
+/* No comment provided by engineer. */
+"Text" = "Text";
+
+/* No comment provided by engineer. */
+"The %@ USDT deposit will be frozen when the merchant application is submitted and the guaranteed amount will be displayed on the user profile page. If the application is rejected, the guaranteed amount will be unfrozen." = "The %@ USDT deposit will be frozen when the merchant application is submitted and the guaranteed amount will be displayed on the user profile page. If the application is rejected, the guaranteed amount will be unfrozen.";
+
+/* No comment provided by engineer. */
+"The adjustment of the margin mode only applies to the current contract." = "The adjustment of the margin mode only applies to the current contract.";
+
+/* No comment provided by engineer. */
+"The appeal has been cancelled" = "The appeal has been cancelled";
+
+/* No comment provided by engineer. */
+"The auto-follow order trading specialist has newly added the contract currency pair." = "The auto-follow order trading specialist has newly added the contract currency pair.";
+
+/* No comment provided by engineer. */
+"The balance of this advertisement is insufficient" = "The balance of this advertisement is insufficient";
+
+/* No comment provided by engineer. */
+"The buyer did not make the payment, but clicked \"I have completed the transfer\"." = "The buyer did not make the payment, but clicked \"I have completed the transfer\".";
+
+/* No comment provided by engineer. */
+"The buyer has confirmed the payment. Please be sure to log in to your account to confirm the payment before releasing it to avoid property losses!" = "The buyer has confirmed the payment. Please be sure to log in to your account to confirm the payment before releasing it to avoid property losses!";
+
+/* No comment provided by engineer. */
+"The buyer has created an order and needs to make a payment" = "The buyer has created an order and needs to make a payment";
+
+/* No comment provided by engineer. */
+"The buyer has marked the payment. Please check it in time and release it to the buyer as soon as possible." = "The buyer has marked the payment. Please check it in time and release it to the buyer as soon as possible.";
+
+/* No comment provided by engineer. */
+"The buyer has transferred the money, but the seller has not released the coins in a timely manner." = "The buyer has transferred the money, but the seller has not released the coins in a timely manner.";
+
+/* No comment provided by engineer. */
+"The buyer left a special instruction when transferring the money, but the seller did not release the cryptocurrency." = "The buyer left a special instruction when transferring the money, but the seller did not release the cryptocurrency.";
+
+/* No comment provided by engineer. */
+"The buyer's payment was successful, but the seller did not receive the payment." = "The buyer's payment was successful, but the seller did not receive the payment.";
+
+/* No comment provided by engineer. */
+"The entire audit process may take 1-2 days, please be patient Waiting for our review" = "The entire audit process may take 1-2 days, please be patient Waiting for our review";
+
+/* No comment provided by engineer. */
+"The margin mode cannot be adjusted if there are existing positions or open orders in the current contract." = "The margin mode cannot be adjusted if there are existing positions or open orders in the current contract.";
+
+/* No comment provided by engineer. */
+"The maximum %@" = "The maximum %@";
+
+/* No comment provided by engineer. */
+"The maximum number of decimal places is %lld" = "The maximum number of decimal places is %lld";
+
+/* No comment provided by engineer. */
+"The minimum progress of the quantity is 6" = "The minimum progress of the quantity is 6";
+
+/* No comment provided by engineer. */
+"The order has been canceled." = "The order has been canceled.";
+
+/* No comment provided by engineer. */
+"The other party has canceled." = "The other party has canceled.";
+
+/* No comment provided by engineer. */
+"The other party has released the assets and you will receive them." = "The other party has released the assets and you will receive them.";
+
+/* No comment provided by engineer. */
+"The other party will receive the assets you have released." = "The other party will receive the assets you have released.";
+
+/* No comment provided by engineer. */
+"The password length is between 8 and 16 characters" = "The password length is between 8 and 16 characters";
+
+/* No comment provided by engineer. */
+"The passwords do not match!" = "The passwords do not match!";
+
+/* No comment provided by engineer. */
+"The payment amount does not match the order amount." = "The payment amount does not match the order amount.";
+
+/* No comment provided by engineer. */
+"The platform has negotiated with the buyer and seller to cancel the order." = "The platform has negotiated with the buyer and seller to cancel the order.";
+
+/* No comment provided by engineer. */
+"The platform is assessing responsibility based on the information you submitted. Please be patient." = "The platform is assessing responsibility based on the information you submitted. Please be patient.";
+
+/* No comment provided by engineer. */
+"The platform will not automatically deduct payments. You need to open a third-party platform to transfer funds to the seller. If you have not made the payment yet and click 'I have completed the transfer', it will be considered a malicious operation and your account will be frozen." = "The platform will not automatically deduct payments. You need to open a third-party platform to transfer funds to the seller. If you have not made the payment yet and click 'I have completed the transfer', it will be considered a malicious operation and your account will be frozen.";
+
+/* No comment provided by engineer. */
+"The platform will not automatically deduct the money, you need to transfer money to the other party through the corresponding APP, the other party can receive the money." = "The platform will not automatically deduct the money, you need to transfer money to the other party through the corresponding APP, the other party can receive the money.";
+
+/* No comment provided by engineer. */
+"The profit sharing ratio ranges from 0% to 20%." = "The profit sharing ratio ranges from 0% to 20%.";
+
+/* No comment provided by engineer. */
+"The reasons for the appeal and the evidence will be presented to both parties and customer service simultaneously. Please pay attention to privacy information protection. Malicious complaints belong to behaviors that disrupt the normal operation order of the platform, and if the circumstances are serious, the account will be frozen." = "The reasons for the appeal and the evidence will be presented to both parties and customer service simultaneously. Please pay attention to privacy information protection. Malicious complaints belong to behaviors that disrupt the normal operation order of the platform, and if the circumstances are serious, the account will be frozen.";
+
+/* No comment provided by engineer. */
+"The remaining amount: %@ %@" = "The remaining amount: %@ %@";
+
+/* No comment provided by engineer. */
+"The remaining time of payment" = "The remaining time of payment";
+
+/* No comment provided by engineer. */
+"The screenshots of payment and communication records should not exceed 4 files and the size should not exceed 5MB, supporting JPG, JPEG, and PNG." = "The screenshots of payment and communication records should not exceed 4 files and the size should not exceed 5MB, supporting JPG, JPEG, and PNG.";
+
+/* No comment provided by engineer. */
+"The seller has released the currency" = "The seller has released the currency";
+
+/* No comment provided by engineer. */
+"The seller is unwilling to release the encrypted currency." = "The seller is unwilling to release the encrypted currency.";
+
+/* No comment provided by engineer. */
+"The seller releases the cryptocurrency in advance before confirming the payment." = "The seller releases the cryptocurrency in advance before confirming the payment.";
+
+/* No comment provided by engineer. */
+"The seller's payment account is under risk control and cannot be transferred" = "The seller's payment account is under risk control and cannot be transferred";
+
+/* No comment provided by engineer. */
+"The seller's service attitude is not good" = "The seller's service attitude is not good";
+
+/* No comment provided by engineer. */
+"The term" = "The term";
+
+/* No comment provided by engineer. */
+"The trader's data during your period as a trader is still retained." = "The trader's data during your period as a trader is still retained.";
+
+/* No comment provided by engineer. */
+"The verification information or account information is inconsistent." = "The verification information or account information is inconsistent.";
+
+/* No comment provided by engineer. */
+"Theme" = "Theme";
+
+/* No comment provided by engineer. */
+"This appeal determines that the buyer is not at fault, and %@ assets have been deposited into your account." = "This appeal determines that the buyer is not at fault, and %@ assets have been deposited into your account.";
+
+/* No comment provided by engineer. */
+"This appeal determines that the seller is not at fault. If you have any questions, please appeal again." = "This appeal determines that the seller is not at fault. If you have any questions, please appeal again.";
+
+/* No comment provided by engineer. */
+"This value must be an integer" = "This value must be an integer";
+
+/* No comment provided by engineer. */
+"This value must be between %lld ~ %lld" = "This value must be between %lld ~ %lld";
+
+/* No comment provided by engineer. */
+"This value must be greater than 0" = "This value must be greater than 0";
+
+/* No comment provided by engineer. */
+"Time" = "Time";
+
+/* No comment provided by engineer. */
+"Time Limit" = "Time Limit";
+
+/* No comment provided by engineer. */
+"Time period" = "Time period";
+
+/* No comment provided by engineer. */
+"Timeout cancellation" = "Timeout cancellation";
+
+/* No comment provided by engineer. */
+"timeout cancelled" = "timeout cancelled";
+
+/* No comment provided by engineer. */
+"Tip: Please do not exceed 5 MB in size for a single image, please be patient after clicking Submit Certification and wait for the upload, please do not click repeatedly." = "Tip: Please do not exceed 5 MB in size for a single image, please be patient after clicking Submit Certification and wait for the upload, please do not click repeatedly.";
+
+/* No comment provided by engineer. */
+"Tips" = "Tips";
+
+/* No comment provided by engineer. */
+"To" = "To";
+
+/* No comment provided by engineer. */
+"To be verified" = "To be verified";
+
+/* No comment provided by engineer. */
+"To ensure your rights, please provide a detailed description of the reason for canceling the order (required)" = "To ensure your rights, please provide a detailed description of the reason for canceling the order (required)";
+
+/* No comment provided by engineer. */
+"To protect the security of your assets, change or unbind the verified account Payment services, coin withdrawals, and C2C coin sales will be disabled for 24 hours." = "To protect the security of your assets, change or unbind the verified account Payment services, coin withdrawals, and C2C coin sales will be disabled for 24 hours.";
+
+/* No comment provided by engineer. */
+"To protect your rights and interests, please describe the appeal information as fully as possible" = "To protect your rights and interests, please describe the appeal information as fully as possible";
+
+/* No comment provided by engineer. */
+"Today" = "Today";
+
+/* No comment provided by engineer. */
+"Today (Times)" = "Today (Times)";
+
+/* No comment provided by engineer. */
+"Today's Estimated Returns (USDT)" = "Today's Estimated Returns (USDT)";
+
+/* No comment provided by engineer. */
+"Today's Pre (USDT)" = "Today's Pre (USDT)";
+
+/* No comment provided by engineer. */
+"Today's realized profit and loss" = "Today's realized profit and loss";
+
+/* No comment provided by engineer. */
+"Top Traders" = "Top Traders";
+
+/* No comment provided by engineer. */
+"Top-earning trader on the platform" = "Top-earning trader on the platform";
+
+/* No comment provided by engineer. */
+"Total" = "Total";
+
+/* No comment provided by engineer. */
+"Total amount" = "Total amount";
+
+/* No comment provided by engineer. */
+"Total Amount of Orders" = "Total Amount of Orders";
+
+/* No comment provided by engineer. */
+"Total Assets" = "Total Assets";
+
+/* No comment provided by engineer. */
+"Total Balance" = "Total Balance";
+
+/* No comment provided by engineer. */
+"Total Frozen Margin" = "Total Frozen Margin";
+
+/* No comment provided by engineer. */
+"Total number of followers" = "Total number of followers";
+
+/* No comment provided by engineer. */
+"Total number of transactions" = "Total number of transactions";
+
+/* No comment provided by engineer. */
+"Total order amount" = "Total order amount";
+
+/* 理财,持仓总资产 */
+"Total Position Assets" = "Total Position Assets";
+
+/* No comment provided by engineer. */
+"Total positions" = "Total positions";
+
+/* No comment provided by engineer. */
+"Total Return" = "Total Return";
+
+/* No comment provided by engineer. */
+"Total return (USDT)" = "Total return (USDT)";
+
+/* No comment provided by engineer. */
+"Total revenue" = "Total revenue";
+
+/* No comment provided by engineer. */
+"Total Revenue" = "Total Revenue";
+
+/* No comment provided by engineer. */
+"Total Revenue from Lead Orders (USDT)" = "Total Revenue from Lead Orders (USDT)";
+
+/* No comment provided by engineer. */
+"Total Revenue from Trades (USDT)" = "Total Revenue from Trades (USDT)";
+
+/* No comment provided by engineer. */
+"Total transaction" = "Total transaction";
+
+/* No comment provided by engineer. */
+"Total Transaction Amount (USDT)" = "Total Transaction Amount (USDT)";
+
+/* No comment provided by engineer. */
+"Total turnover (USDT)" = "Total turnover (USDT)";
+
+/* No comment provided by engineer. */
+"Total Yield" = "Total Yield";
+
+/* No comment provided by engineer. */
+"TP/SL" = "TP/SL";
+
+/* No comment provided by engineer. */
+"Tracking Profits" = "Tracking Profits";
+
+/* No comment provided by engineer. */
+"Trade" = "Trade";
+
+/* No comment provided by engineer. */
+"Trade cryptocurrencies efficiently and securely" = "Trade cryptocurrencies efficiently and securely";
+
+/* No comment provided by engineer. */
+"Trade History" = "Trade History";
+
+/* No comment provided by engineer. */
+"trader" = "trader";
+
+/* No comment provided by engineer. */
+"Trader Personal" = "Trader Personal";
+
+/* No comment provided by engineer. */
+"Trading curve" = "Trading curve";
+
+/* No comment provided by engineer. */
+"Trading method" = "Trading method";
+
+/* No comment provided by engineer. */
+"Trading Volume" = "Trading Volume";
+
+/* No comment provided by engineer. */
+"Trading Volume (%@)" = "Trading Volume (%@)";
+
+/* No comment provided by engineer. */
+"Trading Volume (U)" = "Trading Volume (U)";
+
+/* No comment provided by engineer. */
+"Trading Winning Ratio (last 3W)" = "Trading Winning Ratio (last 3W)";
+
+/* No comment provided by engineer. */
+"Trailing" = "Trailing";
+
+/* No comment provided by engineer. */
+"Trailing Stop" = "Trailing Stop";
+
+/* No comment provided by engineer. */
+"transaction amount (USDT)" = "transaction amount (USDT)";
+
+/* No comment provided by engineer. */
+"Transaction Count" = "Transaction Count";
+
+/* No comment provided by engineer. */
+"Transaction details" = "Transaction details";
+
+/* No comment provided by engineer. */
+"Transaction Details" = "Transaction Details";
+
+/* No comment provided by engineer. */
+"Transaction ID" = "Transaction ID";
+
+/* No comment provided by engineer. */
+"Transaction rate" = "Transaction rate";
+
+/* No comment provided by engineer. */
+"Transaction Type" = "Transaction Type";
+
+/* No comment provided by engineer. */
+"Transaction Volume" = "Transaction Volume";
+
+/* No comment provided by engineer. */
+"Transfer" = "Transfer";
+
+/* No comment provided by engineer. */
+"Transfer successful" = "Transfer successful";
+
+/* No comment provided by engineer. */
+"Transfer to seller" = "Transfer to seller";
+
+/* No comment provided by engineer. */
+"Trigger Conditions" = "Trigger Conditions";
+
+/* No comment provided by engineer. */
+"Trigger price" = "Trigger price";
+
+/* No comment provided by engineer. */
+"Trigger Price" = "Trigger Price";
+
+/* No comment provided by engineer. */
+"Trigger Price (USDT)" = "Trigger Price (USDT)";
+
+/* No comment provided by engineer. */
+"Try contacting the other party to see if they can solve the problem" = "Try contacting the other party to see if they can solve the problem";
+
+/* No comment provided by engineer. */
+"Turnover" = "Turnover";
+
+/* No comment provided by engineer. */
+"Turnover rate" = "Turnover rate";
+
+/* No comment provided by engineer. */
+"Turnover rate (last 30 days)" = "Turnover rate (last 30 days)";
+
+/* No comment provided by engineer. */
+"Twitter (X)" = "Twitter (X)";
+
+/* No comment provided by engineer. */
+"Two-Factor Authentication" = "Two-Factor Authentication";
+
+/* No comment provided by engineer. */
+"Type" = "Type";
+
+/* No comment provided by engineer. */
+"Unable to contact the seller" = "Unable to contact the seller";
+
+/* No comment provided by engineer. */
+"Unbind Email" = "Unbind Email";
+
+/* No comment provided by engineer. */
+"Unbind Google Authenticator" = "Unbind Google Authenticator";
+
+/* No comment provided by engineer. */
+"Unbind Mobile" = "Unbind Mobile";
+
+/* No comment provided by engineer. */
+"Unblock" = "Unblock";
+
+/* No comment provided by engineer. */
+"Unblocked" = "Unblocked";
+
+/* No comment provided by engineer. */
+"Unbound" = "Unbound";
+
+/* No comment provided by engineer. */
+"Under appeal" = "Under appeal";
+
+/* No comment provided by engineer. */
+"Under Appeal" = "Under Appeal";
+
+/* No comment provided by engineer. */
+"Under review" = "Under review";
+
+/* No comment provided by engineer. */
+"unfilled" = "unfilled";
+
+/* No comment provided by engineer. */
+"Unfollow" = "Unfollow";
+
+/* No comment provided by engineer. */
+"Unit base" = "Unit base";
+
+/* No comment provided by engineer. */
+"Unit base must be less than or equal to 1, with a maximum of 2 decimal places." = "Unit base must be less than or equal to 1, with a maximum of 2 decimal places.";
+
+/* No comment provided by engineer. */
+"Unit price" = "Unit price";
+
+/* No comment provided by engineer. */
+"Unlimited" = "Unlimited";
+
+/* No comment provided by engineer. */
+"unpaid" = "unpaid";
+
+/* No comment provided by engineer. */
+"Unrealized PNL (%@)" = "Unrealized PNL (%@)";
+
+/* No comment provided by engineer. */
+"Unrealized Profit and Loss" = "Unrealized Profit and Loss";
+
+/* No comment provided by engineer. */
+"Unrealized Profit/Loss" = "Unrealized Profit/Loss";
+
+/* No comment provided by engineer. */
+"Unsupported QR code" = "Unsupported QR code";
+
+/* No comment provided by engineer. */
+"Update" = "Update";
+
+/* No comment provided by engineer. */
+"Upload a full photo of your ID" = "Upload a full photo of your ID";
+
+/* No comment provided by engineer. */
+"Upon successful referral, the trader will receive 25% of the profit share as a referral bonus in your wallet instantly." = "Upon successful referral, the trader will receive 25% of the profit share as a referral bonus in your wallet instantly.";
+
+/* No comment provided by engineer. */
+"USDT" = "USDT";
+
+/* No comment provided by engineer. */
+"USDT Contract" = "USDT Contract";
+
+/* No comment provided by engineer. */
+"USDT Experience" = "USDT Experience";
+
+/* No comment provided by engineer. */
+"USDT History Contract" = "USDT History Contract";
+
+/* No comment provided by engineer. */
+"USDT Perpetual Contracts" = "USDT Perpetual Contracts";
+
+/* No comment provided by engineer. */
+"User Agreement" = "User Agreement";
+
+/* No comment provided by engineer. */
+"User Agreement\nUpdated: September 25, 2023\n\nWelcome to the GFK Digital Asset Trading Platform (hereinafter referred to as \"GFK\"). Before using the services of GFK, please carefully read and understand the following User Agreement. This agreement sets forth the legal relationship between you and GFK, including your rights and responsibilities when using our platform. If you do not agree with any of the terms and conditions of this agreement, please cease using the services of GFK.\n\nI. Acceptance of Terms\n\n1.1 Your use of GFK's services constitutes your acceptance and agreement to comply with all the terms and conditions of this agreement. If you do not agree with any part of this agreement, please discontinue using GFK's services.\n\nII. Use of the Platform\n\n2.1 You agree to comply with the national policies of Lithuania and all internal rules and regulations of the GFK platform.\n\n2.2 You must be of legal age, as per local laws, to have the right to trade and use our services.\n\nIII. Account Registration\n\n3.1 You need to register a GFK account to use our services. During the registration process, you must provide accurate personal information.\n\n3.2 You are responsible for safeguarding your account information and password and should not share them with others. If you suspect that the security of your account is compromised, you should immediately notify us.\n\nIV. Use of Services\n\n4.1 You agree to use only legal means and legal funds for transactions. You may not engage in any illegal, fraudulent, or money laundering activities.\n\n4.2 We reserve the right, at our sole discretion, to suspend or terminate your account if we suspect you have violated this agreement or any relevant laws and regulations.\n\nV. Risk Disclaimer\n\n5.1 You understand that the cryptocurrency market is highly volatile, and the value may rapidly increase or decrease. GFK is not responsible for your trading losses.\n\nVI. Privacy Policy\n\n6.1 We respect your privacy rights. Please refer to our Privacy Policy to understand how we collect, use, and protect your personal information.\n\nVII. Disclaimer of Liability\n\n7.1 GFK shall not be liable for any losses resulting from the following: technical failures, network connectivity issues, government actions, market fluctuations, trading interruptions, hacker attacks, or other force majeure events.\n\nVIII. Changes to the Agreement\n\n8.1 We reserve the right to change the content of this agreement at any time, and we will announce any significant changes through our website.\n\nIX. Contact Us\n\nIf you have any questions about this agreement or need assistance, please contact our customer support team.\n\nThe above is the User Agreement for the GFK Digital Asset Trading Platform. We hope you carefully read and understand these terms and conditions before using our services." = "User Agreement\nUpdated: September 25, 2023\n\nWelcome to the GFK Digital Asset Trading Platform (hereinafter referred to as \"GFK\"). Before using the services of GFK, please carefully read and understand the following User Agreement. This agreement sets forth the legal relationship between you and GFK, including your rights and responsibilities when using our platform. If you do not agree with any of the terms and conditions of this agreement, please cease using the services of GFK.\n\nI. Acceptance of Terms\n\n1.1 Your use of GFK's services constitutes your acceptance and agreement to comply with all the terms and conditions of this agreement. If you do not agree with any part of this agreement, please discontinue using GFK's services.\n\nII. Use of the Platform\n\n2.1 You agree to comply with the national policies of Lithuania and all internal rules and regulations of the GFK platform.\n\n2.2 You must be of legal age, as per local laws, to have the right to trade and use our services.\n\nIII. Account Registration\n\n3.1 You need to register a GFK account to use our services. During the registration process, you must provide accurate personal information.\n\n3.2 You are responsible for safeguarding your account information and password and should not share them with others. If you suspect that the security of your account is compromised, you should immediately notify us.\n\nIV. Use of Services\n\n4.1 You agree to use only legal means and legal funds for transactions. You may not engage in any illegal, fraudulent, or money laundering activities.\n\n4.2 We reserve the right, at our sole discretion, to suspend or terminate your account if we suspect you have violated this agreement or any relevant laws and regulations.\n\nV. Risk Disclaimer\n\n5.1 You understand that the cryptocurrency market is highly volatile, and the value may rapidly increase or decrease. GFK is not responsible for your trading losses.\n\nVI. Privacy Policy\n\n6.1 We respect your privacy rights. Please refer to our Privacy Policy to understand how we collect, use, and protect your personal information.\n\nVII. Disclaimer of Liability\n\n7.1 GFK shall not be liable for any losses resulting from the following: technical failures, network connectivity issues, government actions, market fluctuations, trading interruptions, hacker attacks, or other force majeure events.\n\nVIII. Changes to the Agreement\n\n8.1 We reserve the right to change the content of this agreement at any time, and we will announce any significant changes through our website.\n\nIX. Contact Us\n\nIf you have any questions about this agreement or need assistance, please contact our customer support team.\n\nThe above is the User Agreement for the GFK Digital Asset Trading Platform. We hope you carefully read and understand these terms and conditions before using our services.";
+
+/* No comment provided by engineer. */
+"User cancellation" = "User cancellation";
+
+/* No comment provided by engineer. */
+"user cancelled" = "user cancelled";
+
+/* No comment provided by engineer. */
+"User Information" = "User Information";
+
+/* No comment provided by engineer. */
+"Using aggressive language" = "Using aggressive language";
+
+/* No comment provided by engineer. */
+"Value" = "Value";
+
+/* No comment provided by engineer. */
+"Value Date" = "Value Date";
+
+/* No comment provided by engineer. */
+"Variable price" = "Variable price";
+
+/* No comment provided by engineer. */
+"Verification Center" = "Verification Center";
+
+/* No comment provided by engineer. */
+"View" = "View";
+
+/* No comment provided by engineer. */
+"View Assets" = "View Assets";
+
+/* No comment provided by engineer. */
+"View Referral Breakdown" = "View Referral Breakdown";
+
+/* No comment provided by engineer. */
+"Vol (USD)" = "Vol (USD)";
+
+/* No comment provided by engineer. */
+"Wait for me to pay" = "Wait for me to pay";
+
+/* No comment provided by engineer. */
+"Wait for you to release the money to the buyer" = "Wait for you to release the money to the buyer";
+
+/* No comment provided by engineer. */
+"Waiting for the buyer to make payment" = "Waiting for the buyer to make payment";
+
+/* No comment provided by engineer. */
+"Waiting for the seller to confirm the payment, the average release time of this seller is within 3 minutes." = "Waiting for the seller to confirm the payment, the average release time of this seller is within 3 minutes.";
+
+/* No comment provided by engineer. */
+"Waiting for the seller to release coins" = "Waiting for the seller to release coins";
+
+/* No comment provided by engineer. */
+"Waiting for the seller to release the payment" = "Waiting for the seller to release the payment";
+
+/* No comment provided by engineer. */
+"Waiting for you to send coins to the buyer" = "Waiting for you to send coins to the buyer";
+
+/* No comment provided by engineer. */
+"Wallet" = "Wallet";
+
+/* No comment provided by engineer. */
+"Wallet Address" = "Wallet Address";
+
+/* No comment provided by engineer. */
+"We only show the buyer the account that has been opened for payment." = "We only show the buyer the account that has been opened for payment.";
+
+/* No comment provided by engineer. */
+"When a friend follows the trader directly, the referral will be counted as a successful referral." = "When a friend follows the trader directly, the referral will be counted as a successful referral.";
+
+/* No comment provided by engineer. */
+"When current price reach 1 USDT, postion will be closed at trigger proce, est. profit/loss will be %@ USDT" = "When current price reach 1 USDT, postion will be closed at trigger proce, est. profit/loss will be %@ USDT";
+
+/* No comment provided by engineer. */
+"When trigger price reach 0.00 USDT, postion will be closed at trigger proce, est. profit/loss will be %@ USDT" = "When trigger price reach 0.00 USDT, postion will be closed at trigger proce, est. profit/loss will be %@ USDT";
+
+/* No comment provided by engineer. */
+"Whitelist" = "Whitelist";
+
+/* No comment provided by engineer. */
+"Whitelist Address" = "Whitelist Address";
+
+/* No comment provided by engineer. */
+"Whitelist Manage" = "Whitelist Manage";
+
+/* No comment provided by engineer. */
+"Whitepaper URL" = "Whitepaper URL";
+
+/* No comment provided by engineer. */
+"Will not affect unsettled profits." = "Will not affect unsettled profits.";
+
+/* No comment provided by engineer. */
+"Win rate" = "Win rate";
+
+/* No comment provided by engineer. */
+"Win Rate" = "Win Rate";
+
+/* No comment provided by engineer. */
+"Withdraw" = "Withdraw";
+
+/* No comment provided by engineer. */
+"Withdraw account" = "Withdraw account";
+
+/* No comment provided by engineer. */
+"Withdraw Address" = "Withdraw Address";
+
+/* No comment provided by engineer. */
+"Yesterday (Times)" = "Yesterday (Times)";
+
+/* No comment provided by engineer. */
+"Yesterday (USDT)" = "Yesterday (USDT)";
+
+/* No comment provided by engineer. */
+"Yesterday's earnings" = "Yesterday's earnings";
+
+/* No comment provided by engineer. */
+"Yesterday's Earnings" = "Yesterday's Earnings";
+
+/* No comment provided by engineer. */
+"Yesterday's earnings (USDT)" = "Yesterday's earnings (USDT)";
+
+/* No comment provided by engineer. */
+"Yesterday's Gains (USDT)" = "Yesterday's Gains (USDT)";
+
+/* No comment provided by engineer. */
+"Yesterday's profit sharing" = "Yesterday's profit sharing";
+
+/* No comment provided by engineer. */
+"Yield" = "Yield";
+
+/* No comment provided by engineer. */
+"Yield rate" = "Yield rate";
+
+/* No comment provided by engineer. */
+"You are not a merchant" = "You are not a merchant";
+
+/* No comment provided by engineer. */
+"You are not a trader" = "You are not a trader";
+
+/* No comment provided by engineer. */
+"You do not have this payment method currently, please add it before making a transaction." = "You do not have this payment method currently, please add it before making a transaction.";
+
+/* No comment provided by engineer. */
+"You have already become a staff member" = "You have already become a staff member";
+
+/* No comment provided by engineer. */
+"You have canceled." = "You have canceled.";
+
+/* No comment provided by engineer. */
+"You have created an order, awaiting payment" = "You have created an order, awaiting payment";
+
+/* No comment provided by engineer. */
+"You have enabled the withdrawal switch that only allows addresses from the whitelist." = "You have enabled the withdrawal switch that only allows addresses from the whitelist.";
+
+/* No comment provided by engineer. */
+"You have not set a transaction password yet. To ensure the security of your assets, please set it as soon as possible." = "You have not set a transaction password yet. To ensure the security of your assets, please set it as soon as possible.";
+
+/* No comment provided by engineer. */
+"You have sent coins to the buyer" = "You have sent coins to the buyer";
+
+/* No comment provided by engineer. */
+"You have successfully placed an order, please make payment promptly." = "You have successfully placed an order, please make payment promptly.";
+
+/* No comment provided by engineer. */
+"You have successfully placed an order, please wait for the buyer to pay." = "You have successfully placed an order, please wait for the buyer to pay.";
+
+/* No comment provided by engineer. */
+"You need to pay %@ %@" = "You need to pay %@ %@";
+
+/* No comment provided by engineer. */
+"You will get %@ %@" = "You will get %@ %@";
+
+/* No comment provided by engineer. */
+"You will not be able to post C2C ads after you apply for the termination of your merchant status. Are you sure you want to give up your C2C merchant status?" = "You will not be able to post C2C ads after you apply for the termination of your merchant status. Are you sure you want to give up your C2C merchant status?";
+
+/* No comment provided by engineer. */
+"Your Earnings" = "Your Earnings";
+
+/* No comment provided by engineer. */
+"Your Price" = "Your Price";
+
+/* No comment provided by engineer. */
+"your real name account" = "your real name account";
+
+/* No comment provided by engineer. */
+"Youtube" = "Youtube";
+
