@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		3E6AA58B2CFDF8E50078F139 /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 3E6AA58A2CFDF8E50078F139 /* OpenAI */; };
+		3E6AA58D2CFDF8F60078F139 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 3E6AA58C2CFDF8F60078F139 /* SwiftUIX */; };
+		3E6AA5972CFDFE670078F139 /* SwifterSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3E6AA5962CFDFE670078F139 /* SwifterSwift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		3E51FA432CFD9B2C009356BA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -65,6 +71,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E6AA5972CFDFE670078F139 /* SwifterSwift in Frameworks */,
+				3E6AA58B2CFDF8E50078F139 /* OpenAI in Frameworks */,
+				3E6AA58D2CFDF8F60078F139 /* SwiftUIX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +134,9 @@
 			);
 			name = XcodeInternationalization;
 			packageProductDependencies = (
+				3E6AA58A2CFDF8E50078F139 /* OpenAI */,
+				3E6AA58C2CFDF8F60078F139 /* SwiftUIX */,
+				3E6AA5962CFDFE670078F139 /* SwifterSwift */,
 			);
 			productName = XcodeInternationalization;
 			productReference = 3E51FA312CFD9B2A009356BA /* XcodeInternationalization.app */;
@@ -210,6 +222,8 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				3E51FA792CFDB8C1009356BA /* XCRemoteSwiftPackageReference "SwiftUIX" */,
+				3E6AA5892CFDF8E50078F139 /* XCRemoteSwiftPackageReference "OpenAI" */,
+				3E6AA5952CFDFE670078F139 /* XCRemoteSwiftPackageReference "SwifterSwift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 3E51FA322CFD9B2A009356BA /* Products */;
@@ -571,7 +585,40 @@
 				minimumVersion = 0.2.3;
 			};
 		};
+		3E6AA5892CFDF8E50078F139 /* XCRemoteSwiftPackageReference "OpenAI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MacPaw/OpenAI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.0;
+			};
+		};
+		3E6AA5952CFDFE670078F139 /* XCRemoteSwiftPackageReference "SwifterSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwifterSwift/SwifterSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3E6AA58A2CFDF8E50078F139 /* OpenAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3E6AA5892CFDF8E50078F139 /* XCRemoteSwiftPackageReference "OpenAI" */;
+			productName = OpenAI;
+		};
+		3E6AA58C2CFDF8F60078F139 /* SwiftUIX */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SwiftUIX;
+		};
+		3E6AA5962CFDFE670078F139 /* SwifterSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3E6AA5952CFDFE670078F139 /* XCRemoteSwiftPackageReference "SwifterSwift" */;
+			productName = SwifterSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3E51FA292CFD9B2A009356BA /* Project object */;
 }

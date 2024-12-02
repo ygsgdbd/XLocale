@@ -1,6 +1,24 @@
 {
-  "originHash" : "81d2e580ba9932bbf94c74a60282a1d23a575ec90655203f2e82c84e3edc604c",
+  "originHash" : "65e9c1cf0befeadf29ea9b199c0680144f31e5e99f20a4e731aabab7977df07b",
   "pins" : [
+    {
+      "identity" : "openai",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/MacPaw/OpenAI",
+      "state" : {
+        "revision" : "843e087929aa806adb611dbca93f9a4a7f28be04",
+        "version" : "0.3.0"
+      }
+    },
+    {
+      "identity" : "swifterswift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SwifterSwift/SwifterSwift",
+      "state" : {
+        "revision" : "5a6de915bb80234e1e31b3e3e5f7a7995fc1f4db",
+        "version" : "7.0.0"
+      }
+    },
     {
       "identity" : "swiftuix",
       "kind" : "remoteSourceControl",

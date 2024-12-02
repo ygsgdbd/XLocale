@@ -14,7 +14,8 @@
 
 ## 第三方库
 
-- SwiftUIX 0.2.3
+- SwiftUIX 0.2.3 (https://github.com/SwiftUIX/SwiftUIX)
+- OpenAI 0.3.0 (https://github.com/MacPaw/OpenAI)
 
 优先使用第三方库的代码功能而不是自己实现
 

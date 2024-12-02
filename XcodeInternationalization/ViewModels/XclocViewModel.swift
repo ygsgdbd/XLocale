@@ -7,26 +7,51 @@ class XclocViewModel: ObservableObject {
     @Published var errorMessage: String?
     @Published var isLoading = false
     @Published var fileBookmark: Data?
+    @Published var selectedTranslation: TranslationUnit?
+    @Published var selectedFileURL: URL?
     
     @AppStorage("folderBookmark") private var folderBookmarkData: Data?
-    @AppStorage("xclocBookmarks") private var xclocBookmarksString: String = "{}"
     
-    private var xclocBookmarks: [String: Data] {
-        get {
-            if let data = xclocBookmarksString.data(using: .utf8),
-               let dict = try? JSONSerialization.jsonObject(with: data) as? [String: String] {
-                return dict.compactMapValues { Data(base64Encoded: $0) }
-            }
-            return [:]
-        }
-        set {
-            let dict = newValue.mapValues { $0.base64EncodedString() }
-            if let data = try? JSONSerialization.data(withJSONObject: dict),
-               let string = String(data: data, encoding: .utf8) {
-                xclocBookmarksString = string
-            }
+    enum TranslationFilter {
+        case all
+        case untranslated
+        case translated
+    }
+    
+    @Published var currentFilter: TranslationFilter = .all
+    
+    var filteredTranslationUnits: [TranslationUnit] {
+        guard let file = selectedFile else { return [] }
+        
+        switch currentFilter {
+        case .all:
+            return file.translationUnits
+        case .untranslated:
+            return file.translationUnits.filter { $0.target.isEmpty }
+        case .translated:
+            return file.translationUnits.filter { !$0.target.isEmpty }
         }
     }
+    
+    // 添加统计信息计算属性
+    var translationStats: (total: Int, translated: Int, remaining: Int)? {
+        guard let file = selectedFile else { return nil }
+        let total = file.translationUnits.count
+        let translated = file.translationUnits.filter { !$0.target.isEmpty }.count
+        return (total, translated, total - translated)
+    }
+    
+    private var translator: AITranslator?
+    
+    private func initTranslator() {
+        do {
+            translator = try AITranslator(settings: .shared)
+        } catch {
+            errorMessage = "初始化翻译服务失败：\(error.localizedDescription)"
+        }
+    }
+    
+    @Published var isTranslating = false
     
     func selectFolder() {
         let openPanel = NSOpenPanel()
@@ -62,19 +87,8 @@ class XclocViewModel: ObservableObject {
             )
             
             xclocFiles = contents.filter { $0.pathExtension == "xcloc" }
-            
-            var newBookmarks: [String: Data] = [:]
-            for xclocURL in xclocFiles {
-                let bookmarkData = try xclocURL.bookmarkData(
-                    options: .minimalBookmark,
-                    includingResourceValuesForKeys: nil,
-                    relativeTo: nil
-                )
-                newBookmarks[xclocURL.lastPathComponent] = bookmarkData
-            }
-            xclocBookmarks = newBookmarks
-            
             print("找到 \(xclocFiles.count) 个 .xcloc 文件")
+            
         } catch {
             errorMessage = "读取文件夹失败：\(error.localizedDescription)"
         }
@@ -83,6 +97,7 @@ class XclocViewModel: ObservableObject {
     }
     
     func parseXclocFile(_ url: URL) {
+        selectedFileURL = url
         isLoading = true
         
         do {
@@ -113,6 +128,7 @@ class XclocViewModel: ObservableObject {
             
             print("开始解析文件：\(url.path)")
             selectedFile = try XclocParser.parse(xclocURL: url)
+            selectedTranslation = nil
             print("解析成功")
             
         } catch {
@@ -154,6 +170,7 @@ class XclocViewModel: ObservableObject {
                 file.updateTranslation(translation)
                 try XclocParser.save(file: file, translation: translation)
                 selectedFile = file
+                selectedTranslation = translation
                 print("保存成功")
                 
             } catch {
@@ -179,48 +196,67 @@ class XclocViewModel: ObservableObject {
         }
     }
     
-    func openFile() {
-        let panel = NSOpenPanel()
-        panel.allowsMultipleSelection = false
-        panel.canChooseDirectories = false
-        panel.canChooseFiles = true
-        panel.allowedContentTypes = [.folder]
+    // 翻译单个条目
+    func translateCurrent() async {
+        guard let translation = selectedTranslation else { return }
         
-        if panel.runModal() == .OK {
-            guard let url = panel.urls.first else { 
-                print("未选择文件")
-                return 
+        // 确保翻译器已初始化
+        if translator == nil {
+            initTranslator()
+        }
+        
+        guard let translator = translator else {
+            errorMessage = "翻译服务初始化失败"
+            return
+        }
+        
+        do {
+            isTranslating = true
+            defer { isTranslating = false }
+            
+            var updatedTranslation = translation
+            if let translatedText = try await translator.translate(translation.source) {
+                updatedTranslation.target = translatedText
+                saveTranslation(updatedTranslation)
+            } else {
+                errorMessage = "翻译失败：未获得翻译结果"
             }
             
-            // 保存文件访问权限的书签
-            do {
-                print("开始创建书签")
-                let bookmark = try url.bookmarkData(
-                    options: .withSecurityScope,
-                    includingResourceValuesForKeys: nil,
-                    relativeTo: nil
-                )
-                self.fileBookmark = bookmark
-                print("书签创建成功")
-                
-                // 立即开始访问
-                let startAccessing = url.startAccessingSecurityScopedResource()
-                defer {
-                    if startAccessing {
-                        url.stopAccessingSecurityScopedResource()
-                    }
+        } catch {
+            errorMessage = "翻译失败：\(error.localizedDescription)"
+        }
+    }
+    
+    // 翻译所有未翻译的条目
+    func translateAll() async {
+        guard let file = selectedFile else { return }
+        
+        // 确保翻译器已初始化
+        if translator == nil {
+            initTranslator()
+        }
+        
+        guard let translator = translator else {
+            errorMessage = "翻译服务初始化失败"
+            return
+        }
+        
+        do {
+            isTranslating = true
+            defer { isTranslating = false }
+            
+            // 获取所有未翻译的条目
+            let untranslatedUnits = file.translationUnits.filter { $0.target.isEmpty }
+            for unit in untranslatedUnits {
+                if let translatedText = try await translator.translate(unit.source) {
+                    var updatedUnit = unit
+                    updatedUnit.target = translatedText
+                    saveTranslation(updatedUnit)
                 }
-                print("安全访问状态: \(startAccessing)")
-                
-                // 解析文件
-                print("开始解析文件：\(url.path)")
-                let file = try XclocParser.parse(xclocURL: url)
-                selectedFile = file
-                print("解析成功")
-                
-            } catch {
-                print("创建书签失败: \(error)")
             }
+            
+        } catch {
+            errorMessage = "批量翻译失败：\(error.localizedDescription)"
         }
     }
 } 
