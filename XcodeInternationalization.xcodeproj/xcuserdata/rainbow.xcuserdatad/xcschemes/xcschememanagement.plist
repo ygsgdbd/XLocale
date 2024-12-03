@@ -6,26 +6,10 @@
 	<dict>
 		<key>XcodeInternationalization.xcscheme_^#shared#^_</key>
 		<dict>
+			<key>isShown</key>
+			<true/>
 			<key>orderHint</key>
 			<integer>0</integer>
-		</dict>
-	</dict>
-	<key>SuppressBuildableAutocreation</key>
-	<dict>
-		<key>3E51FA302CFD9B2A009356BA</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>3E51FA412CFD9B2C009356BA</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>3E51FA4B2CFD9B2C009356BA</key>
-		<dict>
-			<key>primary</key>
-			<true/>
 		</dict>
 	</dict>
 </dict>
