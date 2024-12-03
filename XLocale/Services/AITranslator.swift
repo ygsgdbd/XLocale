@@ -22,71 +22,90 @@ enum AITranslatorError: LocalizedError {
 class AITranslator {
     private let openAI: OpenAI
     private let settings: AISettings
+    private let retryCount = 3  // 添加重试次数
+    private let retryDelay: TimeInterval = 2  // 重试间隔
     
     init(settings: AISettings = .shared) throws {
         self.settings = settings
         
-        // 验证 URL 格式
         guard let url = URL(string: settings.baseURL) else {
             throw AITranslatorError.invalidURL
         }
         
-        // 验证 host
         guard let host = url.host else {
             throw AITranslatorError.invalidHost
         }
         
-        print("正在初始化 OpenAI 客户端:")
-        print("- Host: \(host)")
-        print("- Port: \(url.port ?? 443)")
-        print("- API Key: \(settings.apiKey.prefix(8))...")
-        
-        // 创建配置
         let config = OpenAI.Configuration(
             token: settings.apiKey,
             host: host,
             port: url.port ?? 443,
-            timeoutInterval: 60.0  // 增加超时时间
+            timeoutInterval: 30  // 增加超时时间
         )
         
         self.openAI = OpenAI(configuration: config)
     }
     
-    func translate(_ text: String) async throws -> String? {
-        do {
-            print("准备翻译文本:")
-            print("- 模型: \(settings.model)")
-            print("- 温度: \(settings.temperature)")
-            print("- 文本长度: \(text.count)")
-            
-            let messages = [
-                ChatQuery.ChatCompletionMessageParam(role: .system, content: settings.systemPrompt),
-                ChatQuery.ChatCompletionMessageParam(role: .user, content: text)
-            ]
-            
-            let query = ChatQuery(
-                messages: messages.compactMap { $0 },
-                model: .init(settings.model),
-                temperature: settings.temperature
-            )
-            
-            let result = try await openAI.chats(query: query)
-            return result.choices.first?.message.content?.string
-            
-        } catch {
-            print("翻译失败: \(error)")
-            throw AITranslatorError.networkError(error)
+    func translate(_ text: String, targetLocale: String) async throws -> String? {
+        var lastError: Error?
+        
+        // 添加重试逻辑
+        for attempt in 0..<retryCount {
+            do {
+                let messages: [ChatQuery.ChatCompletionMessageParam?] = [
+                    .init(role: .system, content: "你是一个专业的翻译，请将下面的文本翻译成\(targetLocale)语"),
+                    .init(role: .user, content: text)
+                ]
+                
+                let query = ChatQuery(
+                    messages: messages.compactMap { $0 },
+                    model: .init(settings.model),
+                    maxTokens: settings.maxTokens,
+                    temperature: settings.temperature
+                )
+                
+                // 添加请求间隔
+                if attempt > 0 {
+                    try await Task.sleep(nanoseconds: UInt64(retryDelay * 1_000_000_000))
+                }
+                
+                let response = try await openAI.chats(query: query)
+                
+                return await MainActor.run {
+                    response.choices.first?.message.content?.string
+                }
+            } catch {
+                lastError = error
+                print("翻译失败，尝试次数：\(attempt + 1)，错误：\(error)")
+                
+                // 如果不是超时错误，直接抛出
+                if let urlError = error as? URLError, 
+                   urlError.code != .timedOut {
+                    throw error
+                }
+                
+                // 最后一次尝试失败，抛出错误
+                if attempt == retryCount - 1 {
+                    throw error
+                }
+            }
         }
+        
+        throw lastError ?? AITranslatorError.networkError(NSError(domain: "", code: -1))
     }
     
-    // 批量翻译
-    func translateBatch(_ units: [TranslationUnit]) async throws -> [TranslationUnit] {
+    func translateBatch(_ units: [TranslationUnit], targetLocale: String) async throws -> [TranslationUnit] {
         var updatedUnits = units
         for i in updatedUnits.indices {
-            if let translatedText = try await translate(units[i].source) {
+            if let translatedText = try await translate(units[i].source, targetLocale: targetLocale) {
                 updatedUnits[i].target = translatedText
             }
         }
         return updatedUnits
     }
-} 
+    
+    deinit {
+        // 确保资源被释放
+        URLSession.shared.invalidateAndCancel()
+    }
+}

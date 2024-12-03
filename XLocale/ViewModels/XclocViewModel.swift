@@ -1,13 +1,14 @@
 import SwiftUI
 import AppKit
 
+@MainActor
 class XclocViewModel: ObservableObject {
     @Published var xclocFiles: [URL] = []
     @Published var selectedFile: XclocFile?
     @Published var errorMessage: String?
     @Published var isLoading = false
     @Published var fileBookmark: Data?
-    @Published var selectedTranslation: TranslationUnit?
+    @Published private(set) var selectedTranslation: TranslationUnit?
     @Published var selectedFileURL: URL?
     
     @AppStorage("folderBookmark") private var folderBookmarkData: Data?
@@ -52,6 +53,10 @@ class XclocViewModel: ObservableObject {
     }
     
     @Published var isTranslating = false
+    @Published var isTranslatingAll = false
+    @Published var currentTranslatingUnit: TranslationUnit?
+    
+    private var currentTask: Task<Void, Never>?  // 只保留当前任务追踪
     
     func selectFolder() {
         let openPanel = NSOpenPanel()
@@ -96,25 +101,39 @@ class XclocViewModel: ObservableObject {
         isLoading = false
     }
     
-    func parseXclocFile(_ url: URL) {
-        selectedFileURL = url
+    @MainActor
+    func selectFile(_ url: URL?) {
+        // 如果正在翻译，先取消翻译
+        if isTranslatingAll {
+            cancelTranslation()
+        }
+        
+        if let url = url {
+            selectedFileURL = url
+            parseXclocFile(url)
+        } else {
+            selectedFileURL = nil
+            selectedFile = nil
+            selectedTranslation = nil
+        }
+    }
+    
+    private func parseXclocFile(_ url: URL) {
         isLoading = true
         
         do {
             guard url.isFileURL else {
                 throw NSError(domain: "", code: -1, 
-                             userInfo: [NSLocalizedDescriptionKey: "无效的文件 URL"])
+                            userInfo: [NSLocalizedDescriptionKey: "无效的文件 URL"])
             }
             
             let fileManager = FileManager.default
             guard fileManager.fileExists(atPath: url.path) else {
                 throw NSError(domain: "", code: -1, 
-                             userInfo: [NSLocalizedDescriptionKey: "文件不存在：\(url.path)"])
+                            userInfo: [NSLocalizedDescriptionKey: "文件不存在：\(url.path)"])
             }
             
             let securitySuccess = url.startAccessingSecurityScopedResource()
-            print("安全访问状态: \(securitySuccess)")
-            
             defer {
                 if securitySuccess {
                     url.stopAccessingSecurityScopedResource()
@@ -123,84 +142,41 @@ class XclocViewModel: ObservableObject {
             
             guard fileManager.isReadableFile(atPath: url.path) else {
                 throw NSError(domain: "", code: -1, 
-                             userInfo: [NSLocalizedDescriptionKey: "文件不可读取：\(url.path)"])
+                            userInfo: [NSLocalizedDescriptionKey: "文件不可读取：\(url.path)"])
             }
             
-            print("开始解析文件：\(url.path)")
             selectedFile = try XclocParser.parse(xclocURL: url)
             selectedTranslation = nil
-            print("解析成功")
             
         } catch {
-            print("解析文件失败：\(error.localizedDescription)")
             errorMessage = "解析文件失败：\(error.localizedDescription)"
         }
         
         isLoading = false
     }
     
+    @MainActor
     func saveTranslation(_ translation: TranslationUnit) {
         guard var file = selectedFile else {
             print("未选择文件")
             return
         }
         
-        // 使用书签恢复文件访问权限
-        if let bookmark = fileBookmark {
-            do {
-                print("开始恢复书签")
-                var isStale = false
-                let url = try URL(resolvingBookmarkData: bookmark,
-                                options: .withSecurityScope,
-                                relativeTo: nil,
-                                bookmarkDataIsStale: &isStale)
-                
-                print("书签恢复成功，URL: \(url.path)")
-                let startAccessing = url.startAccessingSecurityScopedResource()
-                defer {
-                    if startAccessing {
-                        url.stopAccessingSecurityScopedResource()
-                    }
-                }
-                
-                print("安全访问状态: \(startAccessing)")
-                
-                // 更新和保存
-                print("开始更新翻译")
-                file.updateTranslation(translation)
-                try XclocParser.save(file: file, translation: translation)
-                selectedFile = file
-                selectedTranslation = translation
-                print("保存成功")
-                
-            } catch {
-                print("恢复书签失败或保存失败: \(error)")
-            }
-        } else {
-            print("书签不存在，重新创建书签")
-            // 如果书签不存在，尝试重新创建
-            if let url = selectedFile?.url {
-                do {
-                    fileBookmark = try url.bookmarkData(
-                        options: .withSecurityScope,
-                        includingResourceValuesForKeys: nil,
-                        relativeTo: nil
-                    )
-                    print("重新创建书签成功，重试保存")
-                    // 递归调用，使用新创建的书签
-                    saveTranslation(translation)
-                } catch {
-                    print("重新创建书签失败: \(error)")
-                }
-            }
+        do {
+            file.updateTranslation(translation)
+            try XclocParser.save(file: file, translation: translation)
+            selectedFile = file
+            selectedTranslation = translation
+        } catch {
+            errorMessage = "保存失败: \(error.localizedDescription)"
         }
     }
     
-    // 翻译单个条目
+    @MainActor
     func translateCurrent() async {
-        guard let translation = selectedTranslation else { return }
+        guard let translation = selectedTranslation,
+              let file = selectedFile else { return }
         
-        // 确保翻译器已初始化
         if translator == nil {
             initTranslator()
         }
@@ -215,7 +191,10 @@ class XclocViewModel: ObservableObject {
             defer { isTranslating = false }
             
             var updatedTranslation = translation
-            if let translatedText = try await translator.translate(translation.source) {
+            if let translatedText = try await translator.translate(
+                translation.source,
+                targetLocale: file.contents.targetLocale
+            ) {
                 updatedTranslation.target = translatedText
                 saveTranslation(updatedTranslation)
             } else {
@@ -227,36 +206,67 @@ class XclocViewModel: ObservableObject {
         }
     }
     
-    // 翻译所有未翻译的条目
-    func translateAll() async {
+    func cancelTranslation() {
+        currentTask?.cancel()
+        currentTask = nil
+        isTranslatingAll = false
+        currentTranslatingUnit = nil
+    }
+    
+    @MainActor
+    func translateAll(progress: @escaping (Double) -> Void) async {
         guard let file = selectedFile else { return }
         
-        // 确保翻译器已初始化
-        if translator == nil {
-            initTranslator()
+        isTranslatingAll = true
+        defer { 
+            isTranslatingAll = false 
+            currentTranslatingUnit = nil
         }
         
-        guard let translator = translator else {
-            errorMessage = "翻译服务初始化失败"
-            return
+        let untranslatedUnits = file.translationUnits.filter { 
+            $0.target.isEmpty && $0.source.count <= 1000  // 只翻译长度合适的文本
         }
+        let total = Double(untranslatedUnits.count)
+        var completed = 0.0
         
         do {
-            isTranslating = true
-            defer { isTranslating = false }
+            if translator == nil {
+                initTranslator()
+            }
             
-            // 获取所有未翻译的条目
-            let untranslatedUnits = file.translationUnits.filter { $0.target.isEmpty }
+            guard let translator = translator else {
+                errorMessage = "翻译服务初始化失败"
+                return
+            }
+            
             for unit in untranslatedUnits {
-                if let translatedText = try await translator.translate(unit.source) {
+                try Task.checkCancellation()
+                
+                currentTranslatingUnit = unit
+                
+                if let translatedText = try await translator.translate(
+                    unit.source,
+                    targetLocale: file.contents.targetLocale
+                ) {
                     var updatedUnit = unit
                     updatedUnit.target = translatedText
                     saveTranslation(updatedUnit)
                 }
+                
+                completed += 1
+                progress(completed / total)
             }
             
+        } catch is CancellationError {
+            print("翻译任务已取消")
         } catch {
             errorMessage = "批量翻译失败：\(error.localizedDescription)"
         }
     }
-} 
+    
+    func selectTranslation(_ translation: TranslationUnit?) {
+        Task { @MainActor in
+            self.selectedTranslation = translation
+        }
+    }
+}

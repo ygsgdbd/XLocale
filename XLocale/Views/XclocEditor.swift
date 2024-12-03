@@ -40,114 +40,17 @@ struct XclocEditor: View {
 
 // MARK: - 侧边栏视图
 private struct SidebarView: View {
-    @EnvironmentObject private var viewModel: XclocViewModel
-    
     var body: some View {
         FileListView()
-            .toolbar {
-                ToolbarItem(placement: .primaryAction) {
-                    Button {
-                        viewModel.selectFolder()
-                    } label: {
-                        Label("选择文件夹", systemImage: "folder")
-                    }
-                }
-            }
     }
 }
 
-// MARK: - 文件列表视图
-private struct FileListView: View {
-    @EnvironmentObject private var viewModel: XclocViewModel
-    
-    var body: some View {
-        if viewModel.xclocFiles.isEmpty {
-            VStack(spacing: 20) {
-                ContentUnavailableView(
-                    "没有文件",
-                    systemImage: "doc.text.magnifyingglass",
-                    description: Text("选择包含 .xcloc 文件的文件夹")
-                )
-                
-                Button {
-                    viewModel.selectFolder()
-                } label: {
-                    Label("选择目录", systemImage: "folder.badge.plus")
-                        .padding()
-                }
-                .buttonStyle(.borderedProminent)
-            }
-        } else {
-            List(Array(viewModel.xclocFiles.enumerated()), id: \.element, selection: $viewModel.selectedFileURL) { index, url in
-                FileItemView(url: url, index: index)
-            }
-            .onChange(of: viewModel.selectedFileURL) { _, url in
-                if let url = url {
-                    viewModel.parseXclocFile(url)
-                }
-            }
-        }
-    }
-}
-
-// MARK: - 文件项视图
-private struct FileItemView: View {
-    let url: URL
-    let index: Int
-    @State private var stats: (total: Int, translated: Int, remaining: Int)?
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            // 文件名
-            Text(url.lastPathComponent)
-                .font(.system(.body, design: .monospaced))
-                .lineLimit(1)
-            
-            if let stats = stats {
-                // 进度指示器
-                HStack(spacing: 8) {
-                    // 进度条
-                    ProgressView(value: Double(stats.translated), total: Double(stats.total))
-                        .progressViewStyle(.linear)
-                        .tint(.green)
-                    
-                    // 统计数字
-                    Text("\(stats.translated)/\(stats.total)")
-                        .font(.monospacedCaption)
-                        .foregroundStyle(.secondary)
-                }
-                .frame(maxWidth: .infinity)
-            }
-        }
-        .padding(.vertical, 2)
-        .tag(url)
-        .task {
-            await loadStats()
-        }
-    }
-    
-    @MainActor
-    private func loadStats() async {
-        do {
-            // 在后台线程解析文件
-            let stats = try await Task.detached(priority: .background) {
-                let file = try XclocParser.parse(xclocURL: url)
-                let total = file.translationUnits.count
-                let translated = file.translationUnits.filter { !$0.target.isEmpty }.count
-                return (total, translated, total - translated)
-            }.value
-            
-            // 在主线程更新 UI
-            self.stats = stats
-        } catch {
-            print("加载文件条数失败：\(error.localizedDescription)")
-        }
-    }
-}
 
 // MARK: - 中间内容视图
 private struct TranslationContentView: View {
     @EnvironmentObject private var viewModel: XclocViewModel
+    @State private var translationProgress: Double = 0
+    @State private var translationTask: Task<Void, Never>?
     
     var body: some View {
         if let selectedFile = viewModel.selectedFile {
@@ -202,6 +105,52 @@ private struct TranslationContentView: View {
                                 .tint(.green)
                         }
                     }
+                    
+                    // 添加一键翻译按钮和进度
+                    HStack {
+                        Button {
+                            if viewModel.isTranslatingAll {
+                                cancelTranslation()
+                            } else {
+                                Task {
+                                    await translateAll()
+                                }
+                            }
+                        } label: {
+                            if viewModel.isTranslatingAll {
+                                HStack {
+                                    ProgressView()
+                                        .controlSize(.small)
+                                    Text("翻译中...")
+                                    Text("点击停止")
+                                        .foregroundStyle(.secondary)
+                                }
+                            } else {
+                                Label("一键翻译", systemImage: "wand.and.stars")
+                            }
+                        }
+                        
+                        if viewModel.isTranslatingAll {
+                            ProgressView(value: translationProgress)
+                                .progressViewStyle(.linear)
+                                .frame(width: 100)
+                            Text(String(format: "%.0f%%", translationProgress * 100))
+                                .foregroundStyle(.secondary)
+                                .monospacedDigit()
+                        }
+                        
+                        Spacer()
+                        
+                        // 原有的筛选器
+                        Picker("筛选", selection: $viewModel.currentFilter) {
+                            Text("全部").tag(XclocViewModel.TranslationFilter.all)
+                            Text("未翻译").tag(XclocViewModel.TranslationFilter.untranslated)
+                            Text("已翻译").tag(XclocViewModel.TranslationFilter.translated)
+                        }
+                        .pickerStyle(.segmented)
+                        .frame(width: 250)
+                    }
+                    .padding(.horizontal)
                 }
                 .padding()
                 .background(Color(NSColor.controlBackgroundColor))
@@ -232,53 +181,125 @@ private struct TranslationContentView: View {
                     
                     // 翻译表格
                     TranslationTable(
-                        translations: viewModel.filteredTranslationUnits,
-                        selectedTranslation: $viewModel.selectedTranslation
+                        translations: viewModel.filteredTranslationUnits
                     )
                 }
                 .padding(.top)
             }
         } else {
-            ContentUnavailableView(
+            EmptyStateView(
                 "选文件",
                 systemImage: "doc.text",
                 description: Text("从左侧选择要编辑的文件")
             )
         }
     }
+    
+    private func translateAll() async {
+        guard viewModel.selectedFile != nil else { return }
+        
+        // 创建并存储任务
+        translationTask = Task {
+            await viewModel.translateAll { progress in
+                translationProgress = progress
+            }
+        }
+        
+        // 等待任务完成
+        await translationTask?.value
+        translationTask = nil
+        translationProgress = 0
+    }
+    
+    private func cancelTranslation() {
+        translationTask?.cancel()
+        translationTask = nil
+        translationProgress = 0
+    }
 }
 
 // MARK: - 翻译表格
 private struct TranslationTable: View {
     let translations: [TranslationUnit]
-    @Binding var selectedTranslation: TranslationUnit?
     @State private var selectedID: TranslationUnit.ID?
+    @EnvironmentObject private var viewModel: XclocViewModel
+    
+    private let maxTextLength = 1000
+    
+    private func statusEmoji(for item: TranslationUnit) -> String {
+        if item.source.count > maxTextLength {
+            return "⚠️"  // 文本过长
+        }
+        if item.target.isEmpty {
+            return ""  // 待翻译
+        }
+        return ""
+    }
     
     var body: some View {
-        Table(translations, selection: $selectedID) {
-            // 源文本列
-            TableColumn("源文本") { item in
-                Text(item.source)
+        ScrollViewReader { proxy in
+            Table(translations, selection: $selectedID) {
+                // 源文本列
+                TableColumn("源文本") { item in
+                    Text(item.source)
+                }
+                .width(min: 150, ideal: 200)
+                
+                // 翻译列
+                TableColumn("翻译") { item in
+                    HStack(spacing: 4) {
+                        if item.id == viewModel.currentTranslatingUnit?.id {
+                            ProgressView()
+                                .controlSize(.small)
+                        }
+                        if item.target.isEmpty {
+                            Text(statusEmoji(for: item))
+                        } else {
+                            Text(verbatim: item.target)
+                        }
+                        Spacer()  // 确保内容左对齐
+                    }
+                }
+                .width(min: 150, ideal: 200)
+                
+                // 字符长度列
+                TableColumn("字符数") { item in
+                    HStack {
+                        Text("\(item.source.count)")
+                            .monospacedDigit()
+                        if item.source.count > maxTextLength {
+                            Text("⚠️")
+                        }
+                    }
+                }
+                .width(80)
+                
+                // 备注列
+                TableColumn("备注") { item in
+                    if let note = item.note {
+                        Text(note)
+                            .foregroundColor(.secondary)
+                    }
+                }
+                .width(min: 100, ideal: 150)
             }
-            .width(min: 150, ideal: 200)
-            
-            // 翻译列
-            TableColumn("翻译") { item in
-                Text(verbatim: item.target)
-            }
-            .width(min: 150, ideal: 200)
-            
-            // 备注列
-            TableColumn("备注") { item in
-                if let note = item.note {
-                    Text(note)
-                        .foregroundColor(.secondary)
+            .onChange(of: selectedID) { id in
+                if !viewModel.isTranslatingAll {
+                    let translation = translations.first { $0.id == id }
+                    Task { @MainActor in
+                        viewModel.selectTranslation(translation)
+                    }
                 }
             }
-            .width(min: 100, ideal: 150)
-        }
-        .onChange(of: selectedID) { _, id in
-            selectedTranslation = translations.first { $0.id == id }
+            .onChange(of: viewModel.currentTranslatingUnit) { unit in
+                if let unit = unit {
+                    withAnimation {
+                        selectedID = unit.id
+                        proxy.scrollTo(unit.id, anchor: .center)
+                    }
+                }
+            }
+            .scrollDisabled(viewModel.isTranslatingAll)
         }
     }
 }
@@ -296,7 +317,7 @@ private struct DetailView: View {
                 }
             )
         } else {
-            ContentUnavailableView(
+            EmptyStateView(
                 "选择翻译",
                 systemImage: "text.bubble",
                 description: Text("从中间选择要编辑的翻译")
@@ -311,7 +332,7 @@ extension Font {
     static let monospacedCaption = Font.system(.caption, design: .monospaced)
 }
 
-// MARK: - 表单字段组件
+// MARK: - 表单字组件
 private struct FormField: View {
     let label: String
     let value: String
