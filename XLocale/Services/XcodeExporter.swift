@@ -107,6 +107,41 @@ class XcodeExporter {
         to projectURL: URL,
         progressHandler: @escaping (ExportProgress) -> Void
     ) async throws {
+        // 1. 先导出一次当前的本地化文件（强制 Xcode 刷新缓存）
+        let tempExportPath = FileManager.default.temporaryDirectory.appendingPathComponent("XLocaleTemp")
+        try? FileManager.default.removeItem(at: tempExportPath)
+        try FileManager.default.createDirectory(at: tempExportPath, withIntermediateDirectories: true)
+        
+        let exportProcess = Process()
+        exportProcess.executableURL = URL(fileURLWithPath: "/usr/bin/xcodebuild")
+        exportProcess.arguments = [
+            "-exportLocalizations",
+            "-project", projectURL.path,
+            "-localizationPath", tempExportPath.path
+        ]
+        try exportProcess.run()
+        exportProcess.waitUntilExit()
+        
+        // 2. 清理派生数据
+        let derivedDataPath = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0]
+            .appendingPathComponent("Developer/Xcode/DerivedData")
+        
+        if let projectName = projectURL.deletingPathExtension().lastPathComponent
+            .components(separatedBy: ".").first {
+            do {
+                let contents = try FileManager.default.contentsOfDirectory(
+                    at: derivedDataPath,
+                    includingPropertiesForKeys: nil
+                )
+                for item in contents where item.lastPathComponent.contains(projectName) {
+                    try? FileManager.default.removeItem(at: item)
+                }
+            } catch {
+                print("清理派生数据失败：\(error.localizedDescription)")
+            }
+        }
+        
+        // 3. 执行导入
         let process = Process()
         process.executableURL = URL(fileURLWithPath: "/usr/bin/xcodebuild")
         process.arguments = [
@@ -115,20 +150,21 @@ class XcodeExporter {
             "-localizationPath", xclocURL.path
         ]
         
-        // 捕获输出
+        // 设置环境变量
+        var environment = ProcessInfo.processInfo.environment
+        environment["DERIVED_DATA_CACHE_ROOT"] = NSTemporaryDirectory()
+        process.environment = environment
+        
         let outputPipe = Pipe()
         let errorPipe = Pipe()
         process.standardOutput = outputPipe
         process.standardError = errorPipe
         
-        // 创建文件句柄用于读取输出
         let outputHandle = outputPipe.fileHandleForReading
         let errorHandle = errorPipe.fileHandleForReading
         
-        // 异步读取输出
         Task {
             for try await line in outputHandle.bytes.lines {
-                // 解析进度
                 if line.contains("Importing") {
                     progressHandler(.init(progress: 0.3, message: line))
                 } else if line.contains("Writing") {
@@ -141,15 +177,19 @@ class XcodeExporter {
             }
         }
         
-        // 执行导入
         try process.run()
         process.waitUntilExit()
         
-        // 检查执行结果
         if process.terminationStatus != 0 {
             let errorData = errorHandle.readDataToEndOfFile()
             let errorMessage = String(data: errorData, encoding: .utf8) ?? "未知错误"
             throw ExportError.exportFailed(errorMessage)
         }
+        
+        // 4. 清理临时文件
+        try? FileManager.default.removeItem(at: tempExportPath)
+        
+        // 5. 等待文件系统同步
+        try await Task.sleep(nanoseconds: 1_000_000_000)
     }
 } 
