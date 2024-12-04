@@ -11,10 +11,26 @@ struct XclocFile: Hashable, Equatable {
             translationUnits[index] = translation
         }
     }
+    
+    /// 总条目数
+    var totalCount: Int {
+        translationUnits.count
+    }
+    
+    /// 已翻译条目数
+    var translatedCount: Int {
+        translationUnits.filter { !$0.target.isEmpty }.count
+    }
+    
+    /// 翻译进度 (0.0-1.0)
+    var translationProgress: Double {
+        guard totalCount > 0 else { return 0 }
+        return Double(translatedCount) / Double(totalCount)
+    }
 }
 
 // MARK: - 翻译单元
-struct TranslationUnit: Identifiable, Hashable, Equatable {
+struct TranslationUnit: Identifiable, Hashable {
     let id: String
     let source: String
     var target: String
@@ -22,13 +38,13 @@ struct TranslationUnit: Identifiable, Hashable, Equatable {
 }
 
 // MARK: - Xcode 本地化文件结构
-struct XclocContents: Codable, Hashable, Equatable {
+struct XclocContents: Decodable {
     let developmentRegion: String
     let targetLocale: String
     let toolInfo: ToolInfo
     let version: String
     
-    struct ToolInfo: Codable, Hashable, Equatable {
+    struct ToolInfo: Decodable {
         let toolBuildNumber: String
         let toolID: String
         let toolName: String

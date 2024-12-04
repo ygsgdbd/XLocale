@@ -7,7 +7,7 @@ struct XclocEditor: View {
     var body: some View {
         NavigationSplitView {
             SidebarView()
-                .frame(minWidth: 200, idealWidth: 220, maxWidth: 300)
+                .frame(minWidth: 200, idealWidth: 220, maxWidth: .infinity)
                 .navigationTitle("文件")
         } content: {
             TranslationContentView()
@@ -19,22 +19,17 @@ struct XclocEditor: View {
                 .layoutPriority(0.5)
         }
         .environmentObject(viewModel)
-        .task {
-            if viewModel.xclocFiles.isEmpty {
-                viewModel.startExport()
-            }
-        }
         .toolbar {
             ToolbarItemGroup(placement: .primaryAction) {
                 Button {
-                    viewModel.startExport()
+                    viewModel.saveFile()
                 } label: {
-                    Label("导出本地化", systemImage: "square.and.arrow.down")
+                    Label("保存", systemImage: "square.and.arrow.down")
                 }
-                .help("从 Xcode 项目导出本地化文件")
-                .disabled(viewModel.isExporting)
+                .help("保存当前文件")
+                .disabled(viewModel.currentFile == nil || viewModel.isTranslating)
                 
-                if viewModel.isExporting {
+                if viewModel.isTranslating {
                     ProgressView()
                         .controlSize(.small)
                 }
@@ -54,28 +49,6 @@ struct XclocEditor: View {
                     Text(message)
                         .foregroundStyle(.secondary)
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(.ultraThinMaterial)
-            }
-            
-            if viewModel.isImporting {
-                VStack(spacing: 8) {
-                    ProgressView(value: viewModel.importProgress) {
-                        Text("导入进度")
-                    }
-                    .progressViewStyle(.linear)
-                    
-                    ScrollView {
-                        Text(viewModel.importLog)
-                            .font(.system(.caption, design: .monospaced))
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .textSelection(.enabled)
-                    }
-                    .frame(height: 100)
-                    .background(Color(.textBackgroundColor))
-                    .cornerRadius(6)
-                }
-                .padding()
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(.ultraThinMaterial)
             }
@@ -150,7 +123,7 @@ private struct TranslationContentView: View {
                                 Label("\(stats.total)", systemImage: "doc.text")
                                 Label("\(stats.translated)", systemImage: "checkmark.circle.fill")
                                     .foregroundStyle(.green)
-                                Label("\(stats.remaining)", systemImage: "circle")
+                                Label("\(stats.untranslated)", systemImage: "circle")
                                     .foregroundStyle(.secondary)
                             }
                             .font(.caption)
@@ -168,7 +141,7 @@ private struct TranslationContentView: View {
                     // 一键翻译按钮
                     Button {
                         if viewModel.isTranslatingAll {
-                            cancelTranslation()
+                            viewModel.cancelTranslation()
                         } else {
                             Task { await translateAll() }
                         }
@@ -189,14 +162,14 @@ private struct TranslationContentView: View {
                             .foregroundStyle(.secondary)
                     }
                     
-                    // 导入按钮
+                    // 导入到 Xcode 按钮
                     Button {
                         viewModel.importToXcode()
                     } label: {
-                        Label("导入到 Xcode", systemImage: "square.and.arrow.up")
+                        Label("导入到 Xcode", systemImage: "arrow.right.square")
                     }
-                    .help("将当前翻译文件导入到 Xcode 项目")
-                    .disabled(viewModel.isImporting)
+                    .help("将翻译导入到 Xcode 项目")
+                    .disabled(viewModel.currentFile == nil || viewModel.isImporting)
                     
                     if viewModel.isImporting {
                         ProgressView()
@@ -223,7 +196,7 @@ private struct TranslationContentView: View {
                 .background(.bar)
                 
                 // 翻译表格
-                TranslationTableView(translations: viewModel.filteredTranslationUnits)
+                TranslationTableView(translations: viewModel.filteredUnits)
                     .background(Color(nsColor: .controlBackgroundColor))
             }
         } else {

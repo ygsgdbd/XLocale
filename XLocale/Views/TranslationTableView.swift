@@ -10,12 +10,12 @@ struct TranslationTableView: View {
     @EnvironmentObject private var viewModel: XclocViewModel
     @State private var showingClearConfirmation = false
     
-    private var filterLabels: [(String, XclocViewModel.TranslationFilter)] {
+    private var filterOptions: [(String, XclocViewModel.TranslationFilter)] {
         let stats = viewModel.translationStats
         return [
             ("全部(\(stats?.total ?? 0))", .all),
-            ("未翻译(\(stats?.remaining ?? 0))", .untranslated),
-            ("已翻译(\(stats?.translated ?? 0))", .translated)
+            ("已翻译(\(stats?.translated ?? 0))", .translated),
+            ("未翻译(\(stats?.untranslated ?? 0))", .untranslated)
         ]
     }
     
@@ -40,8 +40,8 @@ struct TranslationTableView: View {
                 
                 // 筛选按钮组
                 Picker("显示", selection: $viewModel.currentFilter) {
-                    ForEach(filterLabels, id: \.1) { label, filter in
-                        Text(label).tag(filter)
+                    ForEach(filterOptions, id: \.1) { option in
+                        Text(option.0).tag(option.1)
                     }
                 }
                 .pickerStyle(.segmented)

@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="XLocale/Resources/Localizations/en.lproj/Localizable.strings" source-language="en" target-language="zh-Hans" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="16.0" build-num="16A242d"/>
+    </header>
+    <body>
+      <trans-unit id="%lld" xml:space="preserve">
+        <source>%lld</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="%lld/%lld" xml:space="preserve">
+        <source>%lld/%lld</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="AI 翻译" xml:space="preserve">
+        <source>AI 翻译</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="XLocale" xml:space="preserve">
+        <source>XLocale</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="© 2024 linhey. All rights reserved." xml:space="preserve">
+        <source>© 2024 linhey. All rights reserved.</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="⌘ + S" xml:space="preserve">
+        <source>⌘ + S</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="一键翻译" xml:space="preserve">
+        <source>一键翻译</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="从中间选择要编辑的翻译" xml:space="preserve">
+        <source>从中间选择要编辑的翻译</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="从左侧选择要编辑的文件" xml:space="preserve">
+        <source>从左侧选择要编辑的文件</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="保存" xml:space="preserve">
+        <source>保存</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="保存当前文件" xml:space="preserve">
+        <source>保存当前文件</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="保存翻译 (⌘S)" xml:space="preserve">
+        <source>保存翻译 (⌘S)</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="停止翻译" xml:space="preserve">
+        <source>停止翻译</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="全部" xml:space="preserve">
+        <source>全部</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="取消" xml:space="preserve">
+        <source>取消</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="基本设置" xml:space="preserve">
+        <source>从中间选择要编辑的翻译2</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="基础配置" xml:space="preserve">
+        <source>基础配置</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="复制到剪贴板" xml:space="preserve">
+        <source>复制到剪贴板</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="完成" xml:space="preserve">
+        <source>完成</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="导入到 Xcode" xml:space="preserve">
+        <source>导入到 Xcode</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="导出本地化" xml:space="preserve">
+        <source>导出本地化</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="将翻译导入到 Xcode 项目" xml:space="preserve">
+        <source>将翻译导入到 Xcode 项目</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="已导出的文件" xml:space="preserve">
+        <source>已导出的文件</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="已翻译" xml:space="preserve">
+        <source>已翻译</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="开发者主页" xml:space="preserve">
+        <source>开发者主页</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="打开设置" xml:space="preserve">
+        <source>打开设置</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="文件" xml:space="preserve">
+        <source>文件</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="显示" xml:space="preserve">
+        <source>显示</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="显示开发者选项" xml:space="preserve">
+        <source>显示开发者选项</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="最大 Token" xml:space="preserve">
+        <source>最大 Token</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="未翻译" xml:space="preserve">
+        <source>未翻译</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="此操作将清空所有已翻译的内容，且无法恢复" xml:space="preserve">
+        <source>此操作将清空所有已翻译的内容，且无法恢复</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="清空所有翻译内容" xml:space="preserve">
+        <source>清空所有翻译内容</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="清空翻译" xml:space="preserve">
+        <source>清空翻译</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="温度: %@" xml:space="preserve">
+        <source>温度: %@</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="版本 1.0.0" xml:space="preserve">
+        <source>版本 1.0.0</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="确定" xml:space="preserve">
+        <source>确定</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="确定要清空所有翻译吗？" xml:space="preserve">
+        <source>确定要清空所有翻译吗？</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="筛选显示的翻译条目" xml:space="preserve">
+        <source>筛选显示的翻译条目</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="系统提示词" xml:space="preserve">
+        <source>系统提示词</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="翻译" xml:space="preserve">
+        <source>翻译</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="翻译参数" xml:space="preserve">
+        <source>翻译参数</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="自动检查更新" xml:space="preserve">
+        <source>自动检查更新</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="自动翻译所有未翻译的文本" xml:space="preserve">
+        <source>自动翻译所有未翻译的文本</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="设置" xml:space="preserve">
+        <source>设置</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="选择项目" xml:space="preserve">
+        <source>选择项目</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="配置管理" xml:space="preserve">
+        <source>配置管理</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="错误" xml:space="preserve">
+        <source>错误</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="问题反馈" xml:space="preserve">
+        <source>问题反馈</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="项目主页" xml:space="preserve">
+        <source>项目主页</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="验证中..." xml:space="preserve">
+        <source>验证中...</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="验证连接" xml:space="preserve">
+        <source>验证连接</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="XLocale/Resources/Localizations/XLocale-InfoPlist.xcstrings" source-language="en" target-language="zh-Hans" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="16.0" build-num="16A242d"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleDisplayName" xml:space="preserve">
+        <source>XLocale</source>
+        <note>Bundle display name</note>
+      </trans-unit>
+      <trans-unit id="CFBundleName" xml:space="preserve">
+        <source>XLocale</source>
+        <note>Bundle name</note>
+      </trans-unit>
+      <trans-unit id="NSHumanReadableCopyright" xml:space="preserve">
+        <source>Copyright ©. All rights reserved.</source>
+        <note>Copyright (human-readable)</note>
+      </trans-unit>
+      <trans-unit id="Xcode Project" xml:space="preserve">
+        <source>Xcode Project</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Xcode Workspace" xml:space="preserve">
+        <source>Xcode Workspace</source>
+        <note/>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
