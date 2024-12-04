@@ -7,14 +7,15 @@ struct XclocEditor: View {
     var body: some View {
         NavigationSplitView {
             SidebarView()
-                .frame(width: 250)
+                .frame(minWidth: 200, idealWidth: 220, maxWidth: 300)
+                .navigationTitle("文件")
         } content: {
             TranslationContentView()
-                .frame(minWidth: 500, idealWidth: 600, maxWidth: .infinity)
+                .frame(minWidth: 400, idealWidth: 500, maxWidth: .infinity)
                 .layoutPriority(1)
         } detail: {
             DetailView()
-                .frame(minWidth: 300)
+                .frame(minWidth: 300, idealWidth: 350)
                 .layoutPriority(0.5)
         }
         .environmentObject(viewModel)
@@ -24,12 +25,13 @@ struct XclocEditor: View {
             }
         }
         .toolbar {
-            ToolbarItem(placement: .primaryAction) {
+            ToolbarItemGroup(placement: .primaryAction) {
                 Button {
                     showingSettings = true
                 } label: {
                     Label("设置", systemImage: "gear")
                 }
+                .help("打开设置")
             }
         }
         .sheet(isPresented: $showingSettings) {
@@ -56,139 +58,107 @@ private struct TranslationContentView: View {
         if let selectedFile = viewModel.selectedFile {
             VStack(spacing: 0) {
                 // 顶部信息区域
-                VStack(alignment: .leading, spacing: 16) {
-                    // 文件基本信息
-                    HStack {
-                        Image(systemName: "doc.text.fill")
-                            .foregroundStyle(.blue)
-                        Text(selectedFile.url.lastPathComponent)
+                VStack(alignment: .leading, spacing: 12) {
+                    // 文件信息区域
+                    HStack(spacing: 16) {
+                        Label(selectedFile.url.lastPathComponent, systemImage: "doc.text")
                             .font(.headline)
-                    }
-                    
-                    // 语言信息
-                    HStack(spacing: 24) {
-                        Label {
+                        
+                        Divider()
+                            .frame(height: 16)
+                        
+                        // 语言信息
+                        HStack(spacing: 8) {
                             Text(selectedFile.contents.developmentRegion)
                                 .foregroundStyle(.primary)
-                        } icon: {
-                            Text("开发语言")
+                            Image(systemName: "arrow.right")
                                 .foregroundStyle(.secondary)
-                        }
-                        
-                        Image(systemName: "arrow.right")
-                            .foregroundStyle(.secondary)
-                        
-                        Label {
+                                .imageScale(.small)
                             Text(selectedFile.contents.targetLocale)
                                 .foregroundStyle(.primary)
-                        } icon: {
-                            Text("目标语言")
-                                .foregroundStyle(.secondary)
                         }
+                        .font(.subheadline)
                     }
-                    .font(.callout)
                     
                     // 翻译进度
                     if let stats = viewModel.translationStats {
-                        VStack(alignment: .leading, spacing: 8) {
-                            HStack(spacing: 16) {
-                                Label("\(stats.total) 总条数", systemImage: "doc.text")
-                                Label("\(stats.translated) 已翻译", systemImage: "checkmark.circle.fill")
+                        HStack(spacing: 16) {
+                            ProgressView(
+                                value: Double(stats.translated),
+                                total: Double(stats.total)
+                            )
+                            .frame(width: 100)
+                            .tint(.green)
+                            
+                            HStack(spacing: 12) {
+                                Label("\(stats.total)", systemImage: "doc.text")
+                                Label("\(stats.translated)", systemImage: "checkmark.circle.fill")
                                     .foregroundStyle(.green)
-                                Label("\(stats.remaining) 未翻译", systemImage: "circle")
+                                Label("\(stats.remaining)", systemImage: "circle")
                                     .foregroundStyle(.secondary)
                             }
-                            .font(.callout)
-                            
-                            ProgressView(value: Double(stats.translated), total: Double(stats.total))
-                                .progressViewStyle(.linear)
-                                .tint(.green)
+                            .font(.caption)
+                            .symbolRenderingMode(.hierarchical)
                         }
                     }
-                    
-                    // 添加一键翻译按钮和进度
-                    HStack {
-                        Button {
-                            if viewModel.isTranslatingAll {
-                                cancelTranslation()
-                            } else {
-                                Task {
-                                    await translateAll()
-                                }
-                            }
-                        } label: {
-                            if viewModel.isTranslatingAll {
-                                HStack {
-                                    ProgressView()
-                                        .controlSize(.small)
-                                    Text("翻译中...")
-                                    Text("点击停止")
-                                        .foregroundStyle(.secondary)
-                                }
-                            } else {
-                                Label("一键翻译", systemImage: "wand.and.stars")
-                            }
-                        }
-                        
-                        if viewModel.isTranslatingAll {
-                            ProgressView(value: translationProgress)
-                                .progressViewStyle(.linear)
-                                .frame(width: 100)
-                            Text(String(format: "%.0f%%", translationProgress * 100))
-                                .foregroundStyle(.secondary)
-                                .monospacedDigit()
-                        }
-                        
-                        Spacer()
-                        
-                        // 原有的筛选器
-                        Picker("筛选", selection: $viewModel.currentFilter) {
-                            Text("全部").tag(XclocViewModel.TranslationFilter.all)
-                            Text("未翻译").tag(XclocViewModel.TranslationFilter.untranslated)
-                            Text("已翻译").tag(XclocViewModel.TranslationFilter.translated)
-                        }
-                        .pickerStyle(.segmented)
-                        .frame(width: 250)
-                    }
-                    .padding(.horizontal)
                 }
                 .padding()
-                .background(Color(NSColor.controlBackgroundColor))
+                .background(Material.bar)
                 
                 Divider()
                 
-                // 表格区域
-                VStack(spacing: 12) {
-                    // 筛选工具栏
-                    HStack {
-                        if let stats = viewModel.translationStats {
-                            Text("\(viewModel.filteredTranslationUnits.count)/\(stats.total) 条")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
+                // 工具栏
+                HStack {
+                    // 一键翻译按钮
+                    Button {
+                        if viewModel.isTranslatingAll {
+                            cancelTranslation()
+                        } else {
+                            Task { await translateAll() }
                         }
-                        
-                        Spacer()
-                        
-                        Picker("筛选", selection: $viewModel.currentFilter) {
-                            Text("全部").tag(XclocViewModel.TranslationFilter.all)
-                            Text("未翻译").tag(XclocViewModel.TranslationFilter.untranslated)
-                            Text("已翻译").tag(XclocViewModel.TranslationFilter.translated)
+                    } label: {
+                        if viewModel.isTranslatingAll {
+                            Label("停止翻译", systemImage: "stop.circle")
+                        } else {
+                            Label("一键翻译", systemImage: "wand.and.stars")
                         }
-                        .pickerStyle(.segmented)
-                        .frame(width: 250)
                     }
-                    .padding(.horizontal)
+                    .help(viewModel.isTranslatingAll ? "停止翻译" : "自动翻译所有未翻译的文本")
                     
-                    // 翻译表格
-                    TranslationTable(
-                        translations: viewModel.filteredTranslationUnits
-                    )
+                    if viewModel.isTranslatingAll {
+                        ProgressView(value: translationProgress)
+                            .frame(width: 100)
+                        Text(String(format: "%.0f%%", translationProgress * 100))
+                            .monospacedDigit()
+                            .foregroundStyle(.secondary)
+                    }
+                    
+                    Spacer()
+                    
+                    // 筛选器
+                    Picker("显示", selection: $viewModel.currentFilter) {
+                        Label("全部", systemImage: "list.bullet")
+                            .tag(XclocViewModel.TranslationFilter.all)
+                        Label("未翻译", systemImage: "circle")
+                            .tag(XclocViewModel.TranslationFilter.untranslated)
+                        Label("已翻译", systemImage: "checkmark.circle")
+                            .tag(XclocViewModel.TranslationFilter.translated)
+                    }
+                    .pickerStyle(.segmented)
+                    .frame(width: 250)
+                    .help("筛选显示的翻译条目")
                 }
-                .padding(.top)
+                .padding(.horizontal)
+                .padding(.vertical, 8)
+                .background(.bar)
+                
+                // 翻译表格
+                TranslationTableView(translations: viewModel.filteredTranslationUnits)
+                    .background(Color(nsColor: .controlBackgroundColor))
             }
         } else {
             EmptyStateView(
-                "选文件",
+                "选择文件",
                 systemImage: "doc.text",
                 description: Text("从左侧选择要编辑的文件")
             )
@@ -215,92 +185,6 @@ private struct TranslationContentView: View {
         translationTask?.cancel()
         translationTask = nil
         translationProgress = 0
-    }
-}
-
-// MARK: - 翻译表格
-private struct TranslationTable: View {
-    let translations: [TranslationUnit]
-    @State private var selectedID: TranslationUnit.ID?
-    @EnvironmentObject private var viewModel: XclocViewModel
-    
-    private let maxTextLength = 1000
-    
-    private func statusEmoji(for item: TranslationUnit) -> String {
-        if item.source.count > maxTextLength {
-            return "⚠️"  // 文本过长
-        }
-        if item.target.isEmpty {
-            return ""  // 待翻译
-        }
-        return ""
-    }
-    
-    var body: some View {
-        ScrollViewReader { proxy in
-            Table(translations, selection: $selectedID) {
-                // 源文本列
-                TableColumn("源文本") { item in
-                    Text(item.source)
-                }
-                .width(min: 150, ideal: 200)
-                
-                // 翻译列
-                TableColumn("翻译") { item in
-                    HStack(spacing: 4) {
-                        if item.id == viewModel.currentTranslatingUnit?.id {
-                            ProgressView()
-                                .controlSize(.small)
-                        }
-                        if item.target.isEmpty {
-                            Text(statusEmoji(for: item))
-                        } else {
-                            Text(verbatim: item.target)
-                        }
-                        Spacer()  // 确保内容左对齐
-                    }
-                }
-                .width(min: 150, ideal: 200)
-                
-                // 字符长度列
-                TableColumn("字符数") { item in
-                    HStack {
-                        Text("\(item.source.count)")
-                            .monospacedDigit()
-                        if item.source.count > maxTextLength {
-                            Text("⚠️")
-                        }
-                    }
-                }
-                .width(80)
-                
-                // 备注列
-                TableColumn("备注") { item in
-                    if let note = item.note {
-                        Text(note)
-                            .foregroundColor(.secondary)
-                    }
-                }
-                .width(min: 100, ideal: 150)
-            }
-            .onChange(of: selectedID) { id in
-                if !viewModel.isTranslatingAll {
-                    let translation = translations.first { $0.id == id }
-                    Task { @MainActor in
-                        viewModel.selectTranslation(translation)
-                    }
-                }
-            }
-            .onChange(of: viewModel.currentTranslatingUnit) { unit in
-                if let unit = unit {
-                    withAnimation {
-                        selectedID = unit.id
-                        proxy.scrollTo(unit.id, anchor: .center)
-                    }
-                }
-            }
-            .scrollDisabled(viewModel.isTranslatingAll)
-        }
     }
 }
 

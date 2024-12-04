@@ -64,6 +64,43 @@ class XclocParser {
         let xmlData = xmlDoc.xmlData(options: [.nodePrettyPrint, .documentTidyXML])
         try xmlData.write(to: xliffURL)
     }
+    
+    // 一次性保存所有翻译
+    static func saveAll(file: XclocFile) throws {
+        // 获取 xliff 文件路径
+        let xliffURL = file.url.appendingPathComponent("Localized Contents")
+            .appendingPathComponent("\(file.contents.targetLocale).xliff")
+        
+        // 读取现有的 xliff 文件
+        let data = try Data(contentsOf: xliffURL)
+        var document = try XMLDocument(data: data)
+        
+        // 更新所有翻译
+        if let files = try document.nodes(forXPath: "//file") as? [XMLElement] {
+            for xmlFile in files {  // 重命名变量避免冲突
+                if let units = try xmlFile.nodes(forXPath: ".//trans-unit") as? [XMLElement] {
+                    for unit in units {
+                        if let id = unit.attribute(forName: "id")?.stringValue,
+                           let translation = file.translationUnits.first(where: { $0.id == id }) {
+                            // 更新目标文本
+                            if let target = try unit.nodes(forXPath: ".//target").first as? XMLElement {
+                                target.stringValue = translation.target
+                            } else {
+                                // 如果没有 target 节点，创建一个新的
+                                let target = XMLElement(name: "target")
+                                target.stringValue = translation.target
+                                unit.addChild(target)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        // 保存更新后的文件
+        try document.xmlData(options: [.nodePrettyPrint, .documentTidyXML])
+            .write(to: xliffURL, options: .atomic)
+    }
 }
 
 // XLIFF 解析器

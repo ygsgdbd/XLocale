@@ -269,4 +269,49 @@ class XclocViewModel: ObservableObject {
             self.selectedTranslation = translation
         }
     }
+    
+    /// 清空当前文件的所有翻译
+    @MainActor
+    func clearAllTranslations() {
+        guard var selectedFile = selectedFile else { return }
+        
+        // 显示进度提示
+        isTranslatingAll = true
+        errorMessage = "正在清空翻译..."
+        
+        // 创建新的翻译单元，清空目标文本
+        let clearedUnits = selectedFile.translationUnits.map { unit in
+            var newUnit = unit
+            newUnit.target = ""
+            return newUnit
+        }
+        
+        // 更新文件内容
+        selectedFile.translationUnits = clearedUnits
+        
+        // 在后台线程保存文件
+        Task.detached {
+            do {
+                // 一次性保存所有更改
+                try await Task.yield() // 允许其他任务执行
+                try XclocParser.saveAll(file: selectedFile)
+                
+                // 回到主线程更新 UI
+                await MainActor.run {
+                    // 更新选中的文件
+                    self.selectedFile = selectedFile
+                    self.selectedTranslation = nil
+                    self.isTranslatingAll = false
+                    self.errorMessage = "已清空所有翻译"
+                }
+                
+            } catch {
+                // 回到主线程显示错误
+                await MainActor.run {
+                    self.isTranslatingAll = false
+                    self.errorMessage = "清空翻译失败：\(error.localizedDescription)"
+                }
+            }
+        }
+    }
 }

@@ -2,13 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>NSDocumentsFolderUsageDescription</key>
-    <string>需要访问文档文件夹来读取和编辑国际化文件</string>
-    <key>LSSupportsOpeningDocumentsInPlace</key>
-    <true/>
-    <key>UIFileSharingEnabled</key>
-    <true/>
-    <key>com.apple.security.files.user-selected.read-write</key>
-    <true/>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>zh-Hans</string>
 </dict>
 </plist>
