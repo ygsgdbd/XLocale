@@ -1,6 +1,15 @@
 {
-  "originHash" : "ee402f9c5de01aea63ddce310c9dd57e98be0f5cd985cde63d8231b536a775c1",
+  "originHash" : "55cd022babd7a64823c5d0076783156da122fce4b124e5b8852b4d7fffcd9cd0",
   "pins" : [
+    {
+      "identity" : "defaults",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sindresorhus/Defaults",
+      "state" : {
+        "revision" : "3efef5a28ebdbbe922d4a2049493733ed14475a6",
+        "version" : "7.3.1"
+      }
+    },
     {
       "identity" : "openai",
       "kind" : "remoteSourceControl",

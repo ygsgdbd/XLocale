@@ -8,10 +8,12 @@
 import SwiftUI
 
 @main
-struct RootApp: App {
+struct XLocaleApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            XclocEditor()
         }
+        .windowStyle(.hiddenTitleBar)
+        .windowToolbarStyle(.unified)
     }
 }

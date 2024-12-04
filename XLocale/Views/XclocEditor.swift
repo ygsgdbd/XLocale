@@ -21,11 +21,24 @@ struct XclocEditor: View {
         .environmentObject(viewModel)
         .task {
             if viewModel.xclocFiles.isEmpty {
-                viewModel.selectFolder()
+                viewModel.startExport()
             }
         }
         .toolbar {
             ToolbarItemGroup(placement: .primaryAction) {
+                Button {
+                    viewModel.startExport()
+                } label: {
+                    Label("导出本地化", systemImage: "square.and.arrow.down")
+                }
+                .help("从 Xcode 项目导出本地化文件")
+                .disabled(viewModel.isExporting)
+                
+                if viewModel.isExporting {
+                    ProgressView()
+                        .controlSize(.small)
+                }
+                
                 Button {
                     showingSettings = true
                 } label: {
@@ -34,8 +47,51 @@ struct XclocEditor: View {
                 .help("打开设置")
             }
         }
+        .overlay {
+            if let message = viewModel.loadingMessage {
+                VStack(spacing: 16) {
+                    ProgressView()
+                    Text(message)
+                        .foregroundStyle(.secondary)
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(.ultraThinMaterial)
+            }
+            
+            if viewModel.isImporting {
+                VStack(spacing: 8) {
+                    ProgressView(value: viewModel.importProgress) {
+                        Text("导入进度")
+                    }
+                    .progressViewStyle(.linear)
+                    
+                    ScrollView {
+                        Text(viewModel.importLog)
+                            .font(.system(.caption, design: .monospaced))
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .textSelection(.enabled)
+                    }
+                    .frame(height: 100)
+                    .background(Color(.textBackgroundColor))
+                    .cornerRadius(6)
+                }
+                .padding()
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(.ultraThinMaterial)
+            }
+        }
         .sheet(isPresented: $showingSettings) {
             SettingsView()
+        }
+        .alert("错误", isPresented: .init(
+            get: { viewModel.errorMessage != nil },
+            set: { if !$0 { viewModel.errorMessage = nil } }
+        )) {
+            Button("确定", role: .cancel) {}
+        } message: {
+            if let error = viewModel.errorMessage {
+                Text(error)
+            }
         }
     }
 }
@@ -131,6 +187,20 @@ private struct TranslationContentView: View {
                         Text(String(format: "%.0f%%", translationProgress * 100))
                             .monospacedDigit()
                             .foregroundStyle(.secondary)
+                    }
+                    
+                    // 导入按钮
+                    Button {
+                        viewModel.importToXcode()
+                    } label: {
+                        Label("导入到 Xcode", systemImage: "square.and.arrow.up")
+                    }
+                    .help("将当前翻译文件导入到 Xcode 项目")
+                    .disabled(viewModel.isImporting)
+                    
+                    if viewModel.isImporting {
+                        ProgressView()
+                            .controlSize(.small)
                     }
                     
                     Spacer()
