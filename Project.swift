@@ -27,6 +27,7 @@ let project = Project(
             "SWIFT_EMIT_LOC_STRINGS": "YES",
             "USE_COMPILER_TO_EXTRACT_SWIFT_STRINGS": "YES",
             "LOCALIZATION_PREFERS_STRING_CATALOGS": "YES",
+            "CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION": "YES",
         ]
     ),
     targets: [
@@ -82,11 +83,7 @@ let project = Project(
                 .folderReference(path: "XLocale/Resources/Localizations/en.lproj"),
                 .folderReference(path: "XLocale/Resources/Localizations/ja.lproj")
             ],
-            entitlements: .dictionary([
-                "com.apple.security.app-sandbox": false,
-                "com.apple.security.files.user-selected.read-write": true,
-                "com.apple.security.network.client": true
-            ]),
+            entitlements: .file(path: "XLocale.entitlements"),
             dependencies: [
                 .package(product: "Defaults"),
                 .package(product: "SwiftUIX"),

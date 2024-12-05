@@ -1,1 +1,144 @@
+/* No comment provided by engineer. */
+"%lld%%" = "%lld%%";
+
+/* No comment provided by engineer. */
+"⌘ + S" = "⌘ + S";
+
+/* No comment provided by engineer. */
+"版本: %@" = "バージョン: %@";
+
+/* No comment provided by engineer. */
+"保存" = "保存";
+
+/* No comment provided by engineer. */
+"保存当前文件" = "現在のファイルを保存";
+
+/* No comment provided by engineer. */
+"保存翻译 (⌘S)" = "翻訳を保存 (⌘S)";
+
+/* No comment provided by engineer. */
+"操作" = "操作";
+
+/* No comment provided by engineer. */
+"此操作将清所有翻译的内容，且无法恢复" = "この操作により、すべての翻訳内容が消去され、復元できなくなります。";
+
+/* No comment provided by engineer. */
+"从中间选择要编辑的翻译" = "中央の翻訳を編集する";
+
+/* No comment provided by engineer. */
+"从左侧选择要编辑的文件" = "左側から編集したいファイルを選択してください";
+
+/* No comment provided by engineer. */
+"错误" = "エラー";
+
+/* No comment provided by engineer. */
+"打开设置" = "設定を開く";
+
+/* No comment provided by engineer. */
+"导出本地化" = "ローカライズのエクスポート";
+
+/* No comment provided by engineer. */
+"导入 Xcode" = "Xcode にインポート";
+
+/* No comment provided by engineer. */
+"翻译" = "翻訳";
+
+/* No comment provided by engineer. */
+"翻译进度" = "翻訳進捗";
+
+/* No comment provided by engineer. */
+"服务器地址" = "サーバーアドレス";
+
+/* No comment provided by engineer. */
+"服务商" = "サービスプロバイダー";
+
+/* No comment provided by engineer. */
+"复制到剪贴板" = "クリップボードにコピー";
+
+/* No comment provided by engineer. */
+"工具: %@" = "ツール: %@";
+
+/* No comment provided by engineer. */
+"将翻译导入到 Xcode 项目" = "Xcode プロジェクトに翻訳をインポートする";
+
+/* No comment provided by engineer. */
+"模型" = "モデル";
+
+/* No comment provided by engineer. */
+"模型设置" = "モデル設定";
+
+/* No comment provided by engineer. */
+"目标语言: %@" = "対象言語: %@";
+
+/* No comment provided by engineer. */
+"清空翻译" = "翻訳をクリア";
+
+/* No comment provided by engineer. */
+"清空所有翻译内容" = "すべての翻訳内容をクリア";
+
+/* No comment provided by engineer. */
+"取消" = "キャンセル";
+
+/* No comment provided by engineer. */
+"取消翻译" = "翻訳をキャンセル";
+
+/* No comment provided by engineer. */
+"确定要清空所有翻译吗？" = "本当にすべての翻訳を空にしますか？";
+
+/* No comment provided by engineer. */
+"设置" = "設定";
+
+/* No comment provided by engineer. */
+"提示词设置" = "プロンプト設定";
+
+/* No comment provided by engineer. */
+"未翻译" = "未翻译";
+
+/* No comment provided by engineer. */
+"温度" = "温度";
+
+/* No comment provided by engineer. */
+"文件" = "ファイル";
+
+/* No comment provided by engineer. */
+"文件路径: %@" = "ファイルパス: %@";
+
+/* No comment provided by engineer. */
+"显示" = "表示";
+
+/* No comment provided by engineer. */
+"选择 AI 服务商" = "AIサービスプロバイダーの選択";
+
+/* No comment provided by engineer. */
+"选择项目" = "プロジェクトを選択";
+
+/* No comment provided by engineer. */
+"一键翻译" = "ワンクリック翻訳";
+
+/* No comment provided by engineer. */
+"已导出的文件" = "エクスポートされたファイル";
+
+/* No comment provided by engineer. */
+"已翻译" = "翻訳済み";
+
+/* No comment provided by engineer. */
+"源语言: %@" = "対象言語: %@";
+
+/* No comment provided by engineer. */
+"正在测试连接..." = "接続テスト中...";
+
+/* No comment provided by engineer. */
+"自动翻译所有未翻译的文本" = "未翻訳のテキストを自動翻訳する";
+
+/* No comment provided by engineer. */
+"最大 Token: %lld" = "最大トークン: %lld";
+
+/* No comment provided by engineer. */
+"AI 翻译" = "AI翻訳";
+
+/* No comment provided by engineer. */
+"AI 服务商" = "AIサービスプロバイダー";
+
+/* No comment provided by engineer. */
+"API Key" = "APIキー";
 

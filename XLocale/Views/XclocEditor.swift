@@ -56,21 +56,11 @@ struct XclocEditor: View {
         .sheet(isPresented: $showingSettings) {
             SettingsView()
         }
-        .sheet(isPresented: $viewModel.showingExportProgress) {
-            if let progressModel = viewModel.exportProgress {
-                CommandProgressView(
-                    viewModel: progressModel,
-                    isPresented: $viewModel.showingExportProgress
-                )
-            }
+        .sheet(item: $viewModel.exportProgress) { progressModel in
+            CommandProgressView(viewModel: progressModel)
         }
-        .sheet(isPresented: $viewModel.showingImportProgress) {
-            if let progressModel = viewModel.importProgress {
-                CommandProgressView(
-                    viewModel: progressModel,
-                    isPresented: $viewModel.showingImportProgress
-                )
-            }
+        .sheet(item: $viewModel.importProgress) { progressModel in
+            CommandProgressView(viewModel: progressModel)
         }
         .alert("错误", isPresented: .init(
             get: { viewModel.errorMessage != nil },
@@ -84,98 +74,6 @@ struct XclocEditor: View {
                 Text(error)
             }
         }
-    }
-}
-
-
-// MARK: - 中间内容视图
-private struct TranslationContentView: View {
-    @EnvironmentObject private var viewModel: XclocViewModel
-    @State private var translationProgress: Double = 0
-    @State private var translationTask: Task<Void, Never>?
-    
-    var body: some View {
-        if let selectedFile = viewModel.selectedFile {
-            VStack(spacing: 0) {
-                // 工具栏
-                HStack {
-                    // 筛选器
-                    Picker("显示", selection: $viewModel.currentFilter) {
-                        Label("全部", systemImage: "list.bullet")
-                            .tag(XclocViewModel.TranslationFilter.all)
-                        Label("未翻译", systemImage: "circle")
-                            .tag(XclocViewModel.TranslationFilter.untranslated)
-                        Label("已翻译", systemImage: "checkmark.circle")
-                            .tag(XclocViewModel.TranslationFilter.translated)
-                    }
-                    .pickerStyle(.segmented)
-                    .frame(width: 250)
-                    .help("筛选显示的翻译条目")
-                    
-                    Spacer()
-                    
-                    // 一键翻译按钮
-                    Button {
-                        Task { await translateAll() }
-                    } label: {
-                        Label("一键翻译", systemImage: "wand.and.stars")
-                    }
-                    .help(viewModel.isTranslatingAll ? "停止翻译" : "自动翻译所有未翻译的文本")
-                    
-                    if viewModel.isTranslatingAll {
-                        ProgressView(value: translationProgress)
-                            .frame(width: 100)
-                        Text(String(format: "%.0f%%", translationProgress * 100))
-                            .monospacedDigit()
-                            .foregroundStyle(.secondary)
-                    }
-                    
-                    // 导入到 Xcode 按钮
-                    Button {
-                        viewModel.importToXcode()
-                    } label: {
-                        Label("导入到 Xcode", systemImage: "arrow.right.square")
-                    }
-                    .help("将翻译导入到 Xcode 项目")
-                    .disabled(viewModel.currentFile == nil || viewModel.isImporting)
-                }
-                .padding(.horizontal, ViewStyle.Spacing.normal)
-                .padding(.vertical, ViewStyle.Spacing.normal)
-                .background(.bar)
-                
-                // 翻译表格
-                TranslationTableView(translations: viewModel.filteredUnits)
-                    .background(Color(nsColor: .controlBackgroundColor))
-            }
-        } else {
-            EmptyStateView(
-                "选择文件",
-                systemImage: "doc.text",
-                description: Text("从左侧选择要编辑的文件")
-            )
-        }
-    }
-    
-    private func translateAll() async {
-        guard viewModel.selectedFile != nil else { return }
-        
-        // 创建并存储任务
-        translationTask = Task {
-            await viewModel.translateAll { progress in
-                translationProgress = progress
-            }
-        }
-        
-        // 等待任务完成
-        await translationTask?.value
-        translationTask = nil
-        translationProgress = 0
-    }
-    
-    private func cancelTranslation() {
-        translationTask?.cancel()
-        translationTask = nil
-        translationProgress = 0
     }
 }
 

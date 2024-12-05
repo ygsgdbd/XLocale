@@ -2,6 +2,7 @@ import Foundation
 import SwiftUI
 import Defaults
 
+@MainActor
 class XclocViewModel: ObservableObject {
     
     /// 翻译过滤器
@@ -31,6 +32,14 @@ class XclocViewModel: ObservableObject {
         }
     }
     
+    /// 翻译状态
+    enum TranslationStatus {
+        case started(String)
+        case success(String)
+        case failed(String, Error)
+        case skipped(String)
+    }
+    
     // MARK: - Private Properties
     
     private let encoderConfiguration = XclocEncoder.Configuration(includeNotes: true)
@@ -40,12 +49,10 @@ class XclocViewModel: ObservableObject {
     // MARK: - Published Properties
     
     @Published private(set) var currentFile: XclocFile?
-    @Published private(set) var translationUnits: [TranslationUnit] = []
     @Published private(set) var xclocFiles: [XclocFile] = []
     @Published var searchText: String = ""
     @Published var currentFilter: TranslationFilter = .all
     @Published var selectedTranslation: TranslationUnit?
-    @Published var currentTranslatingUnit: TranslationUnit?
     @Published var errorMessage: String?
     @Published var isTranslating: Bool = false
     @Published var isTranslatingAll: Bool = false
@@ -58,10 +65,16 @@ class XclocViewModel: ObservableObject {
             Defaults[.lastXcodeProjectPath] = xcodeProjectURL?.path
         }
     }
-    @Published var showingExportProgress = false
-    @Published private(set) var exportProgress: CommandProgressViewModel?
-    @Published var showingImportProgress = false
-    @Published private(set) var importProgress: CommandProgressViewModel?
+    @Published var exportProgress: CommandProgressViewModel?
+    @Published var importProgress: CommandProgressViewModel?
+    
+    // MARK: - Translation UI State
+    @Published var translationProgress: Double = 0
+    @Published var translationTask: Task<Void, Never>?
+    @Published var selectedID: TranslationUnit.ID?
+    @Published var showingClearConfirmation = false
+    @Published var isShowingProgress = false
+    @Published var translationLogs: [TranslationLog] = []
     
     init() {
         // 从 Defaults 恢复上次的项目路径
@@ -71,8 +84,6 @@ class XclocViewModel: ObservableObject {
     }
     
     // MARK: - Computed Properties
-    
-    var selectedFile: XclocFile? { currentFile }
     
     var filteredUnits: [TranslationUnit] {
         let filtered = currentFilter.apply(to: translationUnits)
@@ -85,218 +96,170 @@ class XclocViewModel: ObservableObject {
         }
     }
     
-    var filteredTranslationUnits: [TranslationUnit] { filteredUnits }
+    var translationUnits: [TranslationUnit] {
+        currentFile?.translationUnits ?? []
+    }
     
-    // MARK: - File Operations
-    
-    func openFile(at url: URL) {
-        loadingMessage = "正在打开文件..."
-        
-        do {
-            let file = try decoder.decode(from: url)
-            currentFile = file
-            translationUnits = file.translationUnits
-            updateTranslationStats()
-        } catch {
-            errorMessage = "打开文件失败: \(error.localizedDescription)"
-        }
-        
-        loadingMessage = nil
+    private func updateTranslationUnits(_ units: [TranslationUnit]) {
+        guard var file = currentFile else { return }
+        file.translationUnits = units
+        currentFile = file
+        updateTranslationStats()
     }
     
     func saveFile() {
         guard let file = currentFile else {
-            print("错误：没有打开的文件")
             return
         }
         
         loadingMessage = "正在保存文件..."
-        print("\n准备保存整个文件：")
-        print("- 文件路径：\(file.url.path)")
-        print("- 翻译单元数量：\(translationUnits.count)")
         
-        // 打印所有翻译单元
-        print("\n当前所有翻译单元：")
-        for unit in translationUnits {
-            print("- ID: \(unit.id), Target: \(unit.target)")
-        }
-        
-        do {
-            var updatedFile = file
-            updatedFile.translationUnits = translationUnits
-            
-            try encoder.encode(updatedFile, to: file.url)
-            print("文件保存成功")
-            
-            // 验证保存结果
-            if let savedFile = try? decoder.decode(from: file.url) {
-                print("\n验证保存结果：")
-                print("- 翻译单元数量：\(savedFile.translationUnits.count)")
+        Task {
+            do {
+                // 直接使用当前文件，不需要创建新的
+                try await Task.detached(priority: .background) { [encoder, file] in
+                    try encoder.encode(file, to: file.url)
+                }.value
                 
-                // 验证所有翻译
-                print("\n保存后的翻译内容：")
-                for unit in savedFile.translationUnits {
-                    print("- ID: \(unit.id), Target: \(unit.target)")
+                if let reloadedFile = try? await Task.detached(priority: .background) { [decoder, file] in
+                    try decoder.decode(from: file.url)
+                }.value {
+                    await MainActor.run {
+                        self.currentFile = reloadedFile
+                        self.updateTranslationStats()
+                    }
+                }
+            } catch {
+                await MainActor.run {
+                    self.errorMessage = "保存文件失败: \(error.localizedDescription)"
                 }
             }
             
-            currentFile = updatedFile
-            updateTranslationStats()
-        } catch {
-            print("保存文件失败：\(error.localizedDescription)")
-            errorMessage = "保存文件失败: \(error.localizedDescription)"
+            await MainActor.run {
+                self.loadingMessage = nil
+            }
         }
-        
-        loadingMessage = nil
     }
     
     func saveTranslation(_ translation: TranslationUnit) {
-        print("\n准备保存单个翻译：")
-        print("- ID: \(translation.id)")
-        print("- Source: \(translation.source)")
-        print("- Target: \(translation.target)")
-        
-        // 1. 更新内存中的翻译单元
-        guard let index = translationUnits.firstIndex(where: { $0.id == translation.id }) else {
-            print("错误：找不到要更新的翻译单元")
+        var units = translationUnits
+        guard let index = units.firstIndex(where: { $0.id == translation.id }) else {
             return
         }
         
-        // 打印更新前的状态
-        print("\n更新前的状态：")
-        print("- 内存中的翻译：\(translationUnits[index].target)")
-        print("- 新的翻译：\(translation.target)")
+        units[index] = translation
         
-        // 创建新的翻译单元
-        let updatedUnit = TranslationUnit(
-            id: translation.id,
-            source: translation.source,
-            target: translation.target,
-            note: translation.note
-        )
-        
-        // 更新内存中的翻译单元
-        translationUnits[index] = updatedUnit
-        print("\n内存更新后的状态：")
-        print("- 更新后的翻译：\(translationUnits[index].target)")
-        
-        // 2. 更新文件
         if var file = currentFile {
-            print("\n准备更新文件：")
-            print("- 文件路径：\(file.url.path)")
-            print("- 翻译单元总数：\(translationUnits.count)")
-            
-            // 创建新的文件对象
             let updatedFile = XclocFile(
                 url: file.url,
                 contents: file.contents,
-                translationUnits: translationUnits
+                translationUnits: units
             )
             
-            // 保存到磁盘
             do {
                 try encoder.encode(updatedFile, to: file.url)
-                print("文件保存成功")
                 
-                // 立即重新加载文件验证
-                if let reloadedFile = try? decoder.decode(from: file.url),
-                   let savedUnit = reloadedFile.translationUnits.first(where: { $0.id == translation.id }) {
-                    print("\n重新加载验证：")
-                    print("- ID: \(savedUnit.id)")
-                    print("- Target: \(savedUnit.target)")
-                    
-                    // 更新当前文件
+                if let reloadedFile = try? decoder.decode(from: file.url) {
                     currentFile = reloadedFile
-                    translationUnits = reloadedFile.translationUnits
                     updateTranslationStats()
-                } else {
-                    print("错误：无法重新加载文件进行验证")
                 }
             } catch {
-                print("保存文件失败：\(error.localizedDescription)")
                 errorMessage = "保存文件失败: \(error.localizedDescription)"
             }
-        } else {
-            print("错误：没有打开的文件")
         }
     }
     
     /// 开始导出
+    @MainActor
     func startExport() {
         guard let projectURL = xcodeProjectURL else {
             errorMessage = "请先选择 Xcode 项目"
             return
         }
         
-        let command = """
-        xcodebuild -exportLocalizations \\
-            -project \(projectURL.path) \\
-            -localizationPath ~/Library/Caches/XLocale/Exports
-        """
+        // 检查是否有未保存的修改
+        if !xclocFiles.isEmpty {
+            let alert = NSAlert()
+            alert.messageText = "导入新文件"
+            alert.informativeText = "当前已有打开的文件，导入新文件将覆盖现有内容。请确保已保存所有修改。"
+            alert.alertStyle = .warning
+            alert.addButton(withTitle: "继续导入")
+            alert.addButton(withTitle: "取消")
+            
+            let response = alert.runModal()
+            guard response == .alertFirstButtonReturn else { return }
+        }
         
-        // 创建进度视图模型
-        let progressModel = CommandProgressViewModel(
-            title: "导出本地化文件",
-            command: command
-        )
+        exportProgress = CommandProgressViewModel(title: "导出本地化文件")
         
-        // 开始导出
-        Task { [weak self] in
+        Task.detached(priority: .userInitiated) { [weak self, decoder] in
+            guard let self = self else { return }
             do {
                 let exporter = XcodeExporter()
-                let exportURL = try await exporter.exportLocalizations(
-                    from: projectURL
-                ) { progress in
+                
+                // 执行导出操作
+                let exportURL = try await exporter.exportLocalizations(from: projectURL) { status in
                     Task { @MainActor in
-                        progressModel.appendLog(progress.message)
-                        progressModel.updateProgress(progress.progress)
+                        self.exportProgress?.appendLog(status.message)
                     }
                 }
                 
-                // 扫描导出目录中的所有 xcloc 文件
+                // 在后台处理文件
                 let fileManager = FileManager.default
                 let contents = try fileManager.contentsOfDirectory(
                     at: exportURL,
                     includingPropertiesForKeys: nil
                 )
                 
-                let xclocFiles = contents.filter { $0.pathExtension == "xcloc" }
-                
-                await MainActor.run {
-                    // 加载所有 xcloc 文件
-                    for url in xclocFiles {
-                        if let xclocFile = try? self?.decoder.decode(from: url) {
-                            if !(self?.xclocFiles.contains(where: { $0.url == xclocFile.url }) ?? false) {
-                                self?.xclocFiles.append(xclocFile)
-                            }
+                // 在后解码文件
+                let loadedFiles = try await withThrowingTaskGroup(of: XclocFile?.self) { group in
+                    var files: [XclocFile] = []
+                    
+                    for url in contents where url.pathExtension == "xcloc" {
+                        group.addTask { [decoder] in
+                            try? await decoder.decode(from: url)
                         }
                     }
                     
-                    // 如果文件，选择第一个
-                    if let firstFile = self?.xclocFiles.first {
-                        self?.currentFile = firstFile
-                        self?.translationUnits = firstFile.translationUnits
-                        self?.updateTranslationStats()
+                    for try await file in group {
+                        if let file = file {
+                            files.append(file)
+                        }
                     }
                     
-                    // 完成后自动关闭窗口
-                    progressModel.finish()
-                    self?.showingExportProgress = false
+                    return files
+                }
+                
+                // 更新 UI
+                await MainActor.run {
+                    // 直接替换文件列表
+                    self.xclocFiles = loadedFiles
+                    
+                    // 选择第一个文件
+                    if let firstFile = self.xclocFiles.first {
+                        self.currentFile = firstFile
+                        self.updateTranslationStats()
+                    }
+                    
+                    // 添加延迟以确保日志显示完整
+                    Task {
+                        try? await Task.sleep(nanoseconds: 500_000_000)
+                        self.exportProgress?.isFinished = true
+                        self.exportProgress = nil
+                    }
                 }
             } catch {
                 await MainActor.run {
-                    progressModel.appendLog("错误: \(error.localizedDescription)")
-                    self?.errorMessage = error.localizedDescription
+                    self.exportProgress?.appendLog("错误: \(error.localizedDescription)")
+                    self.exportProgress?.isFinished = true
+                    self.errorMessage = error.localizedDescription
+                    self.exportProgress = nil
                 }
             }
         }
-        
-        // 设置视图模型
-        exportProgress = progressModel
-        showingExportProgress = true
     }
     
-    /// 选择文件
+    /// 择文件
     func selectFile(_ url: URL) {
         loadingMessage = "正在打开文件..."
         
@@ -308,7 +271,6 @@ class XclocViewModel: ObservableObject {
                 xclocFiles.append(file)
             }
             
-            translationUnits = file.translationUnits
             updateTranslationStats()
         } catch {
             errorMessage = "打开文件失败: \(error.localizedDescription)"
@@ -319,51 +281,80 @@ class XclocViewModel: ObservableObject {
     
     // MARK: - Translation Operations
     
-    /// 翻译当前选中的单元
+    /// 译当前选中的单元
     @MainActor
     func translateCurrent() async {
         guard let translation = selectedTranslation else { return }
         isTranslating = true
+        defer { isTranslating = false }
         
-        do {
-            // TODO: 实翻译逻辑
-            // let translatedText = try await translator.translate(translation.source)
-            // saveTranslation(translation.with(target: translatedText))
-        } catch {
-            errorMessage = "翻译失败: \(error.localizedDescription)"
-        }
-        
-        isTranslating = false
+        // TODO: 实现翻译逻辑
+        // let translatedText = try await translator.translate(translation.source)
+        // saveTranslation(translation.with(target: translatedText))
     }
     
     /// 翻译所有未翻译的单元
     /// - Parameter progress: 进度回调
     @MainActor
-    func translateAll(progress: @escaping (Double) -> Void) async {
+    func translateAll(progress: @escaping (Double, TranslationStatus) -> Void) async {
         guard !isTranslatingAll else { return }
         isTranslatingAll = true
+        defer { 
+            isTranslatingAll = false
+            progress(1.0, TranslationStatus.success("翻译完成"))
+        }
         
         let untranslated = translationUnits.filter { $0.target.isEmpty }
         let total = Double(untranslated.count)
         var completed = 0.0
         
+        guard let file = currentFile else { return }
+        let targetLocale = file.contents.targetLocale
+        
         do {
+            let translator = try AITranslator()
+            var updatedUnits = translationUnits // 创建一个可变副本
+            
             for unit in untranslated {
-                guard isTranslatingAll else { break }  // 检查是否被取消
+                guard isTranslatingAll else { break }
                 
-                // TODO: 实现翻译逻辑
-                // let translatedText = try await translator.translate(unit.source)
-                // saveTranslation(unit.with(target: translatedText))
+                progress(completed / total, .started(unit.source))
+                
+                if unit.source.isEmpty {
+                    progress(completed / total, .skipped(unit.source))
+                    completed += 1
+                    continue
+                }
+                
+                do {
+                    if let translatedText = try await translator.translate(unit.source, targetLocale: targetLocale) {
+                        // 找到并更新对应的单元
+                        if let index = updatedUnits.firstIndex(where: { $0.id == unit.id }) {
+                            updatedUnits[index].target = translatedText
+                            progress((completed + 1) / total, .success(unit.source))
+                        }
+                    }
+                } catch {
+                    progress((completed + 1) / total, .failed(unit.source, error))
+                }
                 
                 completed += 1
-                progress(completed / total)
             }
+            
+            // 批量更新所有翻译
+            if var updatedFile = currentFile {
+                updatedFile.translationUnits = updatedUnits
+                try encoder.encode(updatedFile, to: updatedFile.url)
+                
+                if let reloadedFile = try? decoder.decode(from: updatedFile.url) {
+                    currentFile = reloadedFile
+                    updateTranslationStats()
+                }
+            }
+            
         } catch {
-            errorMessage = "批量翻译失败: \(error.localizedDescription)"
+            progress(completed / total, .failed("初始化翻译器失败", error))
         }
-        
-        isTranslatingAll = false
-        progress(1.0)
     }
     
     /// 取消批量翻译
@@ -378,7 +369,7 @@ class XclocViewModel: ObservableObject {
     
     /// 清空所有翻译
     func clearAllTranslations() {
-        translationUnits = translationUnits.map { unit in
+        let clearedUnits = translationUnits.map { unit in
             TranslationUnit(
                 id: unit.id,
                 source: unit.source,
@@ -388,69 +379,54 @@ class XclocViewModel: ObservableObject {
         }
         
         if var file = currentFile {
-            file.translationUnits = translationUnits
+            file.translationUnits = clearedUnits
             currentFile = file
             saveFile()
-            updateTranslationStats()
         }
     }
     
     // MARK: - Xcode Integration
     
     /// 导入到 Xcode
+    @MainActor
     func importToXcode() {
-        guard let file = currentFile else {
-            errorMessage = "没有打开的文件"
+        guard let file = currentFile, let projectURL = xcodeProjectURL else {
+            errorMessage = "请先选择文件和项目"
             return
         }
         
-        guard let projectURL = xcodeProjectURL else {
-            errorMessage = "请先选择 Xcode 项目"
-            return
-        }
+        isImporting = true
+        let progressModel = CommandProgressViewModel(title: "导入本地化文件")
+        importProgress = progressModel
         
-        let command = """
-        xcodebuild -importLocalizations \\
-            -project \(projectURL.path) \\
-            -localizationPath \(file.url.path)
-        """
-        
-        // 创建进度视图模型
-        let progressModel = CommandProgressViewModel(
-            title: "导入本地化文件",
-            command: command
-        )
-        
-        // 开始导入
-        Task { [weak self] in
+        Task {
+            defer {
+                isImporting = false
+            }
+            
             do {
                 let importer = XcodeExporter()
-                try await importer.importLocalizations(
-                    from: file.url,
-                    to: projectURL
-                ) { progress in
+                try await importer.importLocalizations(from: file.url, to: projectURL) { status in
                     Task { @MainActor in
-                        progressModel.appendLog(progress.message)
-                        progressModel.updateProgress(progress.progress)
+                        self.importProgress?.appendLog(status.message)
+                        if status.isFinished {
+                            self.importProgress?.isFinished = true
+                            Task {
+                                try? await Task.sleep(nanoseconds: 500_000_000)
+                                self.importProgress = nil
+                            }
+                        }
                     }
-                }
-                
-                await MainActor.run {
-                    // 完成后自动关闭窗口
-                    progressModel.finish()
-                    self?.showingImportProgress = false
                 }
             } catch {
                 await MainActor.run {
-                    progressModel.appendLog("错误: \(error.localizedDescription)")
-                    self?.errorMessage = error.localizedDescription
+                    self.importProgress?.appendLog("错误: \(error.localizedDescription)")
+                    self.importProgress?.isFinished = true
+                    self.errorMessage = error.localizedDescription
+                    self.importProgress = nil
                 }
             }
         }
-        
-        // 设置视图模型���显示窗口
-        importProgress = progressModel
-        showingImportProgress = true
     }
     
     // MARK: - Private Methods
@@ -465,4 +441,89 @@ class XclocViewModel: ObservableObject {
         )
     }
     
+    // MARK: - Translation UI Methods
+    
+    func startTranslateAll() async {
+        guard currentFile != nil else { return }
+        
+        // 检查网络状态
+        do {
+            let translator = try AITranslator(settings: .shared)
+            _ = try await translator.translate("test", targetLocale: "zh-Hans")
+        } catch {
+            await MainActor.run {
+                NSAlert(error: error).runModal()
+                return
+            }
+        }
+        
+        // 开始翻译
+        isShowingProgress = true
+        translationLogs = [TranslationLog(type: .info, message: "开始翻译...")]
+        
+        translationTask = Task {
+            await translateAll { [weak self] progress, status in
+                guard let self = self else { return }
+                
+                self.translationProgress = progress
+                
+                // 添加日志
+                switch status {
+                case .started(let text):
+                    self.translationLogs.append(TranslationLog(type: .info, message: "正在翻译: \(text)"))
+                case .success(let text):
+                    self.translationLogs.append(TranslationLog(type: .success, message: "翻译成功: \(text)"))
+                case .failed(let text, let error):
+                    self.translationLogs.append(TranslationLog(type: .error, message: "翻译失败: \(text) - \(error.localizedDescription)"))
+                case .skipped(let text):
+                    self.translationLogs.append(TranslationLog(type: .warning, message: "跳过: \(text)"))
+                }
+            }
+        }
+        
+        await translationTask?.value
+        
+        translationTask = nil
+        translationProgress = 0
+        isShowingProgress = false
+        
+        // 显示完成结果
+        let alert = NSAlert()
+        alert.messageText = "翻译完成"
+        alert.informativeText = """
+            总计: \(translationLogs.count)
+            成功: \(translationLogs.filter { $0.type == .success }.count)
+            失败: \(translationLogs.filter { $0.type == .error }.count)
+            跳过: \(translationLogs.filter { $0.type == .warning }.count)
+            """
+        alert.runModal()
+    }
+    
+    func cancelTranslateAll() {
+        translationTask?.cancel()
+        cancelTranslation()
+        translationTask = nil
+        translationProgress = 0
+        isShowingProgress = false
+        
+        translationLogs.append(TranslationLog(type: .warning, message: "翻译已取消"))
+    }
+    
+    // MARK: - UI Helper Methods
+    
+    func filterIcon(for filter: TranslationFilter) -> String {
+        switch filter {
+        case .all: return "list.bullet"
+        case .translated: return "checkmark.circle.fill"
+        case .untranslated: return "exclamationmark.circle.fill"
+        }
+    }
+    
+    var filterOptions: [(String, TranslationFilter)] {
+        [
+            ("全部 (\(translationStats?.total ?? 0))", .all),
+            ("已翻译 (\(translationStats?.translated ?? 0))", .translated),
+            ("未翻译 (\(translationStats?.untranslated ?? 0))", .untranslated)
+        ]
+    }
 }

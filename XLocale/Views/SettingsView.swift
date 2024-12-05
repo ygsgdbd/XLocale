@@ -1,252 +1,141 @@
 import SwiftUI
+import SwiftUIX
 
 struct SettingsView: View {
-    @StateObject private var settings = AISettings.shared
+    @ObservedObject var settings = AISettings.shared
     @Environment(\.dismiss) private var dismiss
+    @State private var isTestingConnection = false
+    @State private var testResult: (success: Bool, message: String)?
     
-    enum SettingsTab: String, CaseIterable {
-        case general = "通用"
-        case services = "服务商"
-        case about = "关于"
-        
-        var icon: String {
-            switch self {
-            case .general: return "gear"
-            case .services: return "network"
-            case .about: return "info.circle"
-            }
-        }
-    }
-    
-    @State private var selectedTab: SettingsTab = .general
-    
-    var body: some View {
-        NavigationSplitView {
-            // 左侧导航栏
-            List(SettingsTab.allCases, id: \.self, selection: $selectedTab) { tab in
-                Label(tab.rawValue, systemImage: tab.icon)
-            }
-            .navigationTitle("设置")
-        } detail: {
-            // 右侧内容区
-            Group {
-                switch selectedTab {
-                case .general:
-                    GeneralSettingsView()
-                case .services:
-                    AIServiceSettingsView()
-                case .about:
-                    AboutView()
-                }
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color(.controlBackgroundColor))
-        }
-        .navigationSplitViewStyle(.balanced)
-        .frame(width: 700, height: 500)
-        .toolbar {
-            ToolbarItem(placement: .cancellationAction) {
-                Button("关闭") {
-                    dismiss()
-                }
-            }
-        }
-    }
-}
-
-// MARK: - 通用设置视图
-private struct GeneralSettingsView: View {
     var body: some View {
         Form {
-            Section {
-                Toggle("自动检查更新", isOn: .constant(true))
-                Toggle("显示开发者选项", isOn: .constant(false))
-            } header: {
-                Text("基本设置")
+            // MARK: - AI 服务商设置
+            Section("AI 服务商") {
+                Picker("服务商", selection: $settings.config.provider) {
+                    ForEach(AIProviderType.allCases, id: \.self) { provider in
+                        Text(provider.rawValue).tag(provider)
+                    }
+                }
+                .onChange(of: settings.config.provider) { newProvider in
+                    settings.switchProvider(newProvider)
+                }
+                
+                TextField("服务器地址", text: $settings.config.baseURL)
+                    .textFieldStyle(.roundedBorder)
+                
+                SecureField("API Key", text: $settings.config.apiKey)
+                    .textFieldStyle(.roundedBorder)
             }
             
-            Section {
-                Button("导出设置") {}
-                Button("导入设置") {}
-                Button("重置所有设置") {}
-                    .foregroundColor(.red)
-            } header: {
-                Text("配置管理")
+            // MARK: - 模型设置
+            Section("模型设置") {
+                TextField("模型", text: $settings.config.model)
+                    .textFieldStyle(.roundedBorder)
+                
+                HStack {
+                    Text("温度")
+                    Slider(value: $settings.config.temperature, in: 0...1)
+                    Text(String(format: "%.1f", settings.config.temperature))
+                        .monospacedDigit()
+                }
+                
+                Stepper("最大 Token: \(settings.config.maxTokens)", 
+                        value: $settings.config.maxTokens,
+                        in: 100...4000,
+                        step: 100)
             }
-        }
-        .formStyle(.grouped)
-    }
-}
-
-// MARK: - AI 服务商设置视图
-private struct AIServiceSettingsView: View {
-    @StateObject private var settings = AISettings.shared
-    @State private var isValidating = false
-    
-    var body: some View {
-        HStack(spacing: 0) {
-            // 左侧服务商列表
-            List(AISettings.AIProvider.allCases, id: \.self, selection: $settings.provider) { provider in
-                Text(provider.rawValue)
-                    .font(.body)
-                    .padding(.vertical, 8)
-            }
-            .listStyle(.sidebar)
-            .frame(width: 150)
             
-            // 右侧配置区域
-            ScrollView {
-                VStack(alignment: .leading, spacing: 24) {
-                    // 基础配置
-                    VStack(alignment: .leading, spacing: 16) {
-                        Text("基础配置")
-                            .font(.headline)
-                        
-                        VStack(alignment: .leading, spacing: 12) {
-                            LabeledTextField(label: "API Key", text: $settings.apiKey, isSecure: true)
-                            LabeledTextField(label: "服务器地址", text: $settings.baseURL)
-                            LabeledTextField(label: "模型", text: $settings.model)
-                        }
-                    }
-                    
-                    Divider()
-                    
-                    // 翻译参数
-                    VStack(alignment: .leading, spacing: 16) {
-                        Text("翻译参数")
-                            .font(.headline)
-                        
-                        VStack(alignment: .leading, spacing: 12) {
-                            LabeledTextField(label: "目标语言", text: $settings.targetLanguage)
-                            
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text("系统提示词")
-                                    .foregroundStyle(.secondary)
-                                TextEditor(text: $settings.systemPrompt)
-                                    .font(.body)
-                                    .frame(height: 80)
-                                    .padding(4)
-                                    .background(Color(.textBackgroundColor))
-                                    .cornerRadius(6)
-                            }
-                            
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text("温度: \(String(format: "%.1f", settings.temperature))")
-                                    .foregroundStyle(.secondary)
-                                Slider(value: $settings.temperature, in: 0...1)
-                                    .frame(width: 200)
-                            }
-                            
-                            HStack {
-                                Text("最大 Token")
-                                    .foregroundStyle(.secondary)
-                                Stepper(String(settings.maxTokens), value: $settings.maxTokens, in: 100...4000, step: 100)
-                                    .frame(width: 200)
-                            }
-                        }
-                    }
-                    
-                    Divider()
-                    
-                    // 操作按钮
+            // MARK: - 提示词设置
+            Section("提示词设置") {
+                TextEditor(text: $settings.config.systemPrompt)
+                    .frame(height: 100)
+            }
+            
+            // MARK: - 操作按钮
+            Section("操作") {
+                VStack(spacing: 12) {
                     HStack {
-                        Button {
-                            validateConnection()
-                        } label: {
-                            if isValidating {
-                                HStack {
-                                    ProgressView()
-                                        .controlSize(.small)
-                                    Text("验证中...")
-                                }
-                            } else {
-                                Text("验证连接")
-                            }
+                        Button("重置为默认") {
+                            settings.resetToDefault()
                         }
-                        .disabled(isValidating)
                         
                         Spacer()
                         
-                        Button("保存设置") {
-                            settings.updateDefaultsForProvider()
+                        Button("测试连接") {
+                            testConnection()
                         }
-                        .buttonStyle(.borderedProminent)
+                        .disabled(isTestingConnection)
+                        
+                        Button("应用设置") {
+                            // 保存设置
+                            dismiss()
+                        }
+                        .keyboardShortcut(.return)
+                    }
+                    
+                    // 显示测试结果
+                    if isTestingConnection {
+                        HStack {
+                            ProgressView()
+                                .controlSize(.small)
+                            Text("正在测试连接...")
+                                .foregroundColor(.secondary)
+                        }
+                    } else if let result = testResult {
+                        HStack {
+                            Image(systemName: result.success ? "checkmark.circle.fill" : "xmark.circle.fill")
+                                .foregroundColor(result.success ? .green : .red)
+                            Text(result.message)
+                                .foregroundColor(result.success ? .secondary : .red)
+                        }
                     }
                 }
-                .padding(20)
-                .frame(maxWidth: .infinity)
             }
-            .background(Color(.controlBackgroundColor))
+        }
+        .formStyle(.grouped)
+        .padding()
+        .frame(width: 500)
+        .overlay(alignment: .topTrailing) {
+            // 关闭按钮
+            Button {
+                dismiss()
+            } label: {
+                Image(systemName: "xmark.circle.fill")
+                    .font(.title2)
+                    .foregroundStyle(.secondary)
+                    .contentShape(Circle())
+            }
+            .buttonStyle(.plain)
+            .keyboardShortcut(.escape)
+            .padding(8)
         }
     }
     
-    private func validateConnection() {
-        isValidating = true
+    private func testConnection() {
+        isTestingConnection = true
+        testResult = nil
         
         Task {
             do {
                 let translator = try AITranslator(settings: settings)
-                if let result = try await translator.translate("Hello", targetLocale: "en") {
-                    print("验证成功：\(result)")
+                // 尝试翻译一个简单的文本来测试连接
+                let result = try await translator.translate("Hello", targetLocale: "zh-Hans")
+                
+                await MainActor.run {
+                    isTestingConnection = false
+                    if result != nil {
+                        testResult = (true, "连接成功")
+                    } else {
+                        testResult = (false, "连接失败：未收到响应")
+                    }
                 }
             } catch {
-                print("验证失败：\(error.localizedDescription)")
-            }
-            
-            isValidating = false
-        }
-    }
-}
-
-// MARK: - 辅助视图
-private struct LabeledTextField: View {
-    let label: String
-    @Binding var text: String
-    var isSecure: Bool = false
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            Text(label)
-                .foregroundStyle(.secondary)
-            if isSecure {
-                SecureField("", text: $text)
-                    .textFieldStyle(.roundedBorder)
-            } else {
-                TextField("", text: $text)
-                    .textFieldStyle(.roundedBorder)
+                await MainActor.run {
+                    isTestingConnection = false
+                    testResult = (false, "连接失败：\(error.localizedDescription)")
+                }
             }
         }
-    }
-}
-
-// MARK: - 关于页面
-private struct AboutView: View {
-    var body: some View {
-        VStack(spacing: 20) {
-            Image(systemName: "globe")
-                .font(.system(size: 60))
-                .foregroundStyle(.blue)
-            
-            Text("XLocale")
-                .font(.title)
-            Text("版本 1.0.0")
-                .foregroundStyle(.secondary)
-            
-            Divider()
-            
-            VStack(alignment: .leading, spacing: 12) {
-                Link("项目主页", destination: URL(string: "https://github.com/linhey/XLocale")!)
-                Link("问题反馈", destination: URL(string: "https://github.com/linhey/XLocale/issues")!)
-                Link("开发者主页", destination: URL(string: "https://github.com/linhey")!)
-            }
-            
-            Spacer()
-            
-            Text("© 2024 linhey. All rights reserved.")
-                .font(.caption)
-                .foregroundStyle(.secondary)
-        }
-        .padding()
     }
 }
 

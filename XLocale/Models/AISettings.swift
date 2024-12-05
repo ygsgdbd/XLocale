@@ -1,33 +1,34 @@
 import SwiftUI
+import Defaults
+
+extension Defaults.Keys {
+    static let aiConfig = Key<AIConfig>("aiConfig", default: AIProviderType.openAI.defaultConfig)
+}
 
 class AISettings: ObservableObject {
     static let shared = AISettings()
-    static let defaultsKey = "AISettings"
     
-    enum AIProvider: String, Codable, CaseIterable {
-        case openAI = "OpenAI"
-        case deepseek = "DeepSeek"
-    }
-    
-    @AppStorage("provider") var provider: AIProvider = .openAI
-    @AppStorage("baseURL") var baseURL: String = "https://api.openai.com/v1"
-    @AppStorage("apiKey") var apiKey: String = ""
-    @AppStorage("model") var model: String = "gpt-3.5-turbo"
-    @AppStorage("temperature") var temperature: Double = 0.7
-    @AppStorage("systemPrompt") var systemPrompt: String = "你是一个专业的翻译"
-    @AppStorage("targetLanguage") var targetLanguage: String = "简体中文"
-    @AppStorage("maxTokens") var maxTokens: Int = 2000
-    
-    func updateDefaultsForProvider() {
-        switch provider {
-        case .openAI:
-            baseURL = "https://api.openai.com/v1"
-            model = "gpt-3.5-turbo"
-        case .deepseek:
-            baseURL = "https://api.deepseek.com"
-            model = "deepseek-chat"
+    @Published var config: AIConfig {
+        didSet {
+            // 保存到 UserDefaults
+            Defaults[.aiConfig] = config
         }
     }
     
-    private init() {}
+    private init() {
+        // 从 UserDefaults 加载配置
+        self.config = Defaults[.aiConfig]
+    }
+    
+    /// 重置为服务商默认配置
+    func resetToDefault() {
+        config = config.provider.defaultConfig
+    }
+    
+    /// 切换服务商
+    func switchProvider(_ provider: AIProviderType) {
+        var newConfig = provider.defaultConfig
+        newConfig.apiKey = config.apiKey  // 保留原有的 API Key
+        config = newConfig
+    }
 }

@@ -2,10 +2,10 @@ import Foundation
 
 /// 用于处理 Xcode 项目本地化文件导出的服务类
 class XcodeExporter {
-    /// 导出进度更新
-    struct ExportProgress {
-        let progress: Double
+    /// 导出状态更新
+    struct ExportStatus {
         let message: String
+        let isFinished: Bool
     }
     
     /// 导出错误类型
@@ -54,13 +54,9 @@ class XcodeExporter {
     }
     
     /// 导出 Xcode 项目的本地化文件
-    /// - Parameters:
-    ///   - projectURL: Xcode 项目文件路径
-    ///   - progressHandler: 进度更新回调
-    /// - Returns: 导出的 xcloc 文件所在目录
     func exportLocalizations(
         from projectURL: URL,
-        progressHandler: @escaping (ExportProgress) -> Void
+        statusHandler: @escaping (ExportStatus) -> Void
     ) async throws -> URL {
         // 确保缓存目录存在
         try FileManager.default.createDirectory(at: cacheDirectory, 
@@ -72,11 +68,11 @@ class XcodeExporter {
         let projectPath = projectURL.path
         let exportPath = cacheDirectory.path
         
-        progressHandler(.init(progress: 0.1, message: "开始导出本地化文件..."))
+        statusHandler(.init(message: "开始导出本地化文件...", isFinished: false))
         
         // 获取支持的语言列表
         let languages = try getKnownRegions(from: projectURL)
-        progressHandler(.init(progress: 0.1, message: "检测到支持的语言: \(languages.joined(separator: ", "))"))
+        statusHandler(.init(message: "检测到支持的语言: \(languages.joined(separator: ", "))", isFinished: false))
         
         // 构建导出命令
         let process = Process()
@@ -107,19 +103,8 @@ class XcodeExporter {
         
         // 异步读取输出
         Task {
-            progressHandler(.init(progress: 0.1, message: "开始导出..."))
-            
             for try await line in outputHandle.bytes.lines {
-                // 解析进度
-                if line.contains("Copying") {
-                    progressHandler(.init(progress: 0.3, message: "正在复制文件: \(line)"))
-                } else if line.contains("Writing") {
-                    progressHandler(.init(progress: 0.6, message: "正在写入文件: \(line)"))
-                } else if line.contains("Done") {
-                    progressHandler(.init(progress: 1.0, message: "导出完成"))
-                } else {
-                    progressHandler(.init(progress: 0.1, message: line))
-                }
+                statusHandler(.init(message: line, isFinished: false))
             }
         }
         
@@ -131,30 +116,26 @@ class XcodeExporter {
         if process.terminationStatus != 0 {
             let errorData = errorHandle.readDataToEndOfFile()
             if let errorMessage = String(data: errorData, encoding: .utf8) {
-                progressHandler(.init(progress: 0.0, message: "错误: \(errorMessage)"))
+                statusHandler(.init(message: "错误: \(errorMessage)", isFinished: true))
                 throw ExportError.exportFailed(errorMessage)
             } else {
                 let message = "未知错误 (退出码: \(process.terminationStatus))"
-                progressHandler(.init(progress: 0.0, message: message))
+                statusHandler(.init(message: message, isFinished: true))
                 throw ExportError.exportFailed(message)
             }
         }
         
-        progressHandler(.init(progress: 1.0, message: "导出完成，文件保存在: \(cacheDirectory.path)"))
+        statusHandler(.init(message: "导出完成，文件保存在: \(cacheDirectory.path)", isFinished: true))
         return cacheDirectory
     }
     
     /// 导入本地化文件到 Xcode 项目
-    /// - Parameters:
-    ///   - xclocURL: 本地化文件目录
-    ///   - projectURL: Xcode 项目文件路径
-    ///   - progressHandler: 进度更新回调
     func importLocalizations(
         from xclocURL: URL,
         to projectURL: URL,
-        progressHandler: @escaping (ExportProgress) -> Void
+        statusHandler: @escaping (ExportStatus) -> Void
     ) async throws {
-        progressHandler(.init(progress: 0.1, message: "开始导入..."))
+        statusHandler(.init(message: "开始导入...", isFinished: false))
         
         // 1. 读取并验证 contents.json
         let contentsURL = xclocURL.appendingPathComponent("contents.json")
@@ -189,7 +170,7 @@ class XcodeExporter {
                 """)
         }
         
-        progressHandler(.init(progress: 0.2, message: "验证文件结构完成"))
+        statusHandler(.init(message: "验证文件结构完成", isFinished: false))
         
         // 5. 执行导入命令
         let process = Process()
@@ -210,15 +191,7 @@ class XcodeExporter {
         
         Task {
             for try await line in outputHandle.bytes.lines {
-                if line.contains("Importing") {
-                    progressHandler(.init(progress: 0.3, message: line))
-                } else if line.contains("Writing") {
-                    progressHandler(.init(progress: 0.6, message: line))
-                } else if line.contains("Done") {
-                    progressHandler(.init(progress: 1.0, message: "导入完成"))
-                } else {
-                    progressHandler(.init(progress: 0.1, message: line))
-                }
+                statusHandler(.init(message: line, isFinished: false))
             }
         }
         
@@ -233,6 +206,6 @@ class XcodeExporter {
         
         // 等待文件系统同步
         try await Task.sleep(nanoseconds: 1_000_000_000)
-        progressHandler(.init(progress: 1.0, message: "导入完成"))
+        statusHandler(.init(message: "导入完成", isFinished: true))
     }
 } 

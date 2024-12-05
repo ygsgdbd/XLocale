@@ -31,14 +31,6 @@ struct FileListView: View {
             // MARK: - 文件列表
             fileListView
         }
-        .sheet(isPresented: $viewModel.showingExportProgress) {
-            if let progressModel = viewModel.exportProgress {
-                CommandProgressView(
-                    viewModel: progressModel,
-                    isPresented: $viewModel.showingExportProgress
-                )
-            }
-        }
     }
     
     // MARK: - 项目信息视图
@@ -141,34 +133,42 @@ private struct FileListItem: View {
     let file: XclocFile
     
     var body: some View {
-        Label {
+        HStack(spacing: ViewStyle.Spacing.normal) {
+            // 国旗 emoji
+            Text(LocaleUtils.flagEmoji(for: file.contents.targetLocale))
+                .font(.title3)
+            
+            // 文件信息
             Grid(alignment: .leading, horizontalSpacing: ViewStyle.Spacing.normal, verticalSpacing: ViewStyle.Spacing.small) {
-                // 第一行：文件名
+                // 第一行：语言名称
                 GridRow {
-                    Text(file.url.lastPathComponent)
+                    Text(LocaleUtils.localizedName(for: file.contents.targetLocale))
                         .lineLimit(1)
                         .font(.body)
                         .gridCellColumns(2)
                 }
                 
-                // 第二行：语言和进度
+                // 第二行：文件名和进度
                 GridRow {
-                    // 进度条
-                    ProgressView(value: file.translationProgress, total: 1.0)
-                        .progressViewStyle(.linear)
-                        .tint(file.translationProgress >= 1.0 ? .green : .blue)
+                    Text(file.url.lastPathComponent)
+                        .foregroundStyle(.secondary)
                     
                     // 进度文本
-                    Text("\(file.translatedCount)/\(file.totalCount)")
+                    Text(verbatim: "\(file.translatedCount) / \(file.totalCount)")
                         .monospacedDigit()
                         .gridColumnAlignment(.trailing)
                 }
                 .font(.caption)
                 .foregroundStyle(.secondary)
+                
+                // 第三行：进度条
+                GridRow {
+                    ProgressView(value: file.translationProgress, total: 1.0)
+                        .progressViewStyle(.linear)
+                        .tint(file.translationProgress >= 1.0 ? .green : .blue)
+                        .gridCellColumns(2)
+                }
             }
-        } icon: {
-            Image(systemName: "doc.text.fill")
-                .foregroundStyle(file.translationProgress >= 1.0 ? .green : .blue)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.vertical, ViewStyle.Spacing.small)

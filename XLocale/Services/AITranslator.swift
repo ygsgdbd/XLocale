@@ -22,13 +22,13 @@ enum AITranslatorError: LocalizedError {
 class AITranslator {
     private let openAI: OpenAI
     private let settings: AISettings
-    private let retryCount = 3  // 添加重试次数
-    private let retryDelay: TimeInterval = 2  // 重试间隔
+    private let retryCount = 3
+    private let retryDelay: TimeInterval = 2
     
     init(settings: AISettings = .shared) throws {
         self.settings = settings
         
-        guard let url = URL(string: settings.baseURL) else {
+        guard let url = URL(string: settings.config.baseURL) else {
             throw AITranslatorError.invalidURL
         }
         
@@ -37,10 +37,10 @@ class AITranslator {
         }
         
         let config = OpenAI.Configuration(
-            token: settings.apiKey,
+            token: settings.config.apiKey,
             host: host,
             port: url.port ?? 443,
-            timeoutInterval: 30  // 增加超时时间
+            timeoutInterval: 30
         )
         
         self.openAI = OpenAI(configuration: config)
@@ -53,15 +53,15 @@ class AITranslator {
         for attempt in 0..<retryCount {
             do {
                 let messages: [ChatQuery.ChatCompletionMessageParam?] = [
-                    .init(role: .system, content: "你是一个专业的翻译，请将下面的文本翻译成\(targetLocale)语"),
+                    .init(role: .system, content: "\(settings.config.systemPrompt)，请将下面的文本翻译成\(targetLocale)语"),
                     .init(role: .user, content: text)
                 ]
                 
                 let query = ChatQuery(
                     messages: messages.compactMap { $0 },
-                    model: .init(settings.model),
-                    maxTokens: settings.maxTokens,
-                    temperature: settings.temperature
+                    model: .init(settings.config.model),
+                    maxTokens: settings.config.maxTokens,
+                    temperature: settings.config.temperature
                 )
                 
                 // 添加请求间隔
