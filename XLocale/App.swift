@@ -13,7 +13,6 @@ struct XLocaleApp: App {
         WindowGroup {
             XclocEditor()
         }
-        .windowStyle(.hiddenTitleBar)
         .windowToolbarStyle(.unified)
     }
 }

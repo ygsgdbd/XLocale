@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftUIX
 
 /// 翻译表格视图
 /// 用于显示和管理翻译条目列表
@@ -65,7 +66,7 @@ struct TranslationTableView: View {
                     .tag(item.id)
                     .listRowInsets(EdgeInsets(top: 8, leading: 12, bottom: 8, trailing: 12))
                 }
-                .listStyle(.plain) // 使用plain样式提升性能
+                .listStyle(.automatic) // 使用plain样式提升性能
                 .onChange(of: selectedID) { id in
                     if let id = id {
                         if let selectedTranslation = translations.first(where: { $0.id == id }) {

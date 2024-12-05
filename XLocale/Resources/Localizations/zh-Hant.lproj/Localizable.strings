@@ -32,13 +32,13 @@
 "从左侧选择要编辑的文件" = "";
 
 /* No comment provided by engineer. */
-"错误" = "錯誤";
+"错误" = "";
 
 /* No comment provided by engineer. */
 "打开设置" = "";
 
 /* No comment provided by engineer. */
-"导出本地化" = "匯出本地化";
+"导出本地化" = "";
 
 /* No comment provided by engineer. */
 "导入到 Xcode" = "";
@@ -74,7 +74,7 @@
 "清空所有翻译内容" = "";
 
 /* No comment provided by engineer. */
-"取消" = "取消";
+"取消" = "";
 
 /* No comment provided by engineer. */
 "全部" = "";
@@ -92,7 +92,7 @@
 "停止翻译" = "";
 
 /* No comment provided by engineer. */
-"完成" = "完成";
+"完成" = "";
 
 /* No comment provided by engineer. */
 "未翻译" = "";
@@ -119,7 +119,7 @@
 "项目主页" = "";
 
 /* No comment provided by engineer. */
-"选择项目" = "選擇專案";
+"选择项目" = "";
 
 /* No comment provided by engineer. */
 "验证连接" = "";
@@ -131,7 +131,7 @@
 "一键翻译" = "";
 
 /* No comment provided by engineer. */
-"已导出的文件" = "已匯出的檔案";
+"已导出的文件" = "";
 
 /* No comment provided by engineer. */
 "已翻译" = "";
@@ -146,7 +146,7 @@
 "最大 Token" = "";
 
 /* No comment provided by engineer. */
-"AI 翻译" = "🤣123";
+"AI 翻译" = "";
 
 /* No comment provided by engineer. */
 "XLocale" = "";

@@ -6,7 +6,7 @@ struct XclocEditor: View {
     
     var body: some View {
         NavigationSplitView {
-            SidebarView()
+            FileListView()
                 .frame(minWidth: 200, idealWidth: 220, maxWidth: .infinity)
                 .navigationTitle("文件")
         } content: {
@@ -87,13 +87,6 @@ struct XclocEditor: View {
     }
 }
 
-// MARK: - 侧边栏视图
-private struct SidebarView: View {
-    var body: some View {
-        FileListView()
-    }
-}
-
 
 // MARK: - 中间内容视图
 private struct TranslationContentView: View {
@@ -104,71 +97,28 @@ private struct TranslationContentView: View {
     var body: some View {
         if let selectedFile = viewModel.selectedFile {
             VStack(spacing: 0) {
-                // 顶部信息区域
-                VStack(alignment: .leading, spacing: 12) {
-                    // 文件信息区域
-                    HStack(spacing: 16) {
-                        Label(selectedFile.url.lastPathComponent, systemImage: "doc.text")
-                            .font(.headline)
-                        
-                        Divider()
-                            .frame(height: 16)
-                        
-                        // 语言信息
-                        HStack(spacing: 8) {
-                            Text(selectedFile.contents.developmentRegion)
-                                .foregroundStyle(.primary)
-                            Image(systemName: "arrow.right")
-                                .foregroundStyle(.secondary)
-                                .imageScale(.small)
-                            Text(selectedFile.contents.targetLocale)
-                                .foregroundStyle(.primary)
-                        }
-                        .font(.subheadline)
-                    }
-                    
-                    // 翻译进度
-                    if let stats = viewModel.translationStats {
-                        HStack(spacing: 16) {
-                            ProgressView(
-                                value: Double(stats.translated),
-                                total: Double(stats.total)
-                            )
-                            .frame(width: 100)
-                            .tint(.green)
-                            
-                            HStack(spacing: 12) {
-                                Label("\(stats.total)", systemImage: "doc.text")
-                                Label("\(stats.translated)", systemImage: "checkmark.circle.fill")
-                                    .foregroundStyle(.green)
-                                Label("\(stats.untranslated)", systemImage: "circle")
-                                    .foregroundStyle(.secondary)
-                            }
-                            .font(.caption)
-                            .symbolRenderingMode(.hierarchical)
-                        }
-                    }
-                }
-                .padding()
-                .background(Material.bar)
-                
-                Divider()
-                
                 // 工具栏
                 HStack {
+                    // 筛选器
+                    Picker("显示", selection: $viewModel.currentFilter) {
+                        Label("全部", systemImage: "list.bullet")
+                            .tag(XclocViewModel.TranslationFilter.all)
+                        Label("未翻译", systemImage: "circle")
+                            .tag(XclocViewModel.TranslationFilter.untranslated)
+                        Label("已翻译", systemImage: "checkmark.circle")
+                            .tag(XclocViewModel.TranslationFilter.translated)
+                    }
+                    .pickerStyle(.segmented)
+                    .frame(width: 250)
+                    .help("筛选显示的翻译条目")
+                    
+                    Spacer()
+                    
                     // 一键翻译按钮
                     Button {
-                        if viewModel.isTranslatingAll {
-                            viewModel.cancelTranslation()
-                        } else {
-                            Task { await translateAll() }
-                        }
+                        Task { await translateAll() }
                     } label: {
-                        if viewModel.isTranslatingAll {
-                            Label("停止翻译", systemImage: "stop.circle")
-                        } else {
-                            Label("一键翻译", systemImage: "wand.and.stars")
-                        }
+                        Label("一键翻译", systemImage: "wand.and.stars")
                     }
                     .help(viewModel.isTranslatingAll ? "停止翻译" : "自动翻译所有未翻译的文本")
                     
@@ -188,29 +138,9 @@ private struct TranslationContentView: View {
                     }
                     .help("将翻译导入到 Xcode 项目")
                     .disabled(viewModel.currentFile == nil || viewModel.isImporting)
-                    
-                    if viewModel.isImporting {
-                        ProgressView()
-                            .controlSize(.small)
-                    }
-                    
-                    Spacer()
-                    
-                    // 筛选器
-                    Picker("显示", selection: $viewModel.currentFilter) {
-                        Label("全部", systemImage: "list.bullet")
-                            .tag(XclocViewModel.TranslationFilter.all)
-                        Label("未翻译", systemImage: "circle")
-                            .tag(XclocViewModel.TranslationFilter.untranslated)
-                        Label("已翻译", systemImage: "checkmark.circle")
-                            .tag(XclocViewModel.TranslationFilter.translated)
-                    }
-                    .pickerStyle(.segmented)
-                    .frame(width: 250)
-                    .help("筛选显示的翻译条目")
                 }
-                .padding(.horizontal)
-                .padding(.vertical, 8)
+                .padding(.horizontal, ViewStyle.Spacing.normal)
+                .padding(.vertical, ViewStyle.Spacing.normal)
                 .background(.bar)
                 
                 // 翻译表格
