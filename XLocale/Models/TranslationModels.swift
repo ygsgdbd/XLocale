@@ -6,9 +6,9 @@ struct XclocFile: Hashable, Equatable {
     let contents: XclocContents
     var translationUnits: [TranslationUnit]
     
-    mutating func updateTranslation(_ translation: TranslationUnit) {
-        if let index = translationUnits.firstIndex(where: { $0.id == translation.id }) {
-            translationUnits[index] = translation
+    mutating func updateTranslation(_ unit: TranslationUnit) {
+        if let index = translationUnits.firstIndex(where: { $0.id == unit.id }) {
+            translationUnits[index] = unit
         }
     }
     
@@ -38,13 +38,13 @@ struct TranslationUnit: Identifiable, Hashable {
 }
 
 // MARK: - Xcode 本地化文件结构
-struct XclocContents: Decodable {
+struct XclocContents: Codable, Hashable {
     let developmentRegion: String
     let targetLocale: String
     let toolInfo: ToolInfo
     let version: String
     
-    struct ToolInfo: Decodable {
+    struct ToolInfo: Codable, Hashable {
         let toolBuildNumber: String
         let toolID: String
         let toolName: String

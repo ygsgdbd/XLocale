@@ -56,11 +56,29 @@ struct XclocEditor: View {
         .sheet(isPresented: $showingSettings) {
             SettingsView()
         }
+        .sheet(isPresented: $viewModel.showingExportProgress) {
+            if let progressModel = viewModel.exportProgress {
+                CommandProgressView(
+                    viewModel: progressModel,
+                    isPresented: $viewModel.showingExportProgress
+                )
+            }
+        }
+        .sheet(isPresented: $viewModel.showingImportProgress) {
+            if let progressModel = viewModel.importProgress {
+                CommandProgressView(
+                    viewModel: progressModel,
+                    isPresented: $viewModel.showingImportProgress
+                )
+            }
+        }
         .alert("错误", isPresented: .init(
             get: { viewModel.errorMessage != nil },
             set: { if !$0 { viewModel.errorMessage = nil } }
         )) {
-            Button("确定", role: .cancel) {}
+            Button("确定") {
+                viewModel.errorMessage = nil
+            }
         } message: {
             if let error = viewModel.errorMessage {
                 Text(error)

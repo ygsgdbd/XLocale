@@ -1,10 +1,153 @@
-"选择项目" = "選擇專案";
-"导出本地化" = "匯出本地化";
-"已导出的文件" = "已匯出的檔案";
-"Xcode 项目" = "Xcode 專案";
-"请选择 Xcode 项目文件" = "請選擇 Xcode 專案檔案";
-"选择项目" = "選擇專案";
-"取消" = "取消";
-"完成" = "完成";
+/* No comment provided by engineer. */
+"%lld" = "";
+
+/* No comment provided by engineer. */
+"%lld/%lld" = "";
+
+/* No comment provided by engineer. */
+"© 2024 linhey. All rights reserved." = "";
+
+/* No comment provided by engineer. */
+"⌘ + S" = "";
+
+/* No comment provided by engineer. */
+"版本 1.0.0" = "";
+
+/* No comment provided by engineer. */
+"保存" = "";
+
+/* No comment provided by engineer. */
+"保存当前文件" = "";
+
+/* No comment provided by engineer. */
+"保存翻译 (⌘S)" = "";
+
+/* No comment provided by engineer. */
+"此操作将清空所有已翻译的内容，且无法恢复" = "";
+
+/* No comment provided by engineer. */
+"从中间选择要编辑的翻译" = "";
+
+/* No comment provided by engineer. */
+"从左侧选择要编辑的文件" = "";
+
+/* No comment provided by engineer. */
 "错误" = "錯誤";
-"导出失败" = "匯出失敗"; 
+
+/* No comment provided by engineer. */
+"打开设置" = "";
+
+/* No comment provided by engineer. */
+"导出本地化" = "匯出本地化";
+
+/* No comment provided by engineer. */
+"导入到 Xcode" = "";
+
+/* No comment provided by engineer. */
+"翻译" = "";
+
+/* No comment provided by engineer. */
+"翻译参数" = "";
+
+/* No comment provided by engineer. */
+"复制到剪贴板" = "";
+
+/* No comment provided by engineer. */
+"基本设置" = "";
+
+/* No comment provided by engineer. */
+"基础配置" = "";
+
+/* No comment provided by engineer. */
+"将翻译导入到 Xcode 项目" = "";
+
+/* No comment provided by engineer. */
+"开发者主页" = "";
+
+/* No comment provided by engineer. */
+"配置管理" = "";
+
+/* No comment provided by engineer. */
+"清空翻译" = "";
+
+/* No comment provided by engineer. */
+"清空所有翻译内容" = "";
+
+/* No comment provided by engineer. */
+"取消" = "取消";
+
+/* No comment provided by engineer. */
+"全部" = "";
+
+/* No comment provided by engineer. */
+"确定要清空所有翻译吗？" = "";
+
+/* No comment provided by engineer. */
+"筛选显示的翻译条目" = "";
+
+/* No comment provided by engineer. */
+"设置" = "";
+
+/* No comment provided by engineer. */
+"停止翻译" = "";
+
+/* No comment provided by engineer. */
+"完成" = "完成";
+
+/* No comment provided by engineer. */
+"未翻译" = "";
+
+/* No comment provided by engineer. */
+"温度: %@" = "";
+
+/* No comment provided by engineer. */
+"文件" = "";
+
+/* No comment provided by engineer. */
+"问题反馈" = "";
+
+/* No comment provided by engineer. */
+"系统提示词" = "";
+
+/* No comment provided by engineer. */
+"显示" = "";
+
+/* No comment provided by engineer. */
+"显示开发者选项" = "";
+
+/* No comment provided by engineer. */
+"项目主页" = "";
+
+/* No comment provided by engineer. */
+"选择项目" = "選擇專案";
+
+/* No comment provided by engineer. */
+"验证连接" = "";
+
+/* No comment provided by engineer. */
+"验证中..." = "";
+
+/* No comment provided by engineer. */
+"一键翻译" = "";
+
+/* No comment provided by engineer. */
+"已导出的文件" = "已匯出的檔案";
+
+/* No comment provided by engineer. */
+"已翻译" = "";
+
+/* No comment provided by engineer. */
+"自动翻译所有未翻译的文本" = "";
+
+/* No comment provided by engineer. */
+"自动检查更新" = "";
+
+/* No comment provided by engineer. */
+"最大 Token" = "";
+
+/* No comment provided by engineer. */
+"AI 翻译" = "🤣123";
+
+/* No comment provided by engineer. */
+"XLocale" = "";
+

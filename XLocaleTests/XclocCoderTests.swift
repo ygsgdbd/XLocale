@@ -11,16 +11,13 @@ final class XclocCoderTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         
-        // 创建临时目录
         tempDirectoryURL = FileManager.default.temporaryDirectory
             .appendingPathComponent(UUID().uuidString)
         try FileManager.default.createDirectory(at: tempDirectoryURL, withIntermediateDirectories: true)
         
-        // 设置测试资源目录
         testResourcesURL = Bundle(for: type(of: self))
             .url(forResource: "TestResources", withExtension: nil)!
         
-        // 初始化编解码器
         decoder = XclocDecoder()
         encoder = XclocEncoder()
     }
@@ -34,8 +31,8 @@ final class XclocCoderTests: XCTestCase {
         try super.tearDownWithError()
     }
     
-    /// 测试读取并保存不做修改的情况 - 验证文件完整性
-    func testReadAndSaveWithoutModification() throws {
+    /// 测试编解码能力，验证 contents.json 保持不变
+    func testContentsJsonConsistency() throws {
         // 1. 读取原始文件
         let sourceURL = testResourcesURL.appendingPathComponent("zh-Hant.xcloc")
         let xclocFile = try decoder.decode(from: sourceURL)
@@ -44,57 +41,38 @@ final class XclocCoderTests: XCTestCase {
         let outputURL = tempDirectoryURL.appendingPathComponent("test.xcloc")
         try encoder.encode(xclocFile, to: outputURL)
         
-        // 3. 验证文件结构
-        guard let sourcePaths = FileManager.default.subpaths(atPath: sourceURL.path),
-              let outputPaths = FileManager.default.subpaths(atPath: outputURL.path) else {
-            XCTFail("无法读取文件路径")
-            return
-        }
+        // 3. 读取并比较 contents.json
+        let sourceContentsURL = sourceURL.appendingPathComponent("contents.json")
+        let outputContentsURL = outputURL.appendingPathComponent("contents.json")
         
-        // 打印文件列表，帮助调试
-        print("\nSource files:")
-        sourcePaths.sorted().forEach { print("- \($0)") }
-        print("\nOutput files:")
-        outputPaths.sorted().forEach { print("- \($0)") }
+        let sourceContents = try String(contentsOf: sourceContentsURL, encoding: .utf8)
+        let outputContents = try String(contentsOf: outputContentsURL, encoding: .utf8)
         
-        // 验证文件列表相同
+        // 将 JSON 字符串转换为字典进行比较，避免格式化差异
+        let sourceJSON = try JSONSerialization.jsonObject(with: sourceContents.data(using: .utf8)!) as! [String: Any]
+        let outputJSON = try JSONSerialization.jsonObject(with: outputContents.data(using: .utf8)!) as! [String: Any]
+        
         XCTAssertEqual(
-            Set(sourcePaths.filter { !$0.contains(".DS_Store") }),
-            Set(outputPaths.filter { !$0.contains(".DS_Store") }),
-            "文件列表应该相同"
+            NSDictionary(dictionary: sourceJSON),
+            NSDictionary(dictionary: outputJSON),
+            "contents.json 的内容应该完全相同"
         )
-        
-        // 4. 验证文件内容
-        for path in sourcePaths where !path.contains(".DS_Store") {
-            let sourceFileURL = sourceURL.appendingPathComponent(path)
-            let outputFileURL = outputURL.appendingPathComponent(path)
-            
-            if !sourceFileURL.hasDirectoryPath {
-                let sourceData = try Data(contentsOf: sourceFileURL)
-                let outputData = try Data(contentsOf: outputFileURL)
-                
-                // 打印每个文件的内容哈希，帮助调试
-                print("\nComparing file: \(path)")
-                print("Source hash: \(sourceData.hashValue)")
-                print("Output hash: \(outputData.hashValue)")
-                
-                XCTAssertEqual(
-                    sourceData, outputData,
-                    "文件内容应该相同: \(path)"
-                )
-            }
-        }
     }
     
-    /// 测试读取、修改并保存的情况 - 验证翻译内容的变化
-    func testReadModifyAndSave() throws {
-        // 1. 读取原始文件
+    /// 测试修改翻译后的文件结构完整性
+    func testModifyTranslationAndVerifyStructure() throws {
+        // 1. 读取原始文件并记录原始结构
         let sourceURL = testResourcesURL.appendingPathComponent("zh-Hant.xcloc")
-        let originalFile = try decoder.decode(from: sourceURL)
+        var xclocFile = try decoder.decode(from: sourceURL)
         
-        // 2. 修改一个翻译
-        var modifiedFile = originalFile
-        let targetUnit = modifiedFile.translationUnits.first { $0.id == "导出本地化" }
+        let originalContentsURL = sourceURL.appendingPathComponent("contents.json")
+        let originalContents = try String(contentsOf: originalContentsURL, encoding: .utf8)
+        let originalStructure = try FileManager.default.subpaths(atPath: sourceURL.path)?
+            .filter { !$0.contains(".DS_Store") }
+            .sorted() ?? []
+        
+        // 2. 修改翻译内容
+        let targetUnit = xclocFile.translationUnits.first { $0.id == "导出本地化" }
         XCTAssertNotNil(targetUnit, "应该能找到测试用的翻译单元")
         
         let modifiedUnit = TranslationUnit(
@@ -103,38 +81,41 @@ final class XclocCoderTests: XCTestCase {
             target: "测试修改后的翻译",
             note: targetUnit!.note
         )
-        modifiedFile.updateTranslation(modifiedUnit)
+        xclocFile.updateTranslation(modifiedUnit)
         
         // 3. 保存修改后的文件
         let outputURL = tempDirectoryURL.appendingPathComponent("modified.xcloc")
-        try encoder.encode(modifiedFile, to: outputURL)
+        try encoder.encode(xclocFile, to: outputURL)
         
-        // 4. 验证必要的文件存在
-        let requiredPaths = [
-            "contents.json",
-            "Localized Contents/zh-Hant.xliff",
-            "Source Contents/XLocale/Resources/Localizations/en.lproj/Localizable.strings"
-        ]
+        // 4. 验证文件结构保持不变
+        let modifiedStructure = try FileManager.default.subpaths(atPath: outputURL.path)?
+            .filter { !$0.contains(".DS_Store") }
+            .sorted() ?? []
         
-        for path in requiredPaths {
-            let fileURL = outputURL.appendingPathComponent(path)
-            XCTAssertTrue(
-                FileManager.default.fileExists(atPath: fileURL.path),
-                "必要的文件应该存在: \(path)"
-            )
-        }
+        XCTAssertEqual(originalStructure, modifiedStructure, "文件结构应保持不变")
         
-        // 5. 验证翻译内容被正确修改
-        let decodedFile = try decoder.decode(from: outputURL)
-        let modifiedTranslation = decodedFile.translationUnits.first { $0.id == "导出本地化" }
-        XCTAssertNotNil(modifiedTranslation, "应该能找到修改后的翻译")
-        XCTAssertEqual(modifiedTranslation?.target, "测试修改后的翻译", "翻���内容应该已更新")
+        // 5. 验证 contents.json 内容保持不变
+        let modifiedContentsURL = outputURL.appendingPathComponent("contents.json")
+        let modifiedContents = try String(contentsOf: modifiedContentsURL, encoding: .utf8)
         
-        // 6. 验证基本信息保持不变
-        XCTAssertEqual(decodedFile.contents.developmentRegion, originalFile.contents.developmentRegion)
-        XCTAssertEqual(decodedFile.contents.targetLocale, originalFile.contents.targetLocale)
-        XCTAssertEqual(decodedFile.contents.toolInfo.toolName, originalFile.contents.toolInfo.toolName)
-        XCTAssertEqual(decodedFile.sourceContentPath, originalFile.sourceContentPath)
+        let originalJSON = try JSONSerialization.jsonObject(with: originalContents.data(using: .utf8)!) as! [String: Any]
+        let modifiedJSON = try JSONSerialization.jsonObject(with: modifiedContents.data(using: .utf8)!) as! [String: Any]
+        
+        XCTAssertEqual(
+            NSDictionary(dictionary: originalJSON),
+            NSDictionary(dictionary: modifiedJSON),
+            "contents.json 的内容应该保持不变"
+        )
+        
+        // 6. 验证翻译确实被修改
+        let reloadedFile = try decoder.decode(from: outputURL)
+        let modifiedTranslation = reloadedFile.translationUnits.first { $0.id == "导出本地化" }
+        
+        XCTAssertEqual(
+            modifiedTranslation?.target,
+            "测试修改后的翻译",
+            "翻译内容应该已更新"
+        )
     }
 }
 

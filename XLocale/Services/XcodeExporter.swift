@@ -154,41 +154,44 @@ class XcodeExporter {
         to projectURL: URL,
         progressHandler: @escaping (ExportProgress) -> Void
     ) async throws {
-        // 1. 先导出一次当前的本地化文件（强制 Xcode 刷新缓存）
-        let tempExportPath = FileManager.default.temporaryDirectory.appendingPathComponent("XLocaleTemp")
-        try? FileManager.default.removeItem(at: tempExportPath)
-        try FileManager.default.createDirectory(at: tempExportPath, withIntermediateDirectories: true)
+        progressHandler(.init(progress: 0.1, message: "开始导入..."))
         
-        let exportProcess = Process()
-        exportProcess.executableURL = URL(fileURLWithPath: "/usr/bin/xcodebuild")
-        exportProcess.arguments = [
-            "-exportLocalizations",
-            "-project", projectURL.path,
-            "-localizationPath", tempExportPath.path
-        ]
-        try exportProcess.run()
-        exportProcess.waitUntilExit()
-        
-        // 2. 清理派生数据
-        let derivedDataPath = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0]
-            .appendingPathComponent("Developer/Xcode/DerivedData")
-        
-        if let projectName = projectURL.deletingPathExtension().lastPathComponent
-            .components(separatedBy: ".").first {
-            do {
-                let contents = try FileManager.default.contentsOfDirectory(
-                    at: derivedDataPath,
-                    includingPropertiesForKeys: nil
-                )
-                for item in contents where item.lastPathComponent.contains(projectName) {
-                    try? FileManager.default.removeItem(at: item)
-                }
-            } catch {
-                print("清理派生数据失败：\(error.localizedDescription)")
-            }
+        // 1. 读取并验证 contents.json
+        let contentsURL = xclocURL.appendingPathComponent("contents.json")
+        guard let contentsData = try? Data(contentsOf: contentsURL),
+              let contents = try? JSONDecoder().decode(XclocContents.self, from: contentsData) else {
+            throw ExportError.exportFailed("无法读取 contents.json")
         }
         
-        // 3. 执行导入
+        // 2. 验证 XLIFF 文件
+        let xliffURL = xclocURL.appendingPathComponent("Localized Contents")
+            .appendingPathComponent("\(contents.targetLocale).xliff")
+        guard FileManager.default.fileExists(atPath: xliffURL.path) else {
+            throw ExportError.exportFailed("找不到对应的 XLIFF 文件：\(contents.targetLocale).xliff")
+        }
+        
+        // 3. 验证 XLIFF 中的语言代码
+        let xliffData = try Data(contentsOf: xliffURL)
+        let xmlDoc = try XMLDocument(data: xliffData)
+        guard let rootElement = xmlDoc.rootElement(),
+              let fileElement = rootElement.elements(forName: "file").first,
+              let targetLanguage = fileElement.attribute(forName: "target-language")?.stringValue else {
+            throw ExportError.exportFailed("无法读取 XLIFF 文件的语言设置")
+        }
+        
+        // 4. 检查语言代码是否一致
+        if targetLanguage != contents.targetLocale {
+            throw ExportError.exportFailed("""
+                语言代码不一致：
+                contents.json 中的目标语言为：\(contents.targetLocale)
+                XLIFF 文件中的目标语言为：\(targetLanguage)
+                请确保语言代码一致
+                """)
+        }
+        
+        progressHandler(.init(progress: 0.2, message: "验证文件结构完成"))
+        
+        // 5. 执行导入命令
         let process = Process()
         process.executableURL = URL(fileURLWithPath: "/usr/bin/xcodebuild")
         process.arguments = [
@@ -196,11 +199,6 @@ class XcodeExporter {
             "-project", projectURL.path,
             "-localizationPath", xclocURL.path
         ]
-        
-        // 设置环境变量
-        var environment = ProcessInfo.processInfo.environment
-        environment["DERIVED_DATA_CACHE_ROOT"] = NSTemporaryDirectory()
-        process.environment = environment
         
         let outputPipe = Pipe()
         let errorPipe = Pipe()
@@ -233,10 +231,8 @@ class XcodeExporter {
             throw ExportError.exportFailed(errorMessage)
         }
         
-        // 4. 清理临时文件
-        try? FileManager.default.removeItem(at: tempExportPath)
-        
-        // 5. 等待文件系统同步
+        // 等待文件系统同步
         try await Task.sleep(nanoseconds: 1_000_000_000)
+        progressHandler(.init(progress: 1.0, message: "导入完成"))
     }
 } 
